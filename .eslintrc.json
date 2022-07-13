@@ -16,7 +16,7 @@
             "error",
             "windows"
         ],
-        "no-console": "off",
+        "no-console": "warn",
         "object-curly-spacing": "off",
         "import/extensions": [
             "error",
