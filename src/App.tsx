@@ -5,15 +5,20 @@ import {
     Route,
 } from 'react-router-dom';
 import Navigation from './components/navigation/index';
+import Main from './components/pages/main/index';
+import Leaderboard from './components/pages/leaderboard/index';
 import './App.scss';
 
 const App = () => (
-    <Router>
-        <Navigation/>
-        <Routes>
-            <Route path="/" element={<div>123</div>}/>
-        </Routes>
-    </Router>
+    <div className="container">
+        <Router>
+            <Navigation/>
+            <Routes>
+                <Route path="/" element={<Main/>}/>
+                <Route path="/statistics" element={<Leaderboard/>}/>
+            </Routes>
+        </Router>
+    </div>
 );
 
 export default App;

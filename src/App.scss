@@ -1,6 +1,7 @@
 @import "./styles/fonts";
 @import "./styles/colors";
 @import "./styles/reset";
+@import "./styles/custom";
 
 #root {
     --accent-color: #{$accent-color};
@@ -9,8 +10,15 @@
     --main-color: #{$main-color};
     --secondary-color: #{$secondary-color};
     --error-color: #{$error-color};
+
+    font-family: "Inter medium", sans-serif;
+    width: 100vw;
+    height: 100vh;
 }
 
-#root {
-    font-family: "Inter medium", sans-serif;
+.container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 50px;
 }
