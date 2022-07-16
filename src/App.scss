@@ -1,6 +1,16 @@
-.root {
-    h1 {
-        color: #27AEDB;
-        text-align: center;
-    }
+@import "./styles/fonts";
+@import "./styles/colors";
+@import "./styles/reset";
+
+#root {
+    --accent-color: #{$accent-color};
+    --white-color: #{$white-color};
+    --black-color: #{$black-color};
+    --main-color: #{$main-color};
+    --secondary-color: #{$secondary-color};
+    --error-color: #{$error-color};
+}
+
+#root {
+    font-family: "Inter medium", sans-serif;
 }
