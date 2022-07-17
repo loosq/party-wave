@@ -1,7 +1,7 @@
 import React from 'react';
 import {Form} from 'components/complex';
 import './Registration.scss';
-import {useFormik} from 'formik';
+import {FormikValues, useFormik} from 'formik';
 import {object, ref, string} from 'yup';
 import {useNavigate} from 'react-router-dom';
 import {regexValidation} from 'utils/validation';
@@ -84,7 +84,7 @@ export const Registration: React.FC<unknown> = React.memo(() => {
             .required('Обязательное поле'),
     });
 
-    const formik = useFormik({
+    const formik = useFormik<FormikValues>({
         initialValues: {
             first_name: '',
             second_name: '',
