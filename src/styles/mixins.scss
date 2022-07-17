@@ -1,5 +1,3 @@
-@import './variables';
-
 @mixin make-flex-box-container($flex-direction: 'row', $justify-content: 'flex-start', $align-items: 'flex-start') {
     display: flex;
     flex-direction: $flex-direction;

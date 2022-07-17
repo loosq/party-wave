@@ -1,7 +1,7 @@
-@import "./styles/fonts";
-@import "./styles/variables";
-@import "./styles/reset";
-@import "./styles/custom";
+@use "./styles/variables";
+@use "./styles/fonts";
+@use "./styles/reset";
+@use "./styles/custom";
 
 body {
     font-family: "Inter medium", sans-serif;
