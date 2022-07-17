@@ -1,7 +1,7 @@
 import React, {InputHTMLAttributes, LabelHTMLAttributes} from 'react';
 import './Input.scss';
 
-type InputPropsType =
+type Props =
     InputHTMLAttributes<unknown>
     & LabelHTMLAttributes<unknown>
     & {
@@ -11,7 +11,7 @@ type InputPropsType =
     classNameInput?: string
 };
 
-export const Input: React.FC<InputPropsType> = React.memo((
+export const Input: React.FC<Props> = React.memo((
     {
         label,
         error,
@@ -37,4 +37,4 @@ export const Input: React.FC<InputPropsType> = React.memo((
     </div>
 ));
 
-export type InputType = InputPropsType;
+export type InputType = Props;

@@ -7,16 +7,16 @@ import {
     AltUrl, Button, Input, InputType,
 } from 'components/base';
 import './Form.scss';
-import {FormikProps} from 'formik';
+import {FormikType} from 'types';
 
-type FormPropsType = FormHTMLAttributes<unknown> & {
+type Props = FormHTMLAttributes<unknown> & {
     fields: Array<InputType>
-    formik?: FormikProps<any>
+    formik?: FormikType
     buttonProps?: ButtonHTMLAttributes<unknown>
     altUrlProps?: LinkHTMLAttributes<unknown>
 };
 
-export const Form: React.FC<FormPropsType> = React.memo((
+export const Form: React.FC<Props> = React.memo((
     {
         fields,
         formik,
