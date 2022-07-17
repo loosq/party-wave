@@ -1,10 +1,10 @@
 import React from 'react';
 import {Form} from 'components/complex';
 import './Registration.scss';
-import {useFormik} from 'formik';
-import {object, ref, string} from 'yup';
+import {FormikValues, useFormik} from 'formik';
+import {object, ref} from 'yup';
 import {useNavigate} from 'react-router-dom';
-import {regexValidation} from 'utils/validation';
+import {commonSchema} from 'utils/validation';
 
 export const Registration: React.FC<unknown> = React.memo(() => {
     const fields = [
@@ -52,39 +52,22 @@ export const Registration: React.FC<unknown> = React.memo(() => {
         },
     ];
 
+    const {
+        name, phone, email, login, password,
+    } = commonSchema;
+
     const validationSchema = object().shape({
-        first_name: string()
-            .trim()
-            .matches(regexValidation.rules.first_name, 'Некорректный формат')
-            .required('Обязательное поле'),
-        second_name: string()
-            .trim()
-            .matches(regexValidation.rules.second_name, 'Некорректный формат')
-            .required('Обязательное поле'),
-        login: string()
-            .trim()
-            .matches(regexValidation.rules.login, 'Некорректный формат')
-            .required('Обязательное поле'),
-        email: string()
-            .trim()
-            .matches(regexValidation.rules.email, 'Некорректный формат')
-            .required('Обязательное поле'),
-        phone: string()
-            .trim()
-            .matches(regexValidation.rules.phone, 'Некорректный формат')
-            .required('Обязательное поле'),
-        password: string()
-            .trim()
-            .matches(regexValidation.rules.password, 'Некорректный формат')
-            .required('Обязательное поле'),
-        password_again: string()
-            .trim()
-            .matches(regexValidation.rules.password_again, 'Некорректный формат')
-            .oneOf([ref('password'), null], 'Пароли не совпадают')
-            .required('Обязательное поле'),
+        first_name: name,
+        second_name: name,
+        login,
+        email,
+        phone,
+        password,
+        password_again: password
+            .oneOf([ref('password'), null], 'Пароли не совпадают'),
     });
 
-    const formik = useFormik({
+    const formik = useFormik<FormikValues>({
         initialValues: {
             first_name: '',
             second_name: '',
