@@ -1,11 +1,11 @@
 import React, {ImgHTMLAttributes} from 'react';
 import emptyAvatar from '../../../../static/images/emptyAvatar.png';
 
-type AvatarPropsType = ImgHTMLAttributes<unknown> & {
+type Props = ImgHTMLAttributes<unknown> & {
     isEditable?: boolean
 };
 
-export const Avatar: React.FC<AvatarPropsType> = (
+export const Avatar: React.FC<Props> = (
     {
         isEditable,
         ...restProps
