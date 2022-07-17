@@ -1,10 +1,17 @@
 import {useCallback, useEffect, useRef} from 'react';
 
 const FOCUSABLE_ELEMENTS = 'a[href], area[href], input:not([disabled]):not([type=hidden]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]';
+const TAB_KEY = 'Tab';
 
+/**
+ *  Конвертирует tabIndex в обычные числа по порядку
+ */
 // eslint-disable-next-line max-len
 const convertTabIndex = (tabIndex: number, highestTabIndex: number) => (tabIndex === 0 ? highestTabIndex + 1 : tabIndex);
 
+/**
+ *  Получает tabIndex элемента
+ */
 const getTabIndex = (target: HTMLElement) => {
     const tabIndex = target.getAttribute('tabindex');
 
@@ -15,6 +22,9 @@ const getTabIndex = (target: HTMLElement) => {
     return 0;
 };
 
+/**
+ *  Сортирует по tabIndex;
+ */
 const sortByTabIndex = (...elements: HTMLElement[]) => {
     const indexes = elements.map((node) => getTabIndex(node));
     return indexes
@@ -22,10 +32,16 @@ const sortByTabIndex = (...elements: HTMLElement[]) => {
         .reduce((prev, curr) => prev - curr);
 };
 
+/**
+ * Реализует focus trapping на элементе
+ *
+ * @return ref-объект, который нужно поместить в пропы нужного элемента
+ */
+
 export const useFocusTrap = () => {
     const trapRef = useRef<HTMLElement>(null);
 
-    const selectNextFocusableElem = useCallback(
+    const selectNextFocusableElement = useCallback(
         (
             sortedFocusableElements: HTMLElement[],
             currentIndex: number | undefined,
@@ -63,23 +79,24 @@ export const useFocusTrap = () => {
                 nextFocusedElement.focus();
 
                 if (document.activeElement !== nextFocusedElement) {
-                    selectNextFocusableElem(
+                    selectNextFocusableElement(
                         sortedFocusableElements,
                         nextIndex,
                         shiftKeyPressed,
                         skipCount + 1,
                     );
                 }
-            } else {
-                return false;
+                return true;
             }
+
+            return false;
         },
         [],
     );
 
-    const trapFunc = useCallback((evt: KeyboardEvent) => {
+    const trapperFunc = useCallback((evt: KeyboardEvent) => {
         if (trapRef?.current) {
-            if (evt.key === 'Tab') {
+            if (evt.key === TAB_KEY) {
                 evt.preventDefault();
                 const focusableElements = Array.from<HTMLElement>(
                     trapRef.current.querySelectorAll(FOCUSABLE_ELEMENTS),
@@ -87,18 +104,18 @@ export const useFocusTrap = () => {
 
                 const sortedElements = focusableElements.slice().sort(sortByTabIndex);
 
-                selectNextFocusableElem(sortedElements, undefined, evt.shiftKey);
+                selectNextFocusableElement(sortedElements, undefined, evt.shiftKey);
             }
         }
     }, []);
 
     useEffect(() => {
-        window.addEventListener('keydown', trapFunc);
+        window.addEventListener('keydown', trapperFunc);
 
         return () => {
-            window.removeEventListener('keydown', trapFunc);
+            window.removeEventListener('keydown', trapperFunc);
         };
-    }, [trapFunc]);
+    }, [trapperFunc]);
 
     return [trapRef];
 };
