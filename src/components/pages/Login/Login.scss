@@ -1,15 +1,15 @@
 @import '../../../styles/sass/mixins';
 @import '../../../styles/sass/variables';
 
-.login-window {
+.login__window {
     min-width: 375px;
     background: $window-background-color;
     box-shadow: 0 0 6px rgba(0, 0, 0, 14%);
     border-radius: 12px;
     padding: 40px 30px;
 
-    .login-container {
-        .login-title {
+    .login__container {
+        .login__title {
             @include make-label($title-secondary-color, 24px, 600);
 
             text-align: center;

@@ -23,13 +23,13 @@ export const Input: React.FC<InputPropsType> = React.memo((
     <div className='field'>
         <label
             {...restProps as LabelHTMLAttributes<unknown>}
-            className={classNameLabel || 'field-title'}
+            className={classNameLabel || 'field__title'}
         >
             {label}
         </label>
         <input
             {...restProps as InputHTMLAttributes<unknown>}
-            className={classNameInput || `field-input ${error ? 'invalid' : ''}`}
+            className={classNameInput || `field__input ${error ? 'invalid' : ''}`}
         />
         {
             error && <span className='error-message'>{error}</span>

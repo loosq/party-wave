@@ -47,9 +47,9 @@ export const Login: React.FC<unknown> = React.memo(() => {
     const navigate = useNavigate();
 
     return (
-        <div className='login-window'>
-            <div className='login-container'>
-                <div className='login-title'>
+        <div className='login__window'>
+            <div className='login__container'>
+                <div className='login__title'>
                     Авторизация
                 </div>
                 <Form

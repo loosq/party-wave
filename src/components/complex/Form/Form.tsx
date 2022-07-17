@@ -26,7 +26,7 @@ export const Form: React.FC<FormPropsType> = React.memo((
     },
 ) => (
     <form {...restFormProps} onSubmit={formik?.handleSubmit}>
-        <div className='fields-container'>
+        <div className='fields__container'>
             {
                 fields.map((field) => <Input
                     {...field}
@@ -38,7 +38,7 @@ export const Form: React.FC<FormPropsType> = React.memo((
                 />)
             }
         </div>
-        <div className='form-buttons-container'>
+        <div className='form-buttons__container'>
             <div className="form-buttons">
                 <Button {...buttonProps}/>
                 <AltUrl {...altUrlProps}/>

@@ -21,7 +21,7 @@
         "@types/node-sass": "4.11.3",
         "@types/react": "18.0.15",
         "@types/react-dom": "18.0.6",
-        "@types/yup": "^0.29.14",
+        "@types/yup": "0.29.14",
         "@typescript-eslint/eslint-plugin": "5.30.6",
         "@typescript-eslint/parser": "5.30.6",
         "css-loader": "6.7.1",
@@ -53,6 +53,6 @@
         "react-dom": "18.2.0",
         "react-router-dom": "6.3.0",
         "sass": "1.53.0",
-        "yup": "^0.32.11"
+        "yup": "0.32.11"
     }
 }

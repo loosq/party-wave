@@ -1,9 +1,9 @@
 @import 'src/styles/sass/mixins';
 
-.field-title {
+.field__title {
     @include make-label;
 }
 
-.field-input {
+.field__input {
     @include make-input;
 }

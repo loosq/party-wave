@@ -7,7 +7,7 @@
 
     @include make-flex-box-container(column, space-between);
 
-    .fields-container {
+    .fields__container {
         width: 100%;
 
         @include make-flex-box-container(column);
@@ -17,12 +17,12 @@
 
             position: relative;
 
-            .field-title {
+            .field__title {
                 margin-top: 10px;
                 font-weight: 600;
             }
 
-            .field-input {
+            .field__input {
                 height: 30px;
                 font-size: 18px;
                 border-bottom: 2px solid $border-main-color;
@@ -43,7 +43,7 @@
         }
     }
 
-    .form-buttons-container {
+    .form-buttons__container {
         .form-buttons {
             @include make-flex-box-container(column);
 
