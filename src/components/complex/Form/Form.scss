@@ -1,0 +1,53 @@
+@import '../../../styles/sass/mixins';
+@import '../../../styles/sass/variables';
+
+.form-info {
+    margin-top: 30px;
+    min-height: 400px;
+
+    @include make-flex-box-container(column, space-between);
+
+    .fields__container {
+        width: 100%;
+
+        @include make-flex-box-container(column);
+
+        .field {
+            @include make-flex-box-container(column);
+
+            position: relative;
+
+            .field__title {
+                margin-top: 10px;
+                font-weight: 600;
+            }
+
+            .field__input {
+                height: 30px;
+                font-size: 18px;
+                border-bottom: 2px solid $border-main-color;
+                margin-bottom: 30px;
+            }
+
+            .invalid {
+                border-bottom-color: $error-color;
+            }
+
+            .error-message {
+                position: absolute;
+                bottom: 10px;
+                right: 0;
+
+                @include make-label($error-color, 12px, 600);
+            }
+        }
+    }
+
+    .form-buttons__container {
+        .form-buttons {
+            @include make-flex-box-container(column);
+
+            align-items: center;
+        }
+    }
+}
