@@ -4,6 +4,7 @@ import {
     Routes,
     Route,
 } from 'react-router-dom';
+import {Registration} from 'components/pages/Registration/Registration';
 
 import Login from 'components/pages/Login';
 import Navigation from './components/navigation/index';
@@ -23,6 +24,10 @@ const App = () => (
                 <Route
                     path="/login"
                     element={<Login/>}
+                />
+                <Route
+                    path='/registration'
+                    element={<Registration/>}
                 />
             </Routes>
         </Router>
