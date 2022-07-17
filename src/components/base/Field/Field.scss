@@ -1,0 +1,20 @@
+@import 'src/styles/sass/mixins';
+
+.field__title {
+    @include make-label;
+}
+
+.field__input {
+    @include make-input;
+}
+
+.text-row__label {
+    @include make-label($title-main-color, 16px, 600);
+}
+
+.text-row__value {
+    margin-bottom: -12px;
+    padding-bottom: 10px;
+
+    @include make-label($title-secondary-color, 16px, 600);
+}
