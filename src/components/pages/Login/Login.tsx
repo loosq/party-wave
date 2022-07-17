@@ -2,9 +2,9 @@ import React from 'react';
 import {Form} from 'components/complex';
 import './Login.scss';
 import {FormikValues, useFormik} from 'formik';
-import {object, string} from 'yup';
+import {object} from 'yup';
 import {useNavigate} from 'react-router-dom';
-import {regexValidation} from 'utils/validation';
+import {commonSchema} from 'utils/validation';
 
 const Login: React.FC<unknown> = React.memo(() => {
     const fields = [
@@ -22,15 +22,11 @@ const Login: React.FC<unknown> = React.memo(() => {
         },
     ];
 
+    const {login, password} = commonSchema;
+
     const validationSchema = object().shape({
-        login: string()
-            .trim()
-            .matches(regexValidation.rules.login, 'Некорректный формат')
-            .required('Обязательное поле'),
-        password: string()
-            .trim()
-            .matches(regexValidation.rules.password, 'Некорректный формат')
-            .required('Обязательное поле'),
+        login,
+        password,
     });
 
     const formik = useFormik<FormikValues>({
