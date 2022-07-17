@@ -35,7 +35,7 @@ const sortByTabIndex = (...elements: HTMLElement[]) => {
 /**
  * Реализует focus trapping на элементе
  *
- * @return ref-объект, который нужно поместить в пропы нужного элемента
+ * @return ref-объект, который нужно поместить в пропы нужного элемента для закыкания фокуса внутри
  */
 
 export const useFocusTrap = () => {
