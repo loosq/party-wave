@@ -2,7 +2,7 @@ import React from 'react';
 import './Forum.scss';
 import forumLogo from './../../../../static/images/forum-logo.png';
 
-const Forum = () => (
+const Forum: React.FC<unknown> = React.memo(() => (
     <div className={'forum'}>
         <img src={forumLogo} className={'forum__logo'} alt="forum logo"/>
         <div className={'forum__head head'}>
@@ -33,6 +33,6 @@ const Forum = () => (
             </div>
         </div>
     </div>
-);
+));
 
 export default Forum;

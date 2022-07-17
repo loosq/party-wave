@@ -1,7 +1,7 @@
 import React from 'react';
 import './Main.scss';
 
-const Main = () => (
+const Main: React.FC<unknown> = React.memo(() => (
     <div className={'main'}>
         <h1 className={'visually-hidden'}>Main</h1>
         <div className={'main__call'}>START TO PLAY!</div>
@@ -14,6 +14,6 @@ const Main = () => (
             making this the first true generator on the Internet.
         </p>
     </div>
-);
+));
 
 export default Main;

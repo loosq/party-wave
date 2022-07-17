@@ -4,7 +4,7 @@ import './Navigation.scss';
 import pages from './config';
 import {Props} from './types';
 
-const Navigation: Props = ({haveUser = false}) => (
+const Navigation: Props = React.memo(({haveUser = false}) => (
     <nav>
         <ul className={'navigation'}>
             {Array.isArray(pages) && pages.map(({
@@ -23,6 +23,6 @@ const Navigation: Props = ({haveUser = false}) => (
             ))}
         </ul>
     </nav>
-);
+));
 
 export default Navigation;

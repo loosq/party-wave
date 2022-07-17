@@ -1,25 +1,14 @@
 @import "./styles/fonts";
-@import "./styles/colors";
+@import "./styles/variables";
 @import "./styles/reset";
 @import "./styles/custom";
 
-#root {
-    --accent-color: #{$accent-color};
-    --white-color: #{$white-color};
-    --black-color: #{$black-color};
-    --main-color: #{$main-color};
-    --secondary-color: #{$secondary-color};
-    --secondary-bg-color: #{$secondary-bg-color};
-    --error-color: #{$error-color};
-
+body {
     font-family: "Inter medium", sans-serif;
-    width: 100vw;
-    height: 100vh;
+    color: var(--main-color);
 }
 
-.container {
-    width: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 50px;
+#root {
+    width: 100vw;
+    height: 100vh;
 }

@@ -6,7 +6,7 @@ import {object, string} from 'yup';
 import {useNavigate} from 'react-router-dom';
 import {regexValidation} from 'utils/validation';
 
-export const Login: React.FC<unknown> = React.memo(() => {
+const Login: React.FC<unknown> = React.memo(() => {
     const fields = [
         {
             id: 'login-login',
@@ -69,3 +69,5 @@ export const Login: React.FC<unknown> = React.memo(() => {
         </div>
     );
 });
+
+export default Login;

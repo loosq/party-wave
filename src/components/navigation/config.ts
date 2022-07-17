@@ -28,10 +28,10 @@ const pages: pageType[] = [
         to: '/forum',
         name: 'Форум',
     },
-    {
-        to: '/search',
-        name: 'Поиск',
-    },
+    // {
+    //     to: '/search',
+    //     name: 'Поиск',
+    // },
 ];
 
 export default pages;

@@ -5,9 +5,21 @@
         {
             "name": "Polonskii Sergei",
             "email": "only-666@mail.ru"
+        },
+        {
+            "name": "",
+            "email": ""
+        },
+        {
+            "name": "",
+            "email": ""
+        },
+        {
+            "name": "",
+            "email": ""
         }
     ],
-    "description": "",
+    "description": "Runner game",
     "engines": {
         "node": "16.15.0"
     },

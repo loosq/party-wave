@@ -2,7 +2,7 @@ import React from 'react';
 import './Leaderboard.scss';
 import {title, header, data} from './config';
 
-const Leaderboard = () => (
+const Leaderboard: React.FC<unknown> = React.memo(() => (
     <div className={'leaderboard'}>
         <h1 className={'leaderboard__title'}>{title}</h1>
         <div className={'leaderboard__table table'}>
@@ -20,6 +20,6 @@ const Leaderboard = () => (
             </div>
         </div>
     </div>
-);
+));
 
 export default Leaderboard;
