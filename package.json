@@ -11,8 +11,8 @@
         "build": "webpack --mode production",
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "npm run build && node server.js",
-        "eslint": "npx eslint . --ext .ts --fix",
-        "stylelint": "npx stylelint . --fix"
+        "eslint": "eslint . --ext .ts --fix",
+        "stylelint": "stylelint . --fix"
     },
     "keywords": [],
     "author": "",
@@ -21,6 +21,7 @@
         "@types/node-sass": "4.11.3",
         "@types/react": "18.0.15",
         "@types/react-dom": "18.0.6",
+        "@types/yup": "0.29.14",
         "@typescript-eslint/eslint-plugin": "5.30.6",
         "@typescript-eslint/parser": "5.30.6",
         "css-loader": "6.7.1",
@@ -46,9 +47,12 @@
     "dependencies": {
         "body-parser": "1.20.0",
         "express": "4.18.1",
+        "formik": "2.2.9",
         "node-sass": "7.0.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "sass": "1.53.0"
+        "react-router-dom": "6.3.0",
+        "sass": "1.53.0",
+        "yup": "0.32.11"
     }
 }
