@@ -3,7 +3,7 @@
         width: 100%;
         border-radius: 20px;
         display: block;
-        opacity: .6;
+        opacity: 0.6;
         margin-bottom: 60px;
     }
 
@@ -27,6 +27,7 @@
 
 .head {
     margin-bottom: 20px;
+
     &__theme {
         width: 60%;
     }
@@ -52,14 +53,11 @@
     &__wrapper {
         display: flex;
         flex-direction: column;
+        width: 60%;
     }
 
     &__message-preview {
         color: var(--secondary-color);
-    }
-
-    &__wrapper {
-        width: 60%;
     }
 
     &__messages-count {

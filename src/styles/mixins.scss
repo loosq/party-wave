@@ -67,14 +67,14 @@
     }
 }
 
-@mixin make-hover-effect($background-color: var(--secondary-border--color)) {
+@mixin make-hover-effect($background-color: var(--secondary-border-color)) {
     &:hover {
         cursor: pointer;
         background-color: $background-color;
     }
 }
 
-@mixin make-circle($size, $background-color: var(--secondary-border--color)) {
+@mixin make-circle($size, $background-color: var(--secondary-border-color)) {
     width: $size;
     height: $size;
     border-radius: 50%;
