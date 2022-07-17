@@ -1,0 +1,112 @@
+@import '../../../styles/sass/mixins';
+@import '../../../styles/sass/variables';
+
+.settings__window {
+    min-width: 375px;
+    width: 800px;
+
+    .to-game {
+        @include make-circle(40px, $button-main-color);
+        @include make-label(white, 16px, 500);
+        @include make-hover-effect(none);
+
+        margin-left: 10px;
+        border: none;
+        transform: rotate(180deg);
+    }
+
+    .settings__container {
+        margin: 40px 30px;
+
+        @include make-flex-box-container(column, center, center);
+
+        .settings__photo {
+            @include make-circle(150px);
+
+            margin-bottom: 50px;
+        }
+
+        .settings__title {
+            font-weight: 550;
+        }
+
+        .form-info {
+            @include make-flex-box-container(column, center, center);
+
+            width: 100%;
+
+            .fields__container {
+                width: 100%;
+
+                @include make-flex-box-container(column);
+
+                .field {
+                    @include make-flex-box-container(row, space-between, center);
+
+                    margin-bottom: 25px;
+                    border-bottom: $border-secondary-color 2px solid;
+                    padding-bottom: 5px;
+                    position: relative;
+
+                    .field__title,
+                    .text-row-label {
+                        @include make-label($title-main-color, 16px, 600);
+                    }
+
+                    .field__input,
+                    .text-row-value, {
+                        margin-bottom: -12px;
+                        padding-bottom: 10px;
+
+                        @include make-label($title-secondary-color, 16px, 600);
+                    }
+
+                    .field__input {
+                        @include make-input($title-secondary-color, inherit, 16px, 600, inherit);
+                    }
+
+                    &:last-child {
+                        border-bottom: none;
+                        margin-bottom: 50px;
+                    }
+
+                    .invalid {
+                        border-bottom: $error-color 2px solid;
+                    }
+
+                    .error-message {
+                        position: absolute;
+                        bottom: -20px;
+                        right: 0;
+
+                        @include make-label($error-color, 12px, 600);
+                    }
+                }
+            }
+
+            .form-buttons__container {
+                width: 100%;
+
+                .form-links {
+                    @include make-flex-box-container(column, center, flex-start);
+
+                    .alt-url {
+                        cursor: pointer;
+                        margin-bottom: 15px;
+                        padding-bottom: 10px;
+
+                        &:last-child {
+                            padding-bottom: 0;
+                            margin-bottom: 0;
+                            color: $link-secondary-color;
+                        }
+                    }
+                }
+
+                .form-buttons {
+                    @include make-flex-box-container(column, center, center);
+                }
+            }
+        }
+    }
+}

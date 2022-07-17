@@ -1,9 +1,8 @@
 import React from 'react';
-import {Login} from 'components/pages';
+import {Login, Registration, Settings} from 'components/pages';
 import {
     Navigate, Outlet, Route, Routes,
 } from 'react-router-dom';
-import {Registration} from 'components/pages/Registration/Registration';
 
 const PrivateRoute = () => {
     const auth = null;
@@ -22,7 +21,7 @@ const App = () => (
             </Route>
             <Route
                 path='/settings'
-                element={<div>Profile</div>}
+                element={<Settings/>}
             />
             <Route
                 path='/registration'

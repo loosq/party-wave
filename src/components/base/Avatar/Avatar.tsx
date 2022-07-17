@@ -1,5 +1,4 @@
 import React, {ImgHTMLAttributes} from 'react';
-import emptyAvatar from '../../../../static/images/emptyAvatar.png';
 
 type Props = ImgHTMLAttributes<unknown> & {
     isEditable?: boolean
@@ -15,8 +14,8 @@ export const Avatar: React.FC<Props> = (
         ? (
             <input
                 {...restProps}
+                alt={restProps.alt}
                 type='image'
-                alt='ava'
             >
                 <form id="my-avatar-form">
                     <input
@@ -34,6 +33,9 @@ export const Avatar: React.FC<Props> = (
             </input>
         )
         : (
-            <img src={emptyAvatar} alt='ava'/>
+            <img
+                {...restProps}
+                alt={restProps.alt}
+            />
         )
 );
