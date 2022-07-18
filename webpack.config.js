@@ -13,6 +13,8 @@ module.exports = {
             components: path.resolve(__dirname, 'src/components/'),
             utils: path.resolve(__dirname, 'src/utils/'),
             styles: path.resolve(__dirname, 'src/styles/'),
+            libs: path.resolve(__dirname, 'src/libs/'),
+            hooks: path.resolve(__dirname, 'src/hooks/'),
         },
     },
     devServer: {
