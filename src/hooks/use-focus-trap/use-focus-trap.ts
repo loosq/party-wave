@@ -38,8 +38,8 @@ const sortByTabIndex = (...elements: HTMLElement[]) => {
  * @return ref-объект, который нужно поместить в пропы нужного элемента для закыкания фокуса внутри
  */
 
-export const useFocusTrap = () => {
-    const trapRef = useRef<HTMLElement>(null);
+export const useFocusTrap = <T extends HTMLElement>() => {
+    const trapRef = useRef<T>(null);
 
     const selectNextFocusableElement = useCallback(
         (
