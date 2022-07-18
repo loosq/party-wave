@@ -1,0 +1,130 @@
+@import 'variables';
+
+@mixin make-flex-box-container($flex-direction: 'row', $justify-content: 'flex-start', $align-items: 'flex-start') {
+    display: flex;
+    flex-direction: $flex-direction;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
+@mixin make-main-form-button() {
+    width: 280px;
+    height: 37px;
+    background: $button-main-color;
+    border-radius: 8px;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: white;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border: none;
+}
+
+@mixin make-link($link-color: $link-main-color, $font-size: 14px) {
+    text-decoration: none;
+    font-size: $font-size;
+    font-family: sans-serif;
+    font-weight: 600;
+    color: $link-color;
+    cursor: pointer;
+
+    &:visited {
+        color: $link-color;
+    }
+}
+
+@mixin make-label($label-color: $title-secondary-color, $font-size: 16px, $font-weight: 500) {
+    font-size: $font-size;
+    color: $label-color;
+    font-family: sans-serif;
+    font-weight: $font-weight;
+}
+
+@mixin make-input(
+    $color: $title-secondary-color,
+    $background-color: inherit,
+    $font-size: 12px,
+    $font-weight: 500,
+    $border-radius: inherit
+) {
+    border: none;
+    color: $color;
+    background-color: $background-color;
+    border-radius: $border-radius;
+    font-size: $font-size;
+    font-family: sans-serif;
+    font-weight: $font-weight;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+@mixin make-arrow($direction: rotate(-45deg), $color: $title-secondary-color) {
+    .arrow {
+        margin: 0 5px 0 10px;
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-bottom: $color 2px solid;
+        border-right: $color 2px solid;
+        transform: $direction;
+    }
+}
+
+@mixin make-hover-effect($background-color: $border-secondary-color) {
+    &:hover {
+        cursor: pointer;
+        background-color: $background-color;
+    }
+}
+
+@mixin make-circle($size, $background-color: $border-secondary-color) {
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    background-color: $background-color;
+}
+
+@mixin fill-whole-space() {
+    height: 100%;
+    width: 100%;
+}
+
+@mixin make-icon-blank($background-color: $title-secondary-color) {
+    content: ' ';
+    position: absolute;
+    display: block;
+    background-color: $background-color;
+    z-index: 9;
+}
+
+@mixin make-vertical-line($background-color: $title-secondary-color) {
+    &:before {
+        @include make-icon-blank($background-color);
+
+        width: 2px;
+        margin-left: -1px;
+        left: 50%;
+        top: 5px;
+        bottom: 5px;
+    }
+}
+
+@mixin make-horizontal-line($background-color: $title-secondary-color) {
+    &:after {
+        @include make-icon-blank($background-color);
+
+        height: 2px;
+        margin-top: -1px;
+        top: 50%;
+        left: 5px;
+        right: 5px;
+    }
+}
+
+@mixin make-plus-icon($background-color: $title-secondary-color) {
+    @include make-vertical-line($background-color);
+    @include make-horizontal-line($background-color);
+}

@@ -1,0 +1,5 @@
+@import 'src/styles/sass/mixins';
+
+.main-button {
+    @include make-main-form-button;
+}
