@@ -1,7 +1,25 @@
 {
     "name": "runner",
     "version": "1.0.0",
-    "description": "",
+    "contributors": [
+        {
+            "name": "Polonskii Sergei",
+            "email": "only-666@mail.ru"
+        },
+        {
+            "name": "",
+            "email": ""
+        },
+        {
+            "name": "",
+            "email": ""
+        },
+        {
+            "name": "",
+            "email": ""
+        }
+    ],
+    "description": "Runner game",
     "engines": {
         "node": "16.15.0"
     },
@@ -14,8 +32,10 @@
         "eslint": "eslint . --ext .ts --fix",
         "stylelint": "stylelint . --fix"
     },
-    "keywords": [],
-    "author": "",
+    "keywords": [
+        "Runner",
+        "Yandex Practicum"
+    ],
     "license": "ISC",
     "devDependencies": {
         "@types/node-sass": "4.11.3",

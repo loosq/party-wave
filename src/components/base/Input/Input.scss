@@ -1,4 +1,4 @@
-@import 'src/styles/sass/mixins';
+@import 'styles/mixins';
 
 .field__title {
     @include make-label;

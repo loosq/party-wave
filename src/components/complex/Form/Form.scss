@@ -1,5 +1,4 @@
-@import '../../../styles/sass/mixins';
-@import '../../../styles/sass/variables';
+@import 'styles/mixins';
 
 .form-info {
     margin-top: 30px;
@@ -19,18 +18,18 @@
 
             .field__title {
                 margin-top: 10px;
-                font-weight: 600;
+                font-weight: 500;
             }
 
             .field__input {
                 height: 30px;
                 font-size: 18px;
-                border-bottom: 2px solid $border-main-color;
+                border-bottom: 2px solid var(--accent-color);
                 margin-bottom: 30px;
             }
 
             .invalid {
-                border-bottom-color: $error-color;
+                border-bottom-color: var(--error-color);
             }
 
             .error-message {
@@ -38,7 +37,7 @@
                 bottom: 10px;
                 right: 0;
 
-                @include make-label($error-color, 12px, 600);
+                @include make-label(var(--error-color), 12px, 500);
             }
         }
     }

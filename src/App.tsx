@@ -1,38 +1,36 @@
 import React from 'react';
-import {Login} from 'components/pages';
 import {
-    Navigate, Outlet, Route, Routes,
+    BrowserRouter as Router,
+    Routes,
+    Route,
 } from 'react-router-dom';
 import {Registration} from 'components/pages/Registration/Registration';
 
-const PrivateRoute = () => {
-    const auth = null;
-
-    return auth ? <Outlet/> : <Navigate to='/login'/>;
-};
+import Login from 'components/pages/Login';
+import Navigation from './components/navigation/index';
+import Main from './components/pages/main/index';
+import Leaderboard from './components/pages/leaderboard/index';
+import Forum from './components/pages/forum/index';
+import './App.scss';
 
 const App = () => (
-    <div className='app'>
-        <Routes>
-            <Route path='/' element={<PrivateRoute/>}>
+    <div className={'container'}>
+        <Router>
+            <Navigation/>
+            <Routes>
+                <Route path="/" element={<Main/>}/>
+                <Route path="/statistics" element={<Leaderboard/>}/>
+                <Route path="/forum" element={<Forum/>}/>
                 <Route
-                    path='/'
-                    element={<div>Game</div>}
+                    path="/login"
+                    element={<Login/>}
                 />
-            </Route>
-            <Route
-                path='/settings'
-                element={<div>Profile</div>}
-            />
-            <Route
-                path='/registration'
-                element={<Registration/>}
-            />
-            <Route
-                path='/login'
-                element={<Login/>}
-            />
-        </Routes>
+                <Route
+                    path='/registration'
+                    element={<Registration/>}
+                />
+            </Routes>
+        </Router>
     </div>
 );
 
