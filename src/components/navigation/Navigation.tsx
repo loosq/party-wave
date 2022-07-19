@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {NavLink} from 'react-router-dom';
 import './Navigation.scss';
 import pages from './config';
-import {Props} from './types';
+
+type Props = FC<{
+    haveUser?: boolean
+}>
 
 const Navigation: Props = React.memo(({haveUser = false}) => (
     <nav>

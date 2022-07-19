@@ -1,10 +1,8 @@
 import React from 'react';
 import './Forum.scss';
-import forumLogo from './../../../../static/images/forum-logo.png';
 
 const Forum: React.FC<unknown> = React.memo(() => (
     <div className={'forum'}>
-        <img src={forumLogo} className={'forum__logo'} alt="forum logo"/>
         <div className={'forum__head head'}>
             <span className={'head__theme'}>Тема</span>
             <span className={'head__messages'}>Сообщений</span>
