@@ -1,8 +1,16 @@
 import React from 'react';
-import {Login, Registration, Settings} from 'components/pages';
 import {
-    Navigate, Outlet, Route, Routes,
+    Login, Registration, Settings,
+} from 'components/pages';
+import {
+    Navigate, Outlet, Route, Routes, BrowserRouter as Router,
 } from 'react-router-dom';
+import Login from 'components/pages/Login';
+import Navigation from './components/navigation/index';
+import Main from './components/pages/main/index';
+import Leaderboard from './components/pages/leaderboard/index';
+import Forum from './components/pages/forum/index';
+import './App.scss';
 
 const PrivateRoute = () => {
     const auth = null;
@@ -11,27 +19,38 @@ const PrivateRoute = () => {
 };
 
 const App = () => (
-    <div className='app'>
-        <Routes>
-            <Route path='/' element={<PrivateRoute/>}>
+    <div className='container'>
+        <Router>
+            <Navigation/>
+            <Routes>
+                <Route path='/' element={<PrivateRoute/>}>
+                    <Route
+                        path='/'
+                        element={<Main/>}
+                    />
+                </Route>
                 <Route
-                    path='/'
-                    element={<div>Game</div>}
+                    path='/statistics'
+                    element={<Leaderboard/>}
                 />
-            </Route>
-            <Route
-                path='/settings'
-                element={<Settings/>}
-            />
-            <Route
-                path='/registration'
-                element={<Registration/>}
-            />
-            <Route
-                path='/login'
-                element={<Login/>}
-            />
-        </Routes>
+                <Route
+                    path='/forum'
+                    element={<Forum/>}
+                />
+                <Route
+                    path='/login'
+                    element={<Login/>}
+                />
+                <Route
+                    path='/registration'
+                    element={<Registration/>}
+                />
+                <Route
+                    path='/settings'
+                    element={<Settings/>}
+                />
+            </Routes>
+        </Router>
     </div>
 );
 

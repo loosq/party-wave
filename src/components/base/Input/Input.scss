@@ -1,0 +1,9 @@
+@import 'styles/mixins';
+
+.field__title {
+    @include make-label;
+}
+
+.field__input {
+    @include make-input;
+}
