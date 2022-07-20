@@ -1,4 +1,4 @@
-@import 'src/styles/sass/mixins';
+@import 'src/styles/mixins';
 
 .field__title {
     @include make-label;
@@ -9,12 +9,12 @@
 }
 
 .text-row__label {
-    @include make-label($title-main-color, 16px, 600);
+    @include make-label(var(--black-color), 16px, 600);
 }
 
 .text-row__value {
     margin-bottom: -12px;
     padding-bottom: 10px;
 
-    @include make-label($title-secondary-color, 16px, 600);
+    @include make-label(var(--secondary-color), 16px, 600);
 }

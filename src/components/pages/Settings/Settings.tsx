@@ -6,104 +6,37 @@ import {Form} from 'components/complex';
 import {commonSchema} from 'utils/validation';
 import {object, ref} from 'yup';
 import {FormikValues, useFormik} from 'formik';
-import emptyAvatar from '../../../../static/images/emptyAvatar.png';
-
-type FieldType = {
-    id: string
-    label: string
-    name: string
-    value?: string
-    type: string
-}
-
-const infoFields = [
-    {
-        id: 'profile-email',
-        label: 'Почта',
-        name: 'email',
-        value: 'sdfgdsfg',
-        type: 'email',
-    },
-    {
-        id: 'profile-login',
-        label: 'Логин',
-        name: 'login',
-        value: 'asdfasdf',
-        type: 'text',
-    },
-    {
-        id: 'profile-first_name',
-        label: 'Имя',
-        name: 'first_name',
-        value: 'tewrtwerg',
-        type: 'text',
-    },
-    {
-        id: 'profile-second_name',
-        label: 'Фамилия',
-        name: 'second_name',
-        value: 'dfgsdfgsdf',
-        type: 'text',
-    },
-    {
-        id: 'profile-display_name',
-        label: 'Имя в чате',
-        name: 'display_name',
-        value: 'djhdfghs',
-        type: 'text',
-    },
-    {
-        id: 'profile-phone',
-        label: 'Телефон',
-        name: 'phone',
-        value: 'qwfasdfasdf',
-        type: 'tel',
-    },
-];
-
-const passwordFields = [
-    {
-        id: 'profile-oldPassword',
-        label: 'Старый пароль',
-        name: 'oldPassword',
-        type: 'password',
-    },
-    {
-        id: 'profile-newPassword',
-        label: 'Новый пароль',
-        name: 'newPassword',
-        type: 'password',
-    },
-    {
-        id: 'profile-newPassword_again',
-        label: 'Повторите новый пароль',
-        name: 'newPassword_again',
-        type: 'password',
-    },
-];
+import {
+    settingsInfoFields,
+    settingsPasswordFields,
+} from 'components/pages/config';
+import emptyAvatar from '../../../../static/images/empty-avatar.png';
 
 export const Settings: React.FC<unknown> = React.memo(() => {
     const [readMode, setReadMode] = useState(true);
 
-    const [fields, setFields] = useState<Array<FieldType>>(infoFields);
+    const [fields, setFields] = useState(settingsInfoFields);
 
     const navigate = useNavigate();
 
     const links = [
         {
+            id: '1',
             children: 'Изменить данные',
             onClick: () => {
                 setReadMode(false);
             },
         },
         {
+            id: '2',
             children: 'Изменить пароль',
             onClick: () => {
-                setFields(passwordFields);
+                setFields(settingsPasswordFields);
                 setReadMode(false);
             },
         },
         {
+            id: '3',
             children: 'Выйти',
             onClick: () => {
                 console.log('logout');
@@ -176,7 +109,7 @@ export const Settings: React.FC<unknown> = React.memo(() => {
                         children: 'Назад',
                         onClick: () => {
                             setReadMode(true);
-                            setFields(infoFields);
+                            setFields(settingsInfoFields);
                         },
                     }}
                 />

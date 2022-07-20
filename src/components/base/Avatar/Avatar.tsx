@@ -17,17 +17,17 @@ export const Avatar: React.FC<Props> = (
                 alt={restProps.alt}
                 type='image'
             >
-                <form id="my-avatar-form">
+                <form id='my-avatar-form'>
                     <input
-                        name="avatar"
-                        type="file"
-                        accept="image/*"
-                        id="my-avatar"
+                        name='avatar'
+                        type='file'
+                        accept='image/*'
+                        id='my-avatar'
                         style={{display: 'none'}}
                     />
                     <input
-                        id="upload-my-avatar"
-                        type="submit"
+                        id='upload-my-avatar'
+                        type='submit'
                     />
                 </form>
             </input>

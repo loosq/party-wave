@@ -32,7 +32,8 @@ export const Field: React.FC<Props> = React.memo((
     <div className='field'>
         <label
             {...restProps as LabelHTMLAttributes<unknown>}
-            className={classNameLabel || readMode ? 'text-row__label' : 'field__title'}
+            className={classNameLabel || readMode ? 'text-row__label'
+                : 'field__title'}
         >
             {label}
         </label>
@@ -50,7 +51,8 @@ export const Field: React.FC<Props> = React.memo((
                     <>
                         <input
                             {...restProps as InputHTMLAttributes<unknown>}
-                            className={classNameValue || `field__input ${error ? 'invalid' : ''}`}
+                            className={classNameValue
+                            || `field__input ${error ? 'invalid' : ''}`}
                         />
                         {
                             error

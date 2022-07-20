@@ -30,7 +30,8 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "npm run build && node server.js",
         "eslint": "eslint . --ext .ts --fix",
-        "stylelint": "stylelint . --fix"
+        "stylelint": "stylelint . --fix",
+        "heroku-prebuild": "npm install --dev"
     },
     "keywords": [
         "Runner",
@@ -48,6 +49,7 @@
         "eslint": "8.19.0",
         "eslint-config-airbnb": "19.0.4",
         "eslint-plugin-import": "2.26.0",
+        "eslint-plugin-react": "7.30.1",
         "html-webpack-plugin": "5.5.0",
         "nodemon": "2.0.19",
         "path": "0.12.7",
