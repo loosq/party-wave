@@ -1,37 +1,64 @@
 import React from 'react';
 import {
+    Forum,
+    Leaderboard,
+    Login,
+    Main,
+    Registration,
+    Settings,
+} from 'components/pages';
+import {
     BrowserRouter as Router,
-    Routes,
+    Navigate,
+    Outlet,
     Route,
+    Routes,
 } from 'react-router-dom';
-import {Registration} from 'components/pages/Registration/Registration';
-
-import Login from 'components/pages/Login';
-import Navigation from './components/navigation/index';
-import Main from './components/pages/main/index';
-import Leaderboard from './components/pages/leaderboard/index';
-import Forum from './components/pages/forum/index';
 import './App.scss';
+import {Navigation} from 'components/complex';
 
-const App = () => (
-    <div className={'container'}>
-        <Router>
-            <Navigation/>
-            <Routes>
-                <Route path="/" element={<Main/>}/>
-                <Route path="/statistics" element={<Leaderboard/>}/>
-                <Route path="/forum" element={<Forum/>}/>
-                <Route
-                    path="/login"
-                    element={<Login/>}
-                />
-                <Route
-                    path='/registration'
-                    element={<Registration/>}
-                />
-            </Routes>
-        </Router>
-    </div>
-);
+function PrivateRoute() {
+    const auth = null;
+
+    return auth ? <Outlet /> : <Navigate to='/login' />;
+}
+
+function App() {
+    return (
+        <div className='container'>
+            <Router>
+                <Navigation />
+                <Routes>
+                    <Route path='/' element={<PrivateRoute />}>
+                        <Route
+                            path='/'
+                            element={<Main />}
+                        />
+                    </Route>
+                    <Route
+                        path='/statistics'
+                        element={<Leaderboard />}
+                    />
+                    <Route
+                        path='/forum'
+                        element={<Forum />}
+                    />
+                    <Route
+                        path='/login'
+                        element={<Login />}
+                    />
+                    <Route
+                        path='/registration'
+                        element={<Registration />}
+                    />
+                    <Route
+                        path='/settings'
+                        element={<Settings />}
+                    />
+                </Routes>
+            </Router>
+        </div>
+    );
+}
 
 export default App;

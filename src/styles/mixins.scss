@@ -18,10 +18,10 @@
     border: none;
 }
 
-@mixin make-link($link-color: var(--accent-color), $font-size: 14px) {
+@mixin make-link($link-color: var(--accent-color), $font-size: 14px, $font-weight: 600) {
     text-decoration: none;
     font-size: $font-size;
-    font-weight: 500;
+    font-weight: $font-weight;
     color: $link-color;
     cursor: pointer;
 
