@@ -4,6 +4,7 @@ import {
     Leaderboard,
     Login,
     Main,
+    NotFoundPage,
     Registration,
     Settings,
 } from 'components/pages';
@@ -18,7 +19,7 @@ import './App.scss';
 import {Navigation} from 'components/complex';
 
 function PrivateRoute() {
-    const auth = null;
+    const auth = true;
 
     return auth ? <Outlet /> : <Navigate to='/login' />;
 }
@@ -54,6 +55,10 @@ function App() {
                     <Route
                         path='/settings'
                         element={<Settings />}
+                    />
+                    <Route
+                        path='*'
+                        element={<NotFoundPage />}
                     />
                 </Routes>
             </Router>

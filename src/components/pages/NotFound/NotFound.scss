@@ -1,0 +1,32 @@
+@import "styles/sass/variables.scss";
+
+.not-found-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    min-height: 60vh;
+}
+
+.not-found-page__code {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    font-size: 48px;
+    background-color: $button-main-color;
+    color: $window-background-color;
+}
+
+.not-found-page__description {
+    font-size: 24px;
+}
+
+.not-found-page__link {
+    color: $button-main-color;
+    text-decoration: none;
+}
