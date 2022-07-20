@@ -1,7 +1,25 @@
 {
     "name": "runner",
     "version": "1.0.0",
-    "description": "",
+    "contributors": [
+        {
+            "name": "Polonskii Sergei",
+            "email": "only-666@mail.ru"
+        },
+        {
+            "name": "",
+            "email": ""
+        },
+        {
+            "name": "",
+            "email": ""
+        },
+        {
+            "name": "",
+            "email": ""
+        }
+    ],
+    "description": "Runner game",
     "engines": {
         "node": "16.15.0"
     },
@@ -11,22 +29,27 @@
         "build": "webpack --mode production",
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "npm run build && node server.js",
-        "eslint": "npx eslint . --ext .ts --fix",
-        "stylelint": "npx stylelint . --fix"
+        "eslint": "eslint . --ext .ts --fix",
+        "stylelint": "stylelint . --fix",
+        "heroku-prebuild": "npm install --dev"
     },
-    "keywords": [],
-    "author": "",
+    "keywords": [
+        "Runner",
+        "Yandex Practicum"
+    ],
     "license": "ISC",
     "devDependencies": {
         "@types/node-sass": "4.11.3",
         "@types/react": "18.0.15",
         "@types/react-dom": "18.0.6",
+        "@types/yup": "0.29.14",
         "@typescript-eslint/eslint-plugin": "5.30.6",
         "@typescript-eslint/parser": "5.30.6",
         "css-loader": "6.7.1",
         "eslint": "8.19.0",
         "eslint-config-airbnb": "19.0.4",
         "eslint-plugin-import": "2.26.0",
+        "eslint-plugin-react": "7.30.1",
         "html-webpack-plugin": "5.5.0",
         "nodemon": "2.0.19",
         "path": "0.12.7",
@@ -46,9 +69,12 @@
     "dependencies": {
         "body-parser": "1.20.0",
         "express": "4.18.1",
+        "formik": "2.2.9",
         "node-sass": "7.0.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "sass": "1.53.0"
+        "react-router-dom": "6.3.0",
+        "sass": "1.53.0",
+        "yup": "0.32.11"
     }
 }

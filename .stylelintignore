@@ -5,3 +5,5 @@ obj
 *.*
 !*.css
 !*.scss
+dockerfile
+normalize.scss

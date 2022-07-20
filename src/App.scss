@@ -1,6 +1,14 @@
-.root {
-    h1 {
-        color: #27AEDB;
-        text-align: center;
-    }
+@use 'styles/variables';
+@use 'styles/fonts';
+@use 'styles/reset';
+@use 'styles/custom';
+
+body {
+    font-family: 'Inter medium', sans-serif;
+    color: var(--main-color);
+}
+
+#root {
+    width: 100vw;
+    height: 100vh;
 }

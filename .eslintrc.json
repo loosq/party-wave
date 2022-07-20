@@ -1,8 +1,17 @@
 {
-    "extends": "airbnb/base",
+    "extends": [
+        "airbnb",
+        "airbnb/hooks"
+    ],
     "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "react"
     ],
     "rules": {
         "indent": [
@@ -28,6 +37,7 @@
                 "tsx": "never"
             }
         ],
+        "import/no-unresolved": "off",
         "import/no-extraneous-dependencies": "off",
         "consistent-return": "off",
         "no-restricted-syntax": "off",
@@ -62,7 +72,29 @@
         "no-useless-backreference": "off",
         "function-call-argument-newline": "off",
         "prefer-exponentiation-operator": "off",
-        "no-restricted-exports": "off"
+        "no-restricted-exports": "off",
+        "react-hooks/exhaustive-deps": "off",
+        "react/jsx-indent-props": "off",
+        "react/jsx-first-prop-new-line": [
+            "error",
+            "multiline"
+        ],
+        "react/destructuring-assignment": "off",
+        "react/no-children-prop": "off",
+        "react/jsx-indent": "off",
+        "react/jsx-filename-extension": "off",
+        "jsx-quotes": [
+            "error",
+            "prefer-single"
+        ],
+        "react/jsx-props-no-spreading": "off",
+        "react/prop-types": "off",
+        "jsx-a11y/anchor-has-content": "off",
+        "react/require-default-props": "off",
+        "react/function-component-definition": "off",
+        "react/void-dom-elements-no-children": "off",
+        "react/button-has-type": "off",
+        "jsx-a11y/label-has-associated-control": "off"
     },
     "settings": {
         "import/resolver": {
