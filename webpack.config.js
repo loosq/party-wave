@@ -8,7 +8,7 @@ module.exports = {
         filename: 'bundle.js',
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js', '.jsx'],
+        extensions: ['', '.tsx', '.ts', '.js', '.jsx'],
         alias: {
             components: path.resolve(__dirname, 'src/components/'),
             utils: path.resolve(__dirname, 'src/utils/'),
@@ -33,7 +33,10 @@ module.exports = {
                     {
                         loader: 'ts-loader',
                         options: {
-                            configFile: path.resolve(__dirname, 'tsconfig.json'),
+                            configFile: path.resolve(
+                                __dirname,
+                                'tsconfig.json',
+                            ),
                         },
                     },
                 ],

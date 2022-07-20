@@ -5,23 +5,9 @@ import {FormikValues, useFormik} from 'formik';
 import {object} from 'yup';
 import {useNavigate} from 'react-router-dom';
 import {commonSchema} from 'utils/validation';
+import {loginFields} from 'components/pages/config';
 
 export const Login: React.FC<unknown> = React.memo(() => {
-    const fields = [
-        {
-            id: 'login-login',
-            name: 'login',
-            label: 'Логин',
-            type: 'text',
-        },
-        {
-            id: 'login-password',
-            name: 'password',
-            label: 'Пароль',
-            type: 'password',
-        },
-    ];
-
     const {login, password} = commonSchema;
 
     const validationSchema = object().shape({
@@ -50,7 +36,7 @@ export const Login: React.FC<unknown> = React.memo(() => {
                 </div>
                 <Form
                     className='form-info'
-                    fields={fields}
+                    fields={loginFields}
                     formik={formik}
                     buttonProps={{
                         children: 'Вход',

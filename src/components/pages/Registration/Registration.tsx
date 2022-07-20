@@ -5,53 +5,9 @@ import {FormikValues, useFormik} from 'formik';
 import {object, ref} from 'yup';
 import {useNavigate} from 'react-router-dom';
 import {commonSchema} from 'utils/validation';
+import {registrationFields} from 'components/pages/config';
 
 export const Registration: React.FC<unknown> = React.memo(() => {
-    const fields = [
-        {
-            id: 'registration-first_name',
-            name: 'first_name',
-            label: 'Имя',
-            type: 'text',
-        },
-        {
-            id: 'registration-second_name',
-            name: 'second_name',
-            label: 'Фамилия',
-            type: 'text',
-        },
-        {
-            id: 'registration-login',
-            name: 'login',
-            label: 'Логин',
-            type: 'text',
-        },
-        {
-            id: 'registration-email',
-            name: 'email',
-            label: 'Почта',
-            type: 'email',
-        },
-        {
-            id: 'registration-phone',
-            name: 'phone',
-            label: 'Телефон',
-            type: 'tel',
-        },
-        {
-            id: 'registration-password',
-            name: 'password',
-            label: 'Пароль',
-            type: 'password',
-        },
-        {
-            id: 'registration-password_again',
-            name: 'password_again',
-            label: 'Пароль ещё раз',
-            type: 'password',
-        },
-    ];
-
     const {
         name, phone, email, login, password,
     } = commonSchema;
@@ -93,7 +49,7 @@ export const Registration: React.FC<unknown> = React.memo(() => {
                 </div>
                 <Form
                     className='form-info'
-                    fields={fields}
+                    fields={registrationFields}
                     formik={formik}
                     buttonProps={{
                         children: 'Зарегистрироваться',
