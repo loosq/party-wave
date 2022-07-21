@@ -1,5 +1,6 @@
 import { getImage } from '../utils'
 import heroSprite from '../../sprites/hero.png'
+import { CoreType } from '../utils/types'
 
 export class Hero {
   private dy: number
@@ -12,7 +13,7 @@ export class Hero {
   protected hero: HTMLImageElement
 
   constructor(
-    protected game: any,
+    protected game: CoreType,
     public x: number,
     public y: number,
     public w: number,
