@@ -1,20 +1,21 @@
 import { randomRange } from '../utils'
 import { Stone } from './Stone'
 import { Hero } from './'
+import { CoreType } from '../utils/types'
 
 export class Obstacle {
-  private gameSpeed: number
+  public gameSpeed: number
   private obstacles: Stone[]
   private spawnTimer: number
   private initialSpawnTimer: number
 
   constructor(
-    protected game: any,
+    protected game: CoreType,
     protected hero: Hero,
-    public x: any,
-    public y: any,
-    public w: any,
-    public h: any
+    public x: number,
+    public y: number,
+    public w: number,
+    public h: number
   ) {
     this.game = game
     this.hero = hero
