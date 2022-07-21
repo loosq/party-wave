@@ -1,9 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "es2017"
-    ],
+    "lib": ["dom", "es2017"],
     "module": "esnext",
     "moduleResolution": "node",
     "target": "es5",
@@ -14,24 +11,18 @@
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
     "skipLibCheck": true,
     "declaration": false,
-    "sourceMap": false,
+    "sourceMap": true,
     "baseUrl": ".",
     "outDir": "./dist",
     "paths": {
       "*": ["./src/*"]
     },
-    "typeRoots": ["typings/**/*.d.ts", "node_modules/@types"],
+    "typeRoots": ["typings/**/*.d.ts", "node_modules/@types"]
   },
-  "include": [
-    "src",
-    "typings/**/*.d.ts",
-    "./node_modules/@types"
-  ],
-  "exclude": [
-      "node_modules",
-      "**/*.spec.ts",
-      "**/*.test.ts"
-  ]
+  "include": ["src", "typings/**/*.d.ts", "./node_modules/@types"],
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"]
 }
+
