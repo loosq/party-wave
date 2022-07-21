@@ -1,0 +1,30 @@
+.main {
+    &__call {
+        margin: 80px auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        height: 400px;
+        width: 400px;
+        border-radius: 50%;
+        background-color: var(--accent-color);
+        color: var(--white-color);
+        text-align: center;
+        cursor: pointer;
+        font-family: 'Inter semi-bold', sans-serif;
+        font-size: 62px;
+        line-height: 64px;
+
+        &:hover {
+            opacity: 0.65;
+            transition: opacity ease-out 0.5s;
+        }
+    }
+
+    &__text {
+        margin: 0 auto;
+        text-align: center;
+        max-width: 700px;
+    }
+}

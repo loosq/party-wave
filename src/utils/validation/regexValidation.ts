@@ -1,25 +1,32 @@
-class RegexRules {
-    private readonly _rules: Record<string, RegExp>;
+import {string} from 'yup';
 
-    constructor(rules: Record<string, RegExp>) {
-        this._rules = rules;
-    }
-
-    get rules() {
-        return this._rules;
-    }
-}
-
-export const regexValidation = new RegexRules({
+const validationRules = {
     login: /^(?=.*[a-zA-Z])[\w-]{3,20}$/,
     password: /^(?=.*[A-Z])(?=.*\d)[\w@$!%*#?&-]{8,40}$/,
-    first_name: /^[A-ZА-Я][A-zА-я-]+$/u,
-    second_name: /^[A-ZА-Я][A-zА-я-]+$/u,
-    display_name: /^[A-ZА-Я][A-zА-я-]+$/u,
-    oldPassword: /^(?=.*[A-ZА-Я])(?=.*\d)[\wА-я@$!%*#?&-]{8,40}$/u,
-    newPassword: /^(?=.*[A-ZА-Я])(?=.*\d)[\wА-я@$!%*#?&-]{8,40}$/u,
-    newPassword_again: /^(?=.*[A-ZА-Я])(?=.*\d)[\wА-я@$!%*#?&-]{8,40}$/u,
+    name: /^[A-ZА-Я][A-zА-я-]+$/u,
     email: /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/,
     phone: /^[+]?[0-9]{10,15}$/,
-    password_again: /^(?=.*[A-ZА-Я])(?=.*\d)[\wА-я@$!%*#?&-]{8,40}$/u,
-});
+};
+
+export const commonSchema = {
+    login: string()
+        .trim()
+        .matches(validationRules.login, 'Некорректный формат')
+        .required('Обязательное поле'),
+    password: string()
+        .trim()
+        .matches(validationRules.password, 'Некорректный формат')
+        .required('Обязательное поле'),
+    name: string()
+        .trim()
+        .matches(validationRules.name, 'Некорректный формат')
+        .required('Обязательное поле'),
+    email: string()
+        .trim()
+        .matches(validationRules.email, 'Некорректный формат')
+        .required('Обязательное поле'),
+    phone: string()
+        .trim()
+        .matches(validationRules.phone, 'Некорректный формат')
+        .required('Обязательное поле'),
+};

@@ -2,35 +2,17 @@ import React from 'react';
 import {Form} from 'components/complex';
 import './Login.scss';
 import {FormikValues, useFormik} from 'formik';
-import {object, string} from 'yup';
+import {object} from 'yup';
 import {useNavigate} from 'react-router-dom';
-import {regexValidation} from 'utils/validation';
+import {commonSchema} from 'utils/validation';
+import {loginFields} from 'components/pages/config';
 
 export const Login: React.FC<unknown> = React.memo(() => {
-    const fields = [
-        {
-            id: 'login-login',
-            name: 'login',
-            label: 'Логин',
-            type: 'text',
-        },
-        {
-            id: 'login-password',
-            name: 'password',
-            label: 'Пароль',
-            type: 'password',
-        },
-    ];
+    const {login, password} = commonSchema;
 
     const validationSchema = object().shape({
-        login: string()
-            .trim()
-            .matches(regexValidation.rules.login, 'Некорректный формат')
-            .required('Обязательное поле'),
-        password: string()
-            .trim()
-            .matches(regexValidation.rules.password, 'Некорректный формат')
-            .required('Обязательное поле'),
+        login,
+        password,
     });
 
     const formik = useFormik<FormikValues>({
@@ -54,7 +36,7 @@ export const Login: React.FC<unknown> = React.memo(() => {
                 </div>
                 <Form
                     className='form-info'
-                    fields={fields}
+                    fields={loginFields}
                     formik={formik}
                     buttonProps={{
                         children: 'Вход',
