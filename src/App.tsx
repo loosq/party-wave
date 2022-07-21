@@ -24,7 +24,7 @@ function PrivateRoute() {
     return auth ? <Outlet /> : <Navigate to='/login' />;
 }
 
-function App() {
+export default function App() {
     return (
         <div className='container'>
             <Router>
