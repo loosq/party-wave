@@ -1,5 +1,3 @@
-@import "styles/sass/variables.scss";
-
 .modal-window {
     display: flex;
     flex-direction: column;
@@ -8,7 +6,7 @@
     max-width: 90vw;
     max-height: 90vh;
     padding: 16px;
-    background-color: $window-background-color;
+    background-color: var(--white-color);
     border-radius: 16px;
     box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.25);
 }
@@ -37,6 +35,6 @@
     & > svg {
         width: 16px;
         height: 16px;
-        color: $title-main-color;
+        color: var(--main-color);
     }
 }
