@@ -6,8 +6,10 @@ const TAB_KEY = 'Tab';
 /**
  *  Конвертирует tabIndex в обычные числа по порядку
  */
-// eslint-disable-next-line max-len
-const convertTabIndex = (tabIndex: number, highestTabIndex: number) => (tabIndex === 0 ? highestTabIndex + 1 : tabIndex);
+
+const convertTabIndex = (tabIndex: number, highestTabIndex: number) => (
+    tabIndex === 0 ? highestTabIndex + 1 : tabIndex
+);
 
 /**
  *  Получает tabIndex элемента
@@ -52,8 +54,8 @@ export const useFocusTrap = <T extends HTMLElement>() => {
                 const maxIndex = sortedFocusableElements.length - 1;
 
                 if (!currentIndex && document.activeElement) {
-                    // eslint-disable-next-line max-len
-                    currentIndex = sortedFocusableElements.indexOf(document.activeElement as HTMLElement) ?? 0;
+                    currentIndex = sortedFocusableElements
+                        .indexOf(document.activeElement as HTMLElement) ?? 0;
                 }
 
                 let nextIndex = 0;
