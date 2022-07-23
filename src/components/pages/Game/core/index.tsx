@@ -1,4 +1,4 @@
-import { Core as Runner } from './core'
+import { Core as Runner } from './core';
 
-export default Runner
+export default Runner;
 
