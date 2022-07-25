@@ -4,6 +4,7 @@ import {
     Leaderboard,
     Login,
     Main,
+    NotFoundPage,
     Registration,
     Settings,
 } from 'components/pages';
@@ -19,7 +20,7 @@ import {Navigation} from 'components/complex';
 import { Game } from 'components/pages'
 
 function PrivateRoute() {
-    const auth = null;
+    const auth = true;
 
     return auth ? <Outlet /> : <Navigate to='/login' />;
 }
@@ -56,6 +57,10 @@ export default function App() {
                     <Route
                         path='/settings'
                         element={<Settings />}
+                    />
+                    <Route
+                        path='*'
+                        element={<NotFoundPage />}
                     />
                 </Routes>
             </Router>

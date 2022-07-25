@@ -5,3 +5,4 @@ export * from './Forum/Forum';
 export * from './Main/Main';
 export * from './Leaderboard/Leaderboard';
 export * from './Game/Game';
+export * from './NotFound/NotFound';
