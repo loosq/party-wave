@@ -12,6 +12,7 @@
         "noUnusedLocals": true,
         "esModuleInterop": true,
         "strict": true,
+        "strictPropertyInitialization": false,
         "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
         "skipLibCheck": true,
@@ -41,3 +42,4 @@
         "**/*.test.ts"
     ]
 }
+

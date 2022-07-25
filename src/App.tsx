@@ -16,6 +16,7 @@ import {
 } from 'react-router-dom';
 import './App.scss';
 import {Navigation} from 'components/complex';
+import { Game } from 'components/pages'
 
 function PrivateRoute() {
     const auth = null;
@@ -23,7 +24,7 @@ function PrivateRoute() {
     return auth ? <Outlet /> : <Navigate to='/login' />;
 }
 
-function App() {
+export default function App() {
     return (
         <div className='container'>
             <Router>
@@ -34,6 +35,7 @@ function App() {
                             path='/'
                             element={<Main />}
                         />
+                        <Route path="/game" element={<Game />} />
                     </Route>
                     <Route
                         path='/statistics'
@@ -61,4 +63,3 @@ function App() {
     );
 }
 
-export default App;
