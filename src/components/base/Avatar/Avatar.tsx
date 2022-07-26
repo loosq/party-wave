@@ -1,4 +1,4 @@
-import React, {ImgHTMLAttributes} from 'react';
+import React, { ImgHTMLAttributes } from 'react';
 
 type Props = ImgHTMLAttributes<unknown> & {
     isEditable?: boolean

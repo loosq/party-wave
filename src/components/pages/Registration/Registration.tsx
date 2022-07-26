@@ -1,11 +1,11 @@
 import React from 'react';
-import {Form} from 'components/complex';
+import { Form } from 'components/complex';
 import './Registration.scss';
-import {FormikValues, useFormik} from 'formik';
-import {object, ref} from 'yup';
-import {useNavigate} from 'react-router-dom';
-import {commonSchema} from 'utils/validation';
-import {registrationFields} from 'components/pages/config';
+import { FormikValues, useFormik } from 'formik';
+import { object, ref } from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { commonSchema } from 'utils/validation';
+import { registrationFields } from 'components/pages/config';
 
 export const Registration: React.FC<unknown> = React.memo(() => {
     const {

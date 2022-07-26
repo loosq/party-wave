@@ -1,11 +1,11 @@
 import React from 'react';
-import {Form} from 'components/complex';
+import { Form } from 'components/complex';
 import './Login.scss';
-import {FormikValues, useFormik} from 'formik';
-import {object} from 'yup';
-import {useNavigate} from 'react-router-dom';
-import {commonSchema} from 'utils/validation';
-import {loginFields} from 'components/pages/config';
+import { FormikValues, useFormik } from 'formik';
+import { object } from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { commonSchema } from 'utils/validation';
+import { loginFields } from 'components/pages/config';
 
 export const Login: React.FC<unknown> = React.memo(() => {
     const {login, password} = commonSchema;

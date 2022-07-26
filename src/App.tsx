@@ -1,9 +1,11 @@
 import React from 'react';
 import {
     Forum,
+    Game,
     Leaderboard,
     Login,
     Main,
+    NotFoundPage,
     Registration,
     Settings,
 } from 'components/pages';
@@ -15,15 +17,15 @@ import {
     Routes,
 } from 'react-router-dom';
 import './App.scss';
-import {Navigation} from 'components/complex';
+import { Navigation } from 'components/complex';
 
 function PrivateRoute() {
-    const auth = null;
+    const auth = true;
 
     return auth ? <Outlet /> : <Navigate to='/login' />;
 }
 
-function App() {
+export default function App() {
     return (
         <div className='container'>
             <Router>
@@ -33,6 +35,10 @@ function App() {
                         <Route
                             path='/'
                             element={<Main />}
+                        />
+                        <Route
+                            path='/game'
+                            element={<Game />}
                         />
                     </Route>
                     <Route
@@ -55,10 +61,12 @@ function App() {
                         path='/settings'
                         element={<Settings />}
                     />
+                    <Route
+                        path='*'
+                        element={<NotFoundPage />}
+                    />
                 </Routes>
             </Router>
         </div>
     );
 }
-
-export default App;
