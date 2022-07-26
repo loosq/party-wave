@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useRef} from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 const FOCUSABLE_ELEMENTS = 'a[href], area[href], input:not([disabled]):not([type=hidden]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]';
 const TAB_KEY = 'Tab';
@@ -104,9 +104,14 @@ export const useFocusTrap = <T extends HTMLElement>() => {
                     trapRef.current.querySelectorAll(FOCUSABLE_ELEMENTS),
                 ).filter((element) => getTabIndex(element) >= 0);
 
-                const sortedElements = focusableElements.slice().sort(sortByTabIndex);
+                const sortedElements = focusableElements.slice()
+                    .sort(sortByTabIndex);
 
-                selectNextFocusableElement(sortedElements, undefined, evt.shiftKey);
+                selectNextFocusableElement(
+                    sortedElements,
+                    undefined,
+                    evt.shiftKey,
+                );
             }
         }
     }, []);

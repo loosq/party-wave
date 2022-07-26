@@ -25,7 +25,6 @@
             "error",
             "windows"
         ],
-        "no-console": "warn",
         "object-curly-spacing": "off",
         "import/extensions": [
             "error",
@@ -37,6 +36,7 @@
                 "tsx": "never"
             }
         ],
+        "no-console": "off",
         "import/no-unresolved": "off",
         "import/no-extraneous-dependencies": "off",
         "consistent-return": "off",

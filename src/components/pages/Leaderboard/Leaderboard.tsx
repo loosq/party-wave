@@ -1,6 +1,6 @@
-import React, {useMemo} from 'react';
+import React, { useMemo } from 'react';
 import './Leaderboard.scss';
-import {data, header, title} from 'components/pages/config';
+import { data, header, title } from 'components/pages/config';
 
 export const Leaderboard: React.FC<unknown> = React.memo(() => (
     <div className='leaderboard'>

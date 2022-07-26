@@ -1,16 +1,20 @@
 import { UI } from '../common';
-import { getImage, checkOnBtn } from '../utils';
+import { checkOnBtn, getImage } from '../utils';
 import { GameScene, MenuScene } from '.';
 import { Text } from '../common/Text';
-import { TypeBtnPos, CoreType } from '../utils/types';
+import { CoreType, TypeBtnPos } from '../utils/types';
 import btnRestart from '../../sprites/btn_restart.png';
 import btnMenu from '../../sprites/btn_menu.png';
 
 export class ExitScene {
-    private btnRestart: CanvasImageSource;
-    private btnMenu: CanvasImageSource;
+    readonly btnRestart: CanvasImageSource;
+
+    readonly btnMenu: CanvasImageSource;
+
     private imageOpacity: { restart: number; menu: number };
+
     private scoreText: Text;
+
     private UI: UI;
 
     constructor(protected game: CoreType) {
@@ -42,10 +46,12 @@ export class ExitScene {
     }
 
     public update(): void {
-        const { x, y: restartY, w, h } = this.btnPosition.restart;
-        const { y: menuY } = this.btnPosition.menu;
+        const {
+            x, y: restartY, w, h,
+        } = this.btnPosition.restart;
+        const {y: menuY} = this.btnPosition.menu;
         if (this.game.checkKeyPress(0)) {
-            const { x: cX, y: cY } = this.game.keys[0];
+            const {x: cX, y: cY} = this.game.keys[0];
             if (checkOnBtn(cX, cY, x, restartY, w, h)) {
                 this.game.setScene(GameScene);
             } else if (checkOnBtn(cX, cY, x, menuY, w, h)) {
@@ -56,7 +62,7 @@ export class ExitScene {
         }
 
         if (this.game.keys.move !== undefined) {
-            const { x: mX, y: mY } = this.game.keys.move;
+            const {x: mX, y: mY} = this.game.keys.move;
             if (checkOnBtn(mX, mY, x, restartY, w, h)) {
                 this.imageOpacity.restart = 0.5;
                 this.game.canvas.style.cursor = 'pointer';
@@ -85,7 +91,7 @@ export class ExitScene {
             this.game.width / 2 - 140,
             this.game.height / 2 - 40,
             280,
-            80
+            80,
         );
         this.game.ctx.restore();
 
@@ -96,7 +102,7 @@ export class ExitScene {
             this.game.width / 2 - 140,
             this.game.height / 1.7,
             280,
-            80
+            80,
         );
         this.game.ctx.restore();
 
@@ -104,8 +110,7 @@ export class ExitScene {
             this.game.ctx,
             `Ваш счет: ${this.game.score}`,
             this.game.width / 2,
-            this.game.height / 3
+            this.game.height / 3,
         );
     }
 }
-

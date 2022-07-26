@@ -9,7 +9,7 @@ export class Text {
         ctx: CanvasRenderingContext2D,
         text: number | string,
         x: number,
-        y: number
+        y: number,
     ): void {
         ctx.beginPath();
         ctx.fillStyle = this.c;
@@ -19,4 +19,3 @@ export class Text {
         ctx.closePath();
     }
 }
-

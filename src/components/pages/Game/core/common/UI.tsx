@@ -1,6 +1,6 @@
-import { getImage, coverImg } from '../utils';
-import { Text } from './Text';
-import { TypeBtnPos } from '../utils/types';
+import {coverImg, getImage} from '../utils';
+import {Text} from './Text';
+import {TypeBtnPos} from '../utils/types';
 import background from '../../sprites/background.png';
 import ground from '../../sprites/ground.png';
 import scoreFrame from '../../sprites/scoreFrame.png';
@@ -8,15 +8,24 @@ import btnPause from '../../sprites/btn_pause.png';
 import btnPlay from '../../sprites/btn_play.png';
 
 export class UI {
-    private bg: HTMLImageElement;
+    readonly bg: HTMLImageElement;
+
     protected width: number;
+
     protected height: number;
+
     private isPause: boolean;
+
     public imageOpacity: number;
-    private ground: CanvasImageSource;
-    private scoreFrame: CanvasImageSource;
-    private btnPause: CanvasImageSource;
-    private btnPlay: CanvasImageSource;
+
+    readonly ground: CanvasImageSource;
+
+    readonly scoreFrame: CanvasImageSource;
+
+    readonly btnPause: CanvasImageSource;
+
+    readonly btnPlay: CanvasImageSource;
+
     private scoreText: Text;
 
     constructor(private onlyBG: boolean = false) {
@@ -54,11 +63,13 @@ export class UI {
         ctx: CanvasRenderingContext2D,
         width: number,
         height: number,
-        score: number
+        score: number,
     ): void {
         this.width = width;
         this.height = height;
-        const { sx, sy, sw, sh } = coverImg(this.bg, width, height);
+        const {
+            sx, sy, sw, sh,
+        } = coverImg(this.bg, width, height);
         ctx.drawImage(this.bg, sx, sy, sw, sh);
 
         if (!this.onlyBG) {
@@ -67,6 +78,7 @@ export class UI {
 
             ctx.save();
             ctx.globalAlpha = this.imageOpacity;
+            // eslint-disable-next-line no-unused-expressions
             !this.isPause
                 ? ctx.drawImage(this.btnPause, width - 100, 20, 66, 65)
                 : ctx.drawImage(this.btnPlay, width - 100, 20, 66, 65);
@@ -76,4 +88,3 @@ export class UI {
         }
     }
 }
-

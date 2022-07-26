@@ -1,15 +1,22 @@
 import { IntroScene } from './scenes';
 import { getCursorPosition } from './utils';
-import { KeysType, CoreType } from './utils/types';
+import { CoreType, KeysType } from './utils/types';
 
 export class Core {
     public readonly ctx: CanvasRenderingContext2D;
+
     public keys: KeysType = {};
+
     public lastKeyState: KeysType = {};
+
     public score: number;
+
     public scoreSet: Function;
+
     public width: number;
+
     public height: number;
+
     protected activeScene: CoreType;
 
     constructor(private readonly canvas: HTMLCanvasElement, cb: Function) {
@@ -32,27 +39,34 @@ export class Core {
     }
 
     private initInput(): void {
+        // eslint-disable-next-line no-restricted-globals
         addEventListener(
             'keydown',
-            (e: KeyboardEvent) => (this.keys[e.code] = true)
+            // eslint-disable-next-line no-return-assign
+            (e: KeyboardEvent) => (this.keys[e.code] = true),
         );
+        // eslint-disable-next-line no-restricted-globals
         addEventListener(
             'keyup',
-            (e: KeyboardEvent) => (this.keys[e.code] = false)
+            // eslint-disable-next-line no-return-assign
+            (e: KeyboardEvent) => (this.keys[e.code] = false),
         );
+        // eslint-disable-next-line no-restricted-globals
         addEventListener(
             'mousedown',
-            (e: MouseEvent) =>
-                (this.keys[e.button] = getCursorPosition(e, true))
+            // eslint-disable-next-line no-return-assign
+            (e: MouseEvent) => (this.keys[e.button] = getCursorPosition(e, true)),
         );
+        // eslint-disable-next-line no-restricted-globals
         addEventListener(
             'mousemove',
-            (e: MouseEvent) => (this.keys.move = getCursorPosition(e))
+            // eslint-disable-next-line no-return-assign
+            (e: MouseEvent) => (this.keys.move = getCursorPosition(e)),
         );
     }
 
     public checkKeyPress(keyCode: string | number): boolean {
-        let isKeyPressed = !!this.keys[keyCode];
+        const isKeyPressed = !!this.keys[keyCode];
 
         this.lastKeyState = this.lastKeyState || {};
 
@@ -64,9 +78,8 @@ export class Core {
         if (this.lastKeyState[keyCode] !== isKeyPressed) {
             this.lastKeyState[keyCode] = isKeyPressed;
             return isKeyPressed;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public setScene(Scene: any) {
@@ -84,16 +97,16 @@ export class Core {
     }
 
     protected start(): void {
-        let last = performance.now(),
-            step = 1 / 60,
-            dt = 0,
-            now;
+        let last = performance.now();
+        const step = 1 / 60;
+        let dt = 0;
+        let now;
 
-        let frame = () => {
+        const frame = () => {
             now = performance.now();
-            dt = dt + (now - last) / 1000;
+            dt += (now - last) / 1000;
             while (dt > step) {
-                dt = dt - step;
+                dt -= step;
                 this.update();
             }
             last = now;
@@ -107,10 +120,9 @@ export class Core {
     }
 }
 
-//FPS
+// FPS
 let z: number;
 window.requestAnimationFrame = (func: FrameRequestCallback): any => {
     clearTimeout(z);
     z = setTimeout(func, 1000 / 60);
 };
-

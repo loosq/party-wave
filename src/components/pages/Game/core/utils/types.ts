@@ -8,13 +8,21 @@ export type KeysType = {
 
 export declare class CoreType {
     public readonly ctx: CanvasRenderingContext2D;
+
     public readonly keys: KeysType;
+
     public lastKeyState: KeysType;
+
     public score: number;
+
     public scoreSet: Function;
+
     public width: number;
+
     public height: number;
+
     protected activeScene: any;
+
     public readonly canvas: HTMLCanvasElement;
 
     constructor(canvas: HTMLCanvasElement, cb: Function);
@@ -31,4 +39,3 @@ export declare class CoreType {
 
     protected start(): void;
 }
-

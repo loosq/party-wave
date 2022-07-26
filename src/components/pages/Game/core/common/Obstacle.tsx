@@ -1,13 +1,16 @@
-import { randomRange } from '../utils';
-import { Stone } from './Stone';
-import { Hero } from './';
-import { CoreType } from '../utils/types';
+import {randomRange} from '../utils';
+import {Stone} from './Stone';
+import {Hero} from '.';
+import {CoreType} from '../utils/types';
 
 export class Obstacle {
     public gameSpeed: number;
+
     private obstacles: Stone[];
+
     private spawnTimer: number;
-    private initialSpawnTimer: number;
+
+    readonly initialSpawnTimer: number;
 
     constructor(
         protected game: CoreType,
@@ -15,7 +18,7 @@ export class Obstacle {
         public x: number,
         public y: number,
         public w: number,
-        public h: number
+        public h: number,
     ) {
         this.game = game;
         this.hero = hero;
@@ -27,6 +30,7 @@ export class Obstacle {
 
         this.gameSpeed = 3;
         this.obstacles = [];
+        // eslint-disable-next-line no-multi-assign
         this.spawnTimer = this.initialSpawnTimer = 180;
 
         this.spawn();
@@ -41,9 +45,9 @@ export class Obstacle {
             size,
             size,
             this.gameSpeed,
-            type
+            type,
         );
-        if (type == 1) {
+        if (type === 1) {
             obstacle.y -= this.hero.originalHeight - 10;
         }
         this.obstacles.push(obstacle);
@@ -61,17 +65,17 @@ export class Obstacle {
         }
 
         for (let i = 0; i < this.obstacles.length; i++) {
-            let o = this.obstacles[i];
+            const o = this.obstacles[i];
 
             if (o.x + o.w < 0) {
                 this.obstacles.splice(i, 1);
             }
 
             if (
-                this.hero.x < o.x + o.w &&
-                this.hero.x + this.hero.w > o.x &&
-                this.hero.y < o.y + o.h &&
-                this.hero.y + this.hero.h > o.y
+                this.hero.x < o.x + o.w
+                && this.hero.x + this.hero.w > o.x
+                && this.hero.y < o.y + o.h
+                && this.hero.y + this.hero.h > o.y
             ) {
                 this.obstacles = [];
                 this.spawnTimer = this.initialSpawnTimer;
@@ -92,4 +96,3 @@ export class Obstacle {
         }
     }
 }
-

@@ -1,8 +1,10 @@
-import React, { memo, FC, useState, useEffect } from 'react';
+import React, {
+    FC, memo, useEffect, useState,
+} from 'react';
 import { useCanvas } from './core/utils';
 import Runner from './core';
 
-import './game.scss';
+import './Game.scss';
 
 export const Game: FC<unknown> = memo(() => {
     const [canvasRef] = useCanvas();
@@ -10,6 +12,7 @@ export const Game: FC<unknown> = memo(() => {
 
     useEffect(() => {
         if (canvasRef.current !== null) {
+            // eslint-disable-next-line no-new
             new Runner(canvasRef.current, (value: number) => {
                 setScore(value);
             });
@@ -28,12 +31,14 @@ export const Game: FC<unknown> = memo(() => {
 
     return (
         <>
-            <style>{css}</style> {/* временно фикс */}
-            <div className="game">
-                <canvas ref={canvasRef}></canvas>
+            <style>{css}</style>
+            {/* временно фикс */}
+            <div className='game'>
+                <canvas ref={canvasRef} />
             </div>
-            {console.log(score)}
+            {
+                console.log(score)
+            }
         </>
     );
 });
-

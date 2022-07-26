@@ -2,12 +2,17 @@ import { MenuScene } from '.';
 import { CoreType } from '../utils/types';
 
 export class IntroScene {
-    private logoRevealTime: number;
+    readonly logoRevealTime: number;
+
     public textTypingTime: number;
-    private sceneDisplayTime: number;
+
+    readonly sceneDisplayTime: number;
+
     private elapsedTime: number;
-    private bigText: string;
-    private dt: number;
+
+    readonly bigText: string;
+
+    readonly dt: number;
 
     constructor(protected game: CoreType) {
         this.game = game;
@@ -24,8 +29,8 @@ export class IntroScene {
         this.elapsedTime += this.dt;
 
         if (
-            this.elapsedTime >= this.sceneDisplayTime ||
-            this.game.checkKeyPress('Enter')
+            this.elapsedTime >= this.sceneDisplayTime
+            || this.game.checkKeyPress('Enter')
         ) {
             this.game.setScene(MenuScene);
             this.game.lastKeyState[0] = false;
@@ -39,16 +44,15 @@ export class IntroScene {
 
         this.game.ctx.globalAlpha = Math.min(
             1,
-            this.elapsedTime / this.logoRevealTime
+            this.elapsedTime / this.logoRevealTime,
         );
         this.game.ctx.font = 'bold 80px Open Sans';
         this.game.ctx.fillStyle = '#fff';
         this.game.ctx.fillText(
             this.bigText,
-            (this.game.width - this.game.ctx.measureText(this.bigText).width) /
-                2,
-            this.game.height / 2
+            (this.game.width - this.game.ctx.measureText(this.bigText).width)
+            / 2,
+            this.game.height / 2,
         );
     }
 }
-

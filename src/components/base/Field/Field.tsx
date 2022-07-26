@@ -4,7 +4,7 @@ import React, {
     LabelHTMLAttributes,
 } from 'react';
 import './Field.scss';
-import {FormikErrors} from 'formik';
+import { FormikErrors } from 'formik';
 
 type Props =
     InputHTMLAttributes<unknown>
@@ -56,7 +56,11 @@ export const Field: React.FC<Props> = React.memo((
                         />
                         {
                             error
-                            && <span className='error-message'>{error as string}</span>
+                            && (
+                                <span className='error-message'>
+                                    {error as string}
+                                </span>
+                            )
                         }
                     </>
                 )
