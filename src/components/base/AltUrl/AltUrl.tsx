@@ -1,4 +1,4 @@
-import React, {LinkHTMLAttributes} from 'react';
+import React, { LinkHTMLAttributes } from 'react';
 import './AltUrl.scss';
 
 type Props = LinkHTMLAttributes<unknown>;

@@ -1,12 +1,14 @@
 import { UI } from '../common';
-import { getImage, checkOnBtn } from '../utils';
+import { checkOnBtn, getImage } from '../utils';
 import { GameScene } from './GameScene';
 import btnStart from '../../sprites/btn_start.png';
-import { TypeBtnPos, CoreType } from '../utils/types';
+import { CoreType, TypeBtnPos } from '../utils/types';
 
 export class MenuScene {
-    private btnStart: CanvasImageSource;
+    readonly btnStart: CanvasImageSource;
+
     private imageOpacity: number;
+
     private UI: UI;
 
     constructor(protected game: CoreType) {
@@ -19,9 +21,11 @@ export class MenuScene {
     }
 
     public update(): void {
-        const { x, y, w, h } = this.btnPosition;
+        const {
+            x, y, w, h,
+        } = this.btnPosition;
         if (this.game.checkKeyPress(0)) {
-            const { x: cX, y: cY } = this.game.keys[0];
+            const {x: cX, y: cY} = this.game.keys[0];
             if (checkOnBtn(cX, cY, x, y, w, h)) {
                 this.game.setScene(GameScene);
             }
@@ -30,7 +34,7 @@ export class MenuScene {
         }
 
         if (this.game.keys.move !== undefined) {
-            const { x: mX, y: mY } = this.game.keys.move;
+            const {x: mX, y: mY} = this.game.keys.move;
             if (checkOnBtn(mX, mY, x, y, w, h)) {
                 this.imageOpacity = 0.5;
                 this.game.canvas.style.cursor = 'pointer';
@@ -60,8 +64,7 @@ export class MenuScene {
             this.game.width / 2 - 110,
             this.game.height / 2 - 40,
             220,
-            80
+            80,
         );
     }
 }
-

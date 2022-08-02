@@ -5,9 +5,10 @@ export const useCanvas = () => {
     return [canvasRef];
 };
 
-export const randomRange = (min: number, max: number) => {
-    return Math.round(Math.random() * (max - min) + min);
-};
+export const randomRange = (
+    min: number,
+    max: number,
+) => Math.round(Math.random() * (max - min) + min);
 
 export const getImage = (img: string) => {
     const image = new Image();
@@ -18,7 +19,7 @@ export const getImage = (img: string) => {
 export const coverImg = (
     img: HTMLImageElement,
     width: number,
-    height: number
+    height: number,
 ) => {
     const imgRatio = img.height / img.width;
     const winRatio = height / width;
@@ -52,18 +53,19 @@ export const coverImg = (
 
 export const getCursorPosition = (
     event: MouseEvent,
-    press: boolean = false
+    press: boolean = false,
 ) => {
     const coords = {
         x: event.clientX,
         y: event.clientY,
     };
 
-    if (press)
+    if (press) {
         return {
-            press: press,
+            press,
             ...coords,
         };
+    }
     return coords;
 };
 
@@ -73,8 +75,5 @@ export const checkOnBtn = (
     x2: number,
     y2: number,
     w2: number,
-    h2: number
-) => {
-    return x1 > x2 && x1 < x2 + w2 && y1 > y2 && y1 < y2 + h2;
-};
-
+    h2: number,
+) => x1 > x2 && x1 < x2 + w2 && y1 > y2 && y1 < y2 + h2;

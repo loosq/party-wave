@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     Forum,
+    Game,
     Leaderboard,
     Login,
     Main,
@@ -16,8 +17,7 @@ import {
     Routes,
 } from 'react-router-dom';
 import './App.scss';
-import {Navigation} from 'components/complex';
-import { Game } from 'components/pages'
+import { Navigation } from 'components/complex';
 
 function PrivateRoute() {
     const auth = true;
@@ -36,7 +36,10 @@ export default function App() {
                             path='/'
                             element={<Main />}
                         />
-                        <Route path="/game" element={<Game />} />
+                        <Route
+                            path='/game'
+                            element={<Game />}
+                        />
                     </Route>
                     <Route
                         path='/statistics'
@@ -67,4 +70,3 @@ export default function App() {
         </div>
     );
 }
-

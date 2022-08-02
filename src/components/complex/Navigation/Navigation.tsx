@@ -1,7 +1,7 @@
-import React, {useMemo} from 'react';
-import {NavLink} from 'react-router-dom';
+import React, { useMemo } from 'react';
+import { NavLink } from 'react-router-dom';
 import './Navigation.scss';
-import {pages} from '../config';
+import { pages } from '../config';
 
 type Props = {
     haveUser?: boolean

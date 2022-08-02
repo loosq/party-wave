@@ -1,4 +1,4 @@
-import {string} from 'yup';
+import { string } from 'yup';
 
 const validationRules = {
     login: /^(?=.*[a-zA-Z])[\w-]{3,20}$/,

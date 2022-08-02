@@ -8,8 +8,8 @@ import {
     AltUrl, Button, Field, LinkType,
 } from 'components/base';
 import './Form.scss';
-import {FormikType} from 'types';
-import {FieldType} from 'components/pages/config';
+import { FormikType } from 'types';
+import { FieldType } from 'components/pages/config';
 
 type Props = FormHTMLAttributes<unknown> & {
     fields: Array<FieldType>

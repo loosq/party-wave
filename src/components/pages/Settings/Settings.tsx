@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './Settings.scss';
-import {useNavigate} from 'react-router-dom';
-import {Avatar, Button} from 'components/base';
-import {Form} from 'components/complex';
-import {commonSchema} from 'utils/validation';
-import {object, ref} from 'yup';
-import {FormikValues, useFormik} from 'formik';
+import { useNavigate } from 'react-router-dom';
+import { Avatar, Button } from 'components/base';
+import { Form } from 'components/complex';
+import { commonSchema } from 'utils/validation';
+import { object, ref } from 'yup';
+import { FormikValues, useFormik } from 'formik';
 import {
     settingsInfoFields,
     settingsPasswordFields,

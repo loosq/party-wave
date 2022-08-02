@@ -4,12 +4,19 @@ import { CoreType } from '../utils/types';
 
 export class Hero {
     private dy: number;
-    private jumpForce: number;
+
+    readonly jumpForce: number;
+
     public originalHeight: number;
+
     private grounded: boolean;
-    private groundedHeight: number;
+
+    readonly groundedHeight: number;
+
     private jumpTimer: number;
-    private gravity: number;
+
+    readonly gravity: number;
+
     protected hero: HTMLImageElement;
 
     constructor(
@@ -17,7 +24,7 @@ export class Hero {
         public x: number,
         public y: number,
         public w: number,
-        public h: number
+        public h: number,
     ) {
         this.game = game;
         this.hero = getImage(heroSprite);
@@ -36,13 +43,13 @@ export class Hero {
     }
 
     public update(): void {
-        if (this.game.keys['KeyW']) {
+        if (this.game.keys.KeyW) {
             this.jump();
         } else {
             this.jumpTimer = 0;
         }
 
-        if (this.game.keys['KeyS']) {
+        if (this.game.keys.KeyS) {
             this.h = this.originalHeight / 2;
         } else {
             this.h = this.originalHeight;
@@ -61,7 +68,7 @@ export class Hero {
     }
 
     protected jump(): void {
-        if (this.grounded && this.jumpTimer == 0) {
+        if (this.grounded && this.jumpTimer === 0) {
             this.jumpTimer = 1;
             this.dy = -this.jumpForce;
         } else if (this.jumpTimer > 0 && this.jumpTimer < 15) {
@@ -76,4 +83,3 @@ export class Hero {
         this.game.ctx.closePath();
     }
 }
-

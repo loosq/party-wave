@@ -1,13 +1,13 @@
-import React from 'react';
-import {Form} from 'components/complex';
+import React, {FC} from 'react';
+import { Form } from 'components/complex';
 import './Registration.scss';
-import {FormikValues, useFormik} from 'formik';
-import {object, ref} from 'yup';
-import {useNavigate} from 'react-router-dom';
-import {commonSchema} from 'utils/validation';
-import {registrationFields} from 'components/pages/config';
+import { FormikValues, useFormik } from 'formik';
+import { object, ref } from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { commonSchema } from 'utils/validation';
+import { registrationFields } from 'components/pages/config';
 
-export const Registration: React.FC<unknown> = React.memo(() => {
+export const Registration: FC = () => {
     const {
         name, phone, email, login, password,
     } = commonSchema;
@@ -63,4 +63,4 @@ export const Registration: React.FC<unknown> = React.memo(() => {
             </div>
         </div>
     );
-});
+};

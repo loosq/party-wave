@@ -1,13 +1,13 @@
-import React from 'react';
-import {Form} from 'components/complex';
+import React, {FC} from 'react';
+import { Form } from 'components/complex';
 import './Login.scss';
-import {FormikValues, useFormik} from 'formik';
-import {object} from 'yup';
-import {useNavigate} from 'react-router-dom';
-import {commonSchema} from 'utils/validation';
-import {loginFields} from 'components/pages/config';
+import { FormikValues, useFormik } from 'formik';
+import { object } from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { commonSchema } from 'utils/validation';
+import { loginFields } from 'components/pages/config';
 
-export const Login: React.FC<unknown> = React.memo(() => {
+export const Login: FC = () => {
     const {login, password} = commonSchema;
 
     const validationSchema = object().shape({
@@ -50,4 +50,4 @@ export const Login: React.FC<unknown> = React.memo(() => {
             </div>
         </div>
     );
-});
+};
