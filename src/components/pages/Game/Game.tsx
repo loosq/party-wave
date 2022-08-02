@@ -6,7 +6,7 @@ import Runner from './core';
 
 import './Game.scss';
 
-export const Game: FC<unknown> = memo(() => {
+export const Game: FC = memo(() => {
     const [canvasRef] = useCanvas();
     const [score, setScore] = useState<number>(0);
 

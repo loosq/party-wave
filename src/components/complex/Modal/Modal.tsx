@@ -2,8 +2,8 @@ import React, { PropsWithChildren, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import bemCn from 'libs/bemCn';
 import { useFocusTrap } from 'hooks/use-focus-trap/use-focus-trap';
-import './Modal.scss';
 import { CrossIcon } from 'components/base';
+import './Modal.scss';
 
 type Props = PropsWithChildren<{
     className?: string;

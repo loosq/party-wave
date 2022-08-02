@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react';
+import React, {FC, useMemo} from 'react';
 import './Leaderboard.scss';
 import { data, header, title } from 'components/pages/config';
 
-export const Leaderboard: React.FC<unknown> = React.memo(() => (
+export const Leaderboard: FC = () => (
     <div className='leaderboard'>
         <h1 className='leaderboard__title'>{title}</h1>
         <div className='leaderboard__table table'>
@@ -39,4 +39,4 @@ export const Leaderboard: React.FC<unknown> = React.memo(() => (
             </div>
         </div>
     </div>
-));
+);

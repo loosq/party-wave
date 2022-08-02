@@ -39,29 +39,26 @@ export class Core {
     }
 
     private initInput(): void {
-        // eslint-disable-next-line no-restricted-globals
-        addEventListener(
+        window.addEventListener(
             'keydown',
-            // eslint-disable-next-line no-return-assign
-            (e: KeyboardEvent) => (this.keys[e.code] = true),
+            (e: KeyboardEvent) => { this.keys[e.code] = true; },
         );
         // eslint-disable-next-line no-restricted-globals
-        addEventListener(
+        window.addEventListener(
             'keyup',
-            // eslint-disable-next-line no-return-assign
-            (e: KeyboardEvent) => (this.keys[e.code] = false),
+            (e: KeyboardEvent) => { this.keys[e.code] = false; },
         );
-        // eslint-disable-next-line no-restricted-globals
-        addEventListener(
+        window.addEventListener(
             'mousedown',
-            // eslint-disable-next-line no-return-assign
-            (e: MouseEvent) => (this.keys[e.button] = getCursorPosition(e, true)),
+            (e: MouseEvent) => {
+                this.keys[e.button] = getCursorPosition(e, true);
+            },
         );
-        // eslint-disable-next-line no-restricted-globals
-        addEventListener(
+        window.addEventListener(
             'mousemove',
-            // eslint-disable-next-line no-return-assign
-            (e: MouseEvent) => (this.keys.move = getCursorPosition(e)),
+            (e: MouseEvent) => {
+                this.keys.move = getCursorPosition(e);
+            },
         );
     }
 

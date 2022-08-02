@@ -36,7 +36,7 @@
                 "tsx": "never"
             }
         ],
-        "no-console": "off",
+        "no-console": "warn",
         "import/no-unresolved": "off",
         "import/no-extraneous-dependencies": "off",
         "consistent-return": "off",
