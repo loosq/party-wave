@@ -1,10 +1,11 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './Main.scss';
 
 export const Main: React.FC<unknown> = React.memo(() => (
     <div className='main'>
         <h1 className='visually-hidden'>Main</h1>
-        <div className='main__call'>START TO PLAY!</div>
+        <Link to='/game' className='main__call'>START TO PLAY!</Link>
         <p className='main__text'>
             There are many variations of passages of Lorem Ipsum available, but
             the majority have
