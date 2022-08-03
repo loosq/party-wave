@@ -9,8 +9,8 @@ export type FieldType = {
 const title = 'Таблица лучших результатов';
 const header: Array<string> = ['Место', 'Имя', 'Лучший результат'];
 const data: Array<Array<number | string>> = [
-    [1, 'Vasya Pupkin', 1488],
-    [2, 'Pupkin Pupkin', 666],
+    [1, 'Vasya Pupkin', 14],
+    [2, 'Pupkin Pupkin', 66],
     [3, 'Vasya Vasya', 0],
 ];
 const loginFields: Array<FieldType> = [

@@ -2,6 +2,8 @@
     display: flex;
     justify-content: flex-end;
     padding: 50px;
+    z-index: 1;
+    position: relative;
 
     li {
         margin-left: 30px;
