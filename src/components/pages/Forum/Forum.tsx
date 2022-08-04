@@ -19,7 +19,7 @@ export const Forum: React.FC<unknown> = React.memo(() => (
                     Всем привет, я медведь, как то шёл по лесу и увидел горящую машину...
                 </span>
             </div>
-            <div className='topic__messages-count'>1488</div>
+            <div className='topic__messages-count'>88</div>
             <div className='topic__last-message last-message'>
                 <span
                     className='last-message__date'
@@ -40,7 +40,7 @@ export const Forum: React.FC<unknown> = React.memo(() => (
                     Всем привет, я медведь, как то шёл по лесу и увидел горящую машину...
                 </span>
             </div>
-            <div className='topic__messages-count'>1488</div>
+            <div className='topic__messages-count'>41</div>
             <div className='topic__last-message last-message'>
                 <span
                     className='last-message__date'
