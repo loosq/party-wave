@@ -1,12 +1,15 @@
-import {randomRange} from '../utils';
-import {Stone} from './Stone';
+import {randomRange, getImage} from '../utils';
+import {GameElement} from './GameElement';
 import {Hero} from '.';
 import {CoreType} from '../utils/types';
+import obstacleSprite from '../../sprites/obstacle.png';
+import enemySprite from '../../sprites/enemy.png';
+import {groundHeight} from '../config/gameConfig';
 
 export class Obstacle {
     public gameSpeed: number;
 
-    private obstacles: Stone[];
+    private obstacles: GameElement[];
 
     private spawnTimer: number;
 
@@ -37,15 +40,16 @@ export class Obstacle {
     }
 
     protected spawn(): void {
-        const size = randomRange(40, 70);
+        const size = randomRange(40, groundHeight);
         const type = randomRange(0, 1);
-        const obstacle = new Stone(
+        const sprite = getImage(!type ? obstacleSprite : enemySprite);
+        const obstacle = new GameElement(
             this.game.width + size,
-            this.game.height - size - 70,
+            this.game.height - size - groundHeight,
             size,
             size,
             this.gameSpeed,
-            type,
+            sprite,
         );
         if (type === 1) {
             obstacle.y -= this.hero.originalHeight - 10;
@@ -71,12 +75,12 @@ export class Obstacle {
                 this.obstacles.splice(i, 1);
             }
 
-            if (
-                this.hero.x < o.x + o.w
+            const haveCollision = this.hero.x < o.x + o.w
                 && this.hero.x + this.hero.w > o.x
                 && this.hero.y < o.y + o.h
-                && this.hero.y + this.hero.h > o.y
-            ) {
+                && this.hero.y + this.hero.h > o.y;
+
+            if (haveCollision) {
                 this.obstacles = [];
                 this.spawnTimer = this.initialSpawnTimer;
                 this.gameSpeed = 3;
