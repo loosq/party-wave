@@ -1,6 +1,7 @@
 import { getImage } from '../utils';
 import heroSprite from '../../sprites/hero.png';
 import { CoreType } from '../utils/types';
+import {groundHeight} from '../config/gameConfig';
 
 export class Hero {
     private dy: number;
@@ -10,8 +11,6 @@ export class Hero {
     public originalHeight: number;
 
     private grounded: boolean;
-
-    readonly groundedHeight: number;
 
     private jumpTimer: number;
 
@@ -37,7 +36,6 @@ export class Hero {
         this.jumpForce = 13;
         this.originalHeight = h;
         this.grounded = false;
-        this.groundedHeight = 70;
         this.jumpTimer = 0;
         this.gravity = 1;
     }
@@ -57,13 +55,13 @@ export class Hero {
 
         this.y += this.dy;
 
-        if (this.y + this.h < this.game.height - 70) {
+        if (this.y + this.h < this.game.height - groundHeight) {
             this.dy += this.gravity;
             this.grounded = false;
         } else {
             this.dy = 0;
             this.grounded = true;
-            this.y = this.game.height - this.h - this.groundedHeight;
+            this.y = this.game.height - this.h - groundHeight;
         }
     }
 

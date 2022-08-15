@@ -6,6 +6,7 @@ import ground from '../../sprites/ground.png';
 import scoreFrame from '../../sprites/scoreFrame.png';
 import btnPause from '../../sprites/btn_pause.png';
 import btnPlay from '../../sprites/btn_play.png';
+import {groundHeight} from '../config/gameConfig';
 
 export class UI {
     readonly bg: HTMLImageElement;
@@ -73,7 +74,7 @@ export class UI {
         ctx.drawImage(this.bg, sx, sy, sw, sh);
 
         if (!this.onlyBG) {
-            ctx.drawImage(this.ground, 0, height - 70, width, 70);
+            ctx.drawImage(this.ground, 0, height - groundHeight, width, groundHeight);
             ctx.drawImage(this.scoreFrame, 25, 20, 180, 65);
 
             ctx.save();

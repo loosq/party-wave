@@ -1,10 +1,4 @@
-import {getImage} from '../utils';
-import obstacleSprite from '../../sprites/obstacle.png';
-import enemySprite from '../../sprites/enemy.png';
-
-export class Stone {
-    readonly obstacleSprite: CanvasImageSource;
-
+export class GameElement {
     private dx: number;
 
     constructor(
@@ -13,11 +7,8 @@ export class Stone {
         public w: number,
         public h: number,
         public gameSpeed: number,
-        public typeSprite: number,
+        public sprite: CanvasImageSource,
     ) {
-        this.obstacleSprite = getImage(
-            !typeSprite ? obstacleSprite : enemySprite,
-        );
         this.x = x;
         this.y = y;
         this.w = w;
@@ -25,6 +16,7 @@ export class Stone {
 
         this.gameSpeed = gameSpeed;
         this.dx = -this.gameSpeed;
+        this.sprite = sprite;
     }
 
     public update(): void {
@@ -33,6 +25,6 @@ export class Stone {
     }
 
     public draw(ctx: CanvasRenderingContext2D): void {
-        ctx.drawImage(this.obstacleSprite, this.x, this.y, this.w, this.h);
+        ctx.drawImage(this.sprite, this.x, this.y, this.w, this.h);
     }
 }
