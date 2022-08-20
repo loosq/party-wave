@@ -1,23 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import './Main.scss';
 
-export const Main: React.FC<unknown> = React.memo(() => (
-    <div className='main'>
-        <h1 className='visually-hidden'>Main</h1>
-        <Link to='/game' className='main__call'>START TO PLAY!</Link>
-        <p className='main__text'>
-            There are many variations of passages of Lorem Ipsum available, but
-            the majority have
-            suffered alteration in some form, by injected humour, or randomised
-            words which don`t
-            look even slightly believable. If you are going to use a passage of
-            Lorem Ipsum, you
-            need to be sure there isn`t anything embarrassing hidden in the
-            middle of text. All the
-            Lorem Ipsum generators on the Internet tend to repeat predefined
-            chunks as necessary,
-            making this the first true generator on the Internet.
-        </p>
-    </div>
-));
+export const Main: React.FC<unknown> = React.memo(() => {
+
+    useEffect(() => {
+        document.body.classList.add('app-main');
+        return () => {
+            document.body.classList.remove('app-main');
+        }
+    }, [])
+
+    return (
+        <div className='main'>
+            <div className="main__grid">
+                <div className="main__grid-1">
+                    <h1 className='main__title'>Cosmo bot</h1>
+                    <p className='main__text'>
+                    Пройди множество препятствий, чтобы помочь космоботу вернуться домой.<br />
+                    Его корабль потерпел крушение и теперь придётся выбираться. Ты - его главный помощник. Но будь осторожен! На неизвестной планете вас ждут опасные существа. Уклоняйся, перепрыгивай и ускоряйся, чтобы выжить.
+                    </p>
+                    <Link to='/game' className='main__call'>НАЧАТЬ ИГРУ</Link>
+                </div>
+                <div className="main__grid-2">
+                    <div className="main__video">
+                        <div className="main__video-inner">
+                            <video loop muted autoPlay playsInline preload="metadata" poster="/video/poster.png">
+                                <source src="/video/main.MP4" type="video/mp4" />
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+});

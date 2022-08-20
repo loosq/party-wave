@@ -1,4 +1,5 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { Form } from 'components/complex';
 import './Login.scss';
 import { FormikValues, useFormik } from 'formik';
@@ -6,13 +7,28 @@ import { object } from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { commonSchema } from 'utils/validation';
 import { loginFields } from 'components/pages/config';
+import { LoginFormData } from 'api/AuthAPI'
+import { login, StateType } from "slices/base";
+import { clearMessage } from "slices/message";
+import { ReactComponent as Loading } from 'images/loading.svg';
+import { ReactComponent as Oauth } from 'images/yoauth.svg';
 
 export const Login: FC = () => {
-    const {login, password} = commonSchema;
+    const [loading, setLoading] = useState(false);
+    const { message } = useSelector((state: StateType<any>) => state.message);
+    const dispatch = useDispatch<any>();
+    
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        dispatch(clearMessage());
+    }, [dispatch]);
+
+    const {login: loginSchema, password: passwordSchema} = commonSchema;
 
     const validationSchema = object().shape({
-        login,
-        password,
+        login: loginSchema,
+        password: passwordSchema,
     });
 
     const formik = useFormik<FormikValues>({
@@ -21,12 +37,30 @@ export const Login: FC = () => {
             password: '',
         },
         validationSchema,
-        onSubmit: () => {
-            console.log('submitted');
+        onSubmit: data => {
+            setLoading(true);
+            dispatch(login(data as LoginFormData))
+                .unwrap()
+                .then(() => {
+                    setTimeout(() => navigate('/'), 1000);
+                })
+                .catch(() => {
+                    setLoading(false);
+                });
         },
     });
 
-    const navigate = useNavigate();
+    const OAuthEl = () => {
+        const CLIENT_ID = '953cad724caf4fc28c183ff9ab6adb8a';
+        const REDIRECT_URI = 'http://localhost:3000/';
+        return (
+            <div className="login__oauth">
+                <a className="login__oauth-link" href={`https://oauth.yandex.ru/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`}>
+                    <Oauth />
+                </a>
+            </div>
+        );
+    }
 
     return (
         <div className='login__window'>
@@ -39,9 +73,15 @@ export const Login: FC = () => {
                     fields={loginFields}
                     formik={formik}
                     buttonProps={{
-                        children: 'Вход',
+                        children: message ? message : loading ? (
+                            <span className='button-loading'>
+                                <Loading />
+                            </span>
+                        ) : 'Вход',
                         type: 'submit',
+                        disabled: loading ? true : false
                     }}
+                    custom={OAuthEl}
                     altUrlProps={{
                         children: 'Ещё не зарегистрированы?',
                         onClick: () => navigate('/registration'),

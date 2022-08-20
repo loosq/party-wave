@@ -2,7 +2,7 @@ import React, {
     ButtonHTMLAttributes,
     FormHTMLAttributes,
     LinkHTMLAttributes,
-    useMemo,
+
 } from 'react';
 import {
     AltUrl, Button, Field, LinkType,
@@ -18,6 +18,7 @@ type Props = FormHTMLAttributes<unknown> & {
     formik?: FormikType
     buttonProps?: ButtonHTMLAttributes<unknown>
     altUrlProps?: LinkHTMLAttributes<unknown>
+    custom?: any
 };
 
 export const Form: React.FC<Props> = React.memo((
@@ -28,31 +29,30 @@ export const Form: React.FC<Props> = React.memo((
         formik,
         buttonProps,
         altUrlProps,
+        custom: CustomEl,
         ...restFormProps
     },
 ) => (
     <form {...restFormProps} onSubmit={formik?.handleSubmit}>
         <div className='fields__container'>
+            <>
             {
-                useMemo(
-                    () => fields.map(
-                        (field) => (
-                            <Field
-                                {...formik?.getFieldProps(field.name)}
-                                {...field}
-                                key={field.id}
-                                readMode={readMode}
-                                error={
-                                    formik?.touched[field.name as string]
-                                    && formik?.errors[field.name as string]
-                                }
-                            />
-                        ),
-                    ),
-                    [],
+                fields.map((field) => (
+                    <Field
+                        {...formik?.getFieldProps(field.name)}
+                        {...field}
+                        key={field.id}
+                        readMode={readMode}
+                        error={
+                            formik?.touched[field.name as string]
+                            && formik?.errors[field.name as string]
+                        }
+                    />),
                 )
             }
+            </>
         </div>
+        {CustomEl && <CustomEl />}
         <div className='form-buttons__container'>
             {
                 readMode && links

@@ -1,13 +1,28 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { Form } from 'components/complex';
 import './Registration.scss';
 import { FormikValues, useFormik } from 'formik';
-import { object, ref } from 'yup';
+import { object } from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { commonSchema } from 'utils/validation';
 import { registrationFields } from 'components/pages/config';
+import { RegisterFormData } from 'api/AuthAPI'
+import { register, StateType } from "slices/base";
+import { clearMessage } from "slices/message";
+import { ReactComponent as Loading } from 'images/loading.svg';
 
 export const Registration: FC = () => {
+    const [loading, setLoading] = useState(false);
+    const { message } = useSelector((state: StateType<any>) => state.message);
+    const dispatch = useDispatch<any>();
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      dispatch(clearMessage());
+    }, [dispatch]);
+
     const {
         name, phone, email, login, password,
     } = commonSchema;
@@ -19,8 +34,6 @@ export const Registration: FC = () => {
         email,
         phone,
         password,
-        password_again: password
-            .oneOf([ref('password'), null], 'Пароли не совпадают'),
     });
 
     const formik = useFormik<FormikValues>({
@@ -31,15 +44,20 @@ export const Registration: FC = () => {
             email: '',
             phone: '',
             password: '',
-            password_again: '',
         },
         validationSchema,
-        onSubmit: () => {
-            console.log('submitted');
+        onSubmit: data => {
+            setLoading(true);
+            dispatch(register(data as RegisterFormData))
+                .unwrap()
+                .then(() => {
+                    setTimeout(() => navigate('/'), 2000);
+                })
+                .catch(() => {
+                    setLoading(false);
+                });
         },
     });
-
-    const navigate = useNavigate();
 
     return (
         <div className='registration__window'>
@@ -52,8 +70,13 @@ export const Registration: FC = () => {
                     fields={registrationFields}
                     formik={formik}
                     buttonProps={{
-                        children: 'Зарегистрироваться',
+                        children: message ? message : loading ? (
+                            <span className='button-loading'>
+                                <Loading />
+                            </span>
+                        ) : 'Зарегистрироваться',
                         type: 'submit',
+                        disabled: loading ? true : false
                     }}
                     altUrlProps={{
                         children: 'Войти',

@@ -1,29 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Settings.scss';
-import { useNavigate } from 'react-router-dom';
-import { Avatar, Button } from 'components/base';
+import { Avatar } from 'components/base';
 import { Form } from 'components/complex';
 import { commonSchema } from 'utils/validation';
-import { object, ref } from 'yup';
+import { object } from 'yup';
 import { FormikValues, useFormik } from 'formik';
 import {
     settingsInfoFields,
     settingsPasswordFields,
 } from 'components/pages/config';
-import emptyAvatar from '../../../../static/images/empty-avatar.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { UserProfileData, UserPasswordData } from 'api/UsersAPI'
+import { changeProfile, changePassword, StateType } from "slices/base";
+import { clearMessage } from "slices/message";
+import { ReactComponent as Loading } from 'images/loading.svg';
 
-export const Settings: React.FC<unknown> = React.memo(() => {
+export const Settings: React.FC<UserProfileData | any> = React.memo(() => {
     const [readMode, setReadMode] = useState(true);
-
+    const [stateForm, setStateForm] = useState(true);
     const [fields, setFields] = useState(settingsInfoFields);
+    const [loading, setLoading] = useState(false);
+    
+    const { user: currentUser } = useSelector((state: any) => state.base);
 
-    const navigate = useNavigate();
+    const { message } = useSelector((state: StateType<any>) => state.message);
+    const dispatch = useDispatch<any>();
+
+    useEffect(() => {
+      dispatch(clearMessage());
+    }, [dispatch]);
 
     const links = [
         {
             id: '1',
             children: 'Изменить данные',
             onClick: () => {
+                setStateForm(true)
                 setReadMode(false);
             },
         },
@@ -32,69 +44,75 @@ export const Settings: React.FC<unknown> = React.memo(() => {
             children: 'Изменить пароль',
             onClick: () => {
                 setFields(settingsPasswordFields);
+                setStateForm(false)
                 setReadMode(false);
             },
-        },
-        {
-            id: '3',
-            children: 'Выйти',
-            onClick: () => {
-                console.log('logout');
-                navigate('/login');
-            },
-        },
+        }
     ];
 
     const {
-        name, phone, email, login, password,
+        name, phone, email, login, 
+        password,
     } = commonSchema;
 
-    const validationSchema = object().shape({
+    const validationSchema = object().shape(stateForm ? {
         email,
         login,
         first_name: name,
         second_name: name,
         display_name: name,
-        phone,
+        phone
+    } : {
         oldPassword: password,
-        newPassword: password,
-        newPassword_again: password
-            .oneOf([ref('newPassword'), null], 'Пароли не совпадают'),
+        newPassword: password
     });
 
     const formik = useFormik<FormikValues>({
         initialValues: {
-            first_name: '',
-            second_name: '',
-            login: '',
-            email: '',
-            phone: '',
-            password: '',
-            password_again: '',
+            first_name: currentUser.first_name ? currentUser.first_name : '',
+            second_name: currentUser.second_name ? currentUser.second_name : '',
+            login: currentUser.login ? currentUser.login : '',
+            email: currentUser.email ? currentUser.email : '',
+            phone: currentUser.phone ? currentUser.phone : '',
+            display_name: currentUser.display_name ? currentUser.display_name : '',
         },
         validationSchema,
-        onSubmit: () => {
-            console.log('submitted');
+        onSubmit: (data) => {
+            setLoading(true);
+            dispatch(stateForm ? changeProfile(data as UserProfileData) : changePassword(data as UserPasswordData))
+                .unwrap()
+                .then(() => {
+                    setTimeout(() => {
+                        setFields(settingsInfoFields);
+                        setReadMode(true);
+                        setLoading(false);
+                        dispatch(clearMessage());
+                    }, 2000);
+                })
+                .catch(() => {
+                    setLoading(false);
+                });
         },
     });
 
     return (
         <div className='settings__window'>
-            <Button
-                className='to-game'
-                onClick={() => navigate('/')}
-            >
-                ➜
-            </Button>
             <div className='settings__container'>
-                <Avatar
-                    className='settings__photo'
-                    src={emptyAvatar}
-                    alt='avatar'
-                />
-                <h3 className='settings__title'>
-                    Tony
-                </h3>
+                {readMode && (
+                    <>
+                        <Avatar
+                            className='settings__photo'
+                            src={currentUser.avatar}
+                            alt='avatar'
+                        />
+                        <h3 className='settings__title'>
+                            {`${currentUser.first_name} ${currentUser.second_name}`}
+                        </h3>
+                        <h2 className='settings__score'>
+                            {`Счет: ${currentUser.score ? currentUser.score : 0}`}
+                        </h2>
+                    </>
+                )}
                 <Form
                     className='form-info'
                     readMode={readMode}
@@ -102,8 +120,13 @@ export const Settings: React.FC<unknown> = React.memo(() => {
                     links={links}
                     formik={formik}
                     buttonProps={{
-                        children: 'Сохранить',
+                        children: message ? message : loading ? (
+                            <span className='button-loading'>
+                                <Loading />
+                            </span>
+                        ) : 'Сохранить',
                         type: 'submit',
+                        disabled: loading ? true : false,
                     }}
                     altUrlProps={{
                         children: 'Назад',

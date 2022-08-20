@@ -4,6 +4,7 @@ export type FieldType = {
     name: string
     value?: string
     type: string
+    required?: boolean
 }
 
 const title = 'Таблица лучших результатов';
@@ -19,12 +20,14 @@ const loginFields: Array<FieldType> = [
         name: 'login',
         label: 'Логин',
         type: 'text',
+        required: true
     },
     {
         id: 'login-password',
         name: 'password',
         label: 'Пароль',
         type: 'password',
+        required: true
     },
 ];
 const registrationFields = [
@@ -33,42 +36,42 @@ const registrationFields = [
         name: 'first_name',
         label: 'Имя',
         type: 'text',
+        required: true
     },
     {
         id: 'registration-second_name',
         name: 'second_name',
         label: 'Фамилия',
         type: 'text',
+        required: true
     },
     {
         id: 'registration-login',
         name: 'login',
         label: 'Логин',
         type: 'text',
+        required: true
     },
     {
         id: 'registration-email',
         name: 'email',
         label: 'Почта',
         type: 'email',
+        required: true
     },
     {
         id: 'registration-phone',
         name: 'phone',
         label: 'Телефон',
         type: 'tel',
+        required: true
     },
     {
         id: 'registration-password',
         name: 'password',
         label: 'Пароль',
         type: 'password',
-    },
-    {
-        id: 'registration-password_again',
-        name: 'password_again',
-        label: 'Пароль ещё раз',
-        type: 'password',
+        required: true
     },
 ];
 const settingsInfoFields: Array<FieldType> = [
@@ -76,42 +79,36 @@ const settingsInfoFields: Array<FieldType> = [
         id: 'profile-email',
         label: 'Почта',
         name: 'email',
-        value: 'sdfgdsfg',
         type: 'email',
     },
     {
         id: 'profile-login',
         label: 'Логин',
         name: 'login',
-        value: 'asdfasdf',
         type: 'text',
     },
     {
         id: 'profile-first_name',
         label: 'Имя',
         name: 'first_name',
-        value: 'tewrtwerg',
         type: 'text',
     },
     {
         id: 'profile-second_name',
         label: 'Фамилия',
         name: 'second_name',
-        value: 'dfgsdfgsdf',
         type: 'text',
     },
     {
         id: 'profile-display_name',
         label: 'Имя в чате',
         name: 'display_name',
-        value: 'djhdfghs',
         type: 'text',
     },
     {
         id: 'profile-phone',
         label: 'Телефон',
         name: 'phone',
-        value: 'qwfasdfasdf',
         type: 'tel',
     },
 ];
@@ -126,12 +123,6 @@ const settingsPasswordFields: Array<FieldType> = [
         id: 'profile-newPassword',
         label: 'Новый пароль',
         name: 'newPassword',
-        type: 'password',
-    },
-    {
-        id: 'profile-newPassword_again',
-        label: 'Повторите новый пароль',
-        name: 'newPassword_again',
         type: 'password',
     },
 ];
