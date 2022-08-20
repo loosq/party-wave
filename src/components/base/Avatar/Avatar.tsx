@@ -32,7 +32,8 @@ export const Avatar: React.FC<Props> = (
                             setLoading(false);
                         }, 2000);
                     })
-                    .catch(() => {
+                    .catch((e: Error) => {
+                        console.error(e.message);
                         setLoading(false);
                     });
         }

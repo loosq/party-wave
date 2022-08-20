@@ -40,7 +40,7 @@
                     & i {
                         width: 0;
                         height: 0.3vw;
-                        background-color: rgb(0 168 189);
+                        background-color: var(--accent-color);
                         position: absolute;
                         left: auto;
                         right: 0;
@@ -73,17 +73,17 @@
         text-transform: lowercase;
         letter-spacing: 1px;
         &:hover {
-            color: rgb(0 168 189);
+            color: var(--accent-color);
             transition: color ease-out 0.5s;
         }
 
         &--active {
-            color: rgb(0 168 189);
+            color: var(--accent-color);
         }
 
         &-signin {
             color: var(--white-color);
-            background: rgb(0 168 189);
+            background: var(--accent-color);
             padding: 7px 16px;
             border-radius: 50px;
             font-weight: 500;

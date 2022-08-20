@@ -44,7 +44,8 @@ export const Login: FC = () => {
                 .then(() => {
                     setTimeout(() => navigate('/'), 1000);
                 })
-                .catch(() => {
+                .catch((e: Error) => {
+                    console.error(e.message);
                     setLoading(false);
                 });
         },

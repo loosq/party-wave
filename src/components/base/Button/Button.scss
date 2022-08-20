@@ -9,8 +9,8 @@
         opacity: .5;
     }
     &:hover{
-        color: rgb(0, 168, 189);
-        border-color: rgb(0, 168, 189);
+        color: var(--accent-color);
+        border-color: var(--accent-color);
         background-color: transparent;
     }
 }
