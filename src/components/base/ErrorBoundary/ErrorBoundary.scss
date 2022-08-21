@@ -1,0 +1,13 @@
+.error-boundary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.error-boundary__error-description {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
