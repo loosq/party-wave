@@ -9,26 +9,37 @@ import {
     settingsInfoFields,
     settingsPasswordFields,
 } from 'components/pages/config';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { UserProfileData, UserPasswordData } from 'api/UsersAPI'
-import { changeProfile, changePassword, StateType } from "slices/base";
+import { changeProfile, changePassword } from "slices/base";
 import { clearMessage } from "slices/message";
 import { ReactComponent as Loading } from 'images/loading.svg';
+import { RootState, useAppDispach } from 'store';
 
-export const Settings: React.FC<UserProfileData | any> = React.memo(() => {
+
+export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
     const [readMode, setReadMode] = useState(true);
     const [stateForm, setStateForm] = useState(true);
     const [fields, setFields] = useState(settingsInfoFields);
     const [loading, setLoading] = useState(false);
     
-    const { user: currentUser } = useSelector((state: any) => state.base);
+    const { user: currentUser } = useSelector((state: RootState) => state.base);
 
-    const { message } = useSelector((state: StateType<any>) => state.message);
-    const dispatch = useDispatch<any>();
+    const { message } = useSelector((state: RootState) => state.message);
+    const dispatch = useAppDispach();
 
     useEffect(() => {
       dispatch(clearMessage());
     }, [dispatch]);
+
+    const cb = () => {
+        setTimeout(() => {
+            setFields(settingsInfoFields);
+            setReadMode(true);
+            setLoading(false);
+            dispatch(clearMessage());
+        }, 2000);
+    }
 
     const links = [
         {
@@ -79,19 +90,22 @@ export const Settings: React.FC<UserProfileData | any> = React.memo(() => {
         validationSchema,
         onSubmit: (data) => {
             setLoading(true);
-            dispatch(stateForm ? changeProfile(data as UserProfileData) : changePassword(data as UserPasswordData))
-                .unwrap()
-                .then(() => {
-                    setTimeout(() => {
-                        setFields(settingsInfoFields);
-                        setReadMode(true);
+
+            if(stateForm){
+                dispatch(changeProfile(data as UserProfileData))
+                    .unwrap()
+                    .then(cb)
+                    .catch(() => {
                         setLoading(false);
-                        dispatch(clearMessage());
-                    }, 2000);
-                })
-                .catch(() => {
-                    setLoading(false);
-                });
+                    });
+            } else {
+                dispatch(changePassword(data as UserPasswordData))
+                    .unwrap()
+                    .then(cb)
+                    .catch(() => {
+                        setLoading(false);
+                    });
+            }
         },
     });
 

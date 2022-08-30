@@ -1,9 +1,9 @@
 import React, { ImgHTMLAttributes, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { changeAvatar } from "slices/base";
 import { ReactComponent as Loading } from 'images/loading.svg';
 import { ReactComponent as AvatarDefault } from 'images/avatar.svg';
 import { API_URL } from 'api/API';
+import { useAppDispach } from 'store';
 
 type Props = ImgHTMLAttributes<unknown> & {
     isEditable?: boolean
@@ -15,9 +15,9 @@ export const Avatar: React.FC<Props> = (
         ...restProps
     },
 ) => {
-    const inputAvatar = useRef<any>();
+    const inputAvatar = useRef<HTMLInputElement>(null);
     const [loading, setLoading] = useState(false);
-    const dispatch = useDispatch<any>();
+    const dispatch = useAppDispach();
     
     const onChangeAvatar = (e: React.ChangeEvent<HTMLInputElement>) => {
         if(e.target.files !== null) {
@@ -40,7 +40,7 @@ export const Avatar: React.FC<Props> = (
     };
 
     const triggerFile = () => {
-        inputAvatar.current.click()
+        inputAvatar.current?.click()
     };
 
     return (

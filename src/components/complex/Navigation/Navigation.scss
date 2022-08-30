@@ -15,7 +15,7 @@
         }
         & span {
             font-family: 'Silkscreen', sans-serif;
-            color: #000;
+            color: var(--black-color);
             font-weight: 400;
             display: flex;
             height: 100%;
@@ -39,12 +39,12 @@
                     -webkit-user-select: none;
                     & i {
                         width: 0;
-                        height: 0.3vw;
+                        height: 2px;
                         background-color: var(--accent-color);
                         position: absolute;
                         left: auto;
                         right: 0;
-                        bottom: -0.7vw;
+                        bottom: -2px;
                         transition: all .3s ease-in;
                     }
                     & span {
@@ -104,15 +104,15 @@
     &__list {
         display: flex;
         flex-flow: column;
-        background: #f7f7f7;
-        border: 1px solid #f0f0f0;
+        background: var(--secondary-white-color);
+        border: 1px solid var(--border-color);
         border-radius: 12px;
         overflow: hidden;
         z-index: 999;
     }
     &__score {
-        background: #444;
-        color: #fff;
+        background: var(--black-light-color);
+        color: var(--white-color);
         font-size: 14px;
         padding: 10px 15px;
         cursor: default;
@@ -146,7 +146,7 @@
     &__thumb {
         width: 35px;
         height: 35px;
-        background: #ebebeb;
+        background: var(--thumb-color);
         overflow: hidden;
         border-radius: 50%;
     }

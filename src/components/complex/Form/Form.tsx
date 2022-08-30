@@ -18,7 +18,7 @@ type Props = FormHTMLAttributes<unknown> & {
     formik?: FormikType
     buttonProps?: ButtonHTMLAttributes<unknown>
     altUrlProps?: LinkHTMLAttributes<unknown>
-    custom?: any
+    custom?: () => JSX.Element
 };
 
 export const Form: React.FC<Props> = React.memo((

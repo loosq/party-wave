@@ -26,8 +26,10 @@ const changePassword = async (data: UserPasswordData) => {
     return await API.put('/user/password', data).then(res => res.data);
 };
 
-export default {
+const UsersService = {
     changeProfile,
     changeAvatar,
     changePassword,
 };
+
+export default UsersService;

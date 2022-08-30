@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Form } from 'components/complex';
 import './Login.scss';
 import { FormikValues, useFormik } from 'formik';
@@ -8,28 +8,28 @@ import { useNavigate } from 'react-router-dom';
 import { commonSchema } from 'utils/validation';
 import { loginFields } from 'components/pages/config';
 import { LoginFormData } from 'api/AuthAPI'
-import { login, StateType } from "slices/base";
+import { login } from "slices/base";
 import { clearMessage } from "slices/message";
 import { ReactComponent as Loading } from 'images/loading.svg';
 import { ReactComponent as Oauth } from 'images/yoauth.svg';
+import { RootState, useAppDispach } from 'store'
+
+const {login: loginSchema, password: passwordSchema} = commonSchema;
+const validationSchema = object().shape({
+    login: loginSchema,
+    password: passwordSchema,
+});
 
 export const Login: FC = () => {
     const [loading, setLoading] = useState(false);
-    const { message } = useSelector((state: StateType<any>) => state.message);
-    const dispatch = useDispatch<any>();
+    const { message } = useSelector((state: RootState) => state.message);
+    const dispatch = useAppDispach();
     
     const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(clearMessage());
     }, [dispatch]);
-
-    const {login: loginSchema, password: passwordSchema} = commonSchema;
-
-    const validationSchema = object().shape({
-        login: loginSchema,
-        password: passwordSchema,
-    });
 
     const formik = useFormik<FormikValues>({
         initialValues: {

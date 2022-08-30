@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Form } from 'components/complex';
 import './Registration.scss';
 import { FormikValues, useFormik } from 'formik';
@@ -8,14 +8,15 @@ import { useNavigate } from 'react-router-dom';
 import { commonSchema } from 'utils/validation';
 import { registrationFields } from 'components/pages/config';
 import { RegisterFormData } from 'api/AuthAPI'
-import { register, StateType } from "slices/base";
+import { register } from "slices/base";
 import { clearMessage } from "slices/message";
 import { ReactComponent as Loading } from 'images/loading.svg';
+import { RootState, useAppDispach } from 'store';
 
 export const Registration: FC = () => {
     const [loading, setLoading] = useState(false);
-    const { message } = useSelector((state: StateType<any>) => state.message);
-    const dispatch = useDispatch<any>();
+    const { message } = useSelector((state: RootState) => state.message);
+    const dispatch = useAppDispach();
 
     const navigate = useNavigate();
 

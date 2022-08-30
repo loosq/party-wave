@@ -58,9 +58,13 @@ export const login = createAsyncThunk(
   }
 );
 
-export const logout = createAsyncThunk("base/logout", async () => {
-  localStorage.removeItem("user");
-  await AuthService.logout();
+export const logout = createAsyncThunk("base/logout", async (thunkAPI) => {
+  try {
+    localStorage.removeItem("user");
+    await AuthService.logout();
+  } catch (error) {
+    console.log("Ошибка");
+  }
 });
 
 export const changeProfile = createAsyncThunk(
@@ -111,36 +115,40 @@ const baseSlice = createSlice({
   name: "base",
   initialState,
   reducers: {},
-  extraReducers: {
-    [register.fulfilled as any]: (state: StateType<boolean>, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(register.fulfilled, (state, action) => {
+      state.isLoggedIn = true;
+      if(action.payload){
+        state.user = action.payload.user;
+      }
+    });
+    builder.addCase(register.rejected, (state) => {
+      state.isLoggedIn = false;
+    });
+    builder.addCase(login.fulfilled, (state: StateType<boolean | null | number>, action) => {
       state.isLoggedIn = true;
       state.user = action.payload.user;
-    },
-    [register.rejected as any]: (state: StateType<boolean>, action) => {
-      state.isLoggedIn = false;
-    },
-    [login.fulfilled as any]: (state: StateType<boolean | null | number>, action) => {
-      state.isLoggedIn = true;
-      state.user = action.payload.user;
-    },
-    [login.rejected as any]: (state: StateType<boolean | null>, action) => {
+    });
+    builder.addCase(login.rejected, (state: StateType<boolean | null>) => {
       state.isLoggedIn = false;
       state.user = null;
-    },
-    [logout.fulfilled as any]: (state: StateType<boolean | null>, action) => {
+    });
+    builder.addCase(logout.fulfilled, (state: StateType<boolean | null>) => {
       state.isLoggedIn = false;
       state.user = null;
-    },
-    [logout.rejected as any]: (state: StateType<boolean | null>, action) => {
+    });
+    builder.addCase(logout.rejected, (state: StateType<boolean | null>) => {
       state.isLoggedIn = false;
       state.user = null;
-    },
-    [changeProfile.fulfilled as any]: (state: StateType<boolean>, action) => {
+    });
+    builder.addCase(changeProfile.fulfilled, (state: StateType<boolean>, action) => {
       state.user = action.payload.user;
-    },
-    [changeAvatar.fulfilled as any]: (state: StateType<boolean>, action) => {
-      state.user = action.payload.user;
-    }
+    });
+    builder.addCase(changeAvatar.fulfilled, (state: StateType<boolean>, action) => {
+      if(action.payload){
+        state.user = action.payload.user;
+      }
+    });
   },
 });
 

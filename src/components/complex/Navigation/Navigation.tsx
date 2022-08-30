@@ -1,5 +1,4 @@
 import React, { useCallback, useMemo } from 'react';
-import { useDispatch } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import './Navigation.scss';
 import { pages } from '../config';
@@ -7,9 +6,11 @@ import { logout } from "slices/base";
 import { ReactComponent as AvatarDefault } from 'images/avatar.svg';
 import { ReactComponent as Logo } from 'images/logo.svg';
 import { API_URL } from "api/API";
+import { useAppDispach } from 'store';
 
 export const Navigation: React.FC = React.memo(({ isLoggedIn, avatar, login, score }: any) => {
-    const dispatch = useDispatch<any>();
+    const dispatch = useAppDispach();
+
     const logOut = useCallback(() => {
         dispatch(logout());
       }, [dispatch]);

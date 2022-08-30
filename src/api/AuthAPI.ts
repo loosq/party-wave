@@ -41,9 +41,11 @@ const logout = async () => {
     return await API.post('/auth/logout').then(res => res.data);
 };
 
-export default {
+const AuthService =  {
     signUp,
     signIn,
     getUserInfo,
     logout,
 };
+
+export default AuthService;

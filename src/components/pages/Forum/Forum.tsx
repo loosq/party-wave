@@ -1,7 +1,7 @@
 import React from 'react';
 import './Forum.scss';
 
-export const Forum: React.FC<unknown> = React.memo(() => (
+export const Forum: React.FC<unknown> = () => (
     <div className="container">
         <div className='forum'>
             <h1 className='leaderboard__title'>Форум</h1>
@@ -54,4 +54,4 @@ export const Forum: React.FC<unknown> = React.memo(() => (
             </div>
         </div>
     </div>
-));
+);
