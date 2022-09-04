@@ -1,5 +1,4 @@
 import React, {
-    HTMLAttributes,
     InputHTMLAttributes,
     LabelHTMLAttributes,
 } from 'react';
@@ -11,7 +10,6 @@ type Props =
     & LabelHTMLAttributes<unknown>
     & {
     label?: string
-    value?: string
     error?: string | false | Array<string> | FormikErrors<any> | Array<FormikErrors<any>>
     readMode?: boolean
     classNameLabel?: string
@@ -21,7 +19,6 @@ type Props =
 export const Field: React.FC<Props> = React.memo((
     {
         label,
-        value,
         error,
         readMode,
         classNameLabel,
@@ -30,6 +27,12 @@ export const Field: React.FC<Props> = React.memo((
     },
 ) => (
     <div className='field'>
+        <input
+            {...restProps as InputHTMLAttributes<unknown>}
+            className={classNameValue
+            || `field__input ${error ? 'invalid' : ''}`}
+            disabled={readMode ? true : false}
+        />
         <label
             {...restProps as LabelHTMLAttributes<unknown>}
             className={classNameLabel || readMode ? 'text-row__label'
@@ -38,33 +41,12 @@ export const Field: React.FC<Props> = React.memo((
             {label}
         </label>
         {
-            readMode
-                ? (
-                    <span
-                        {...restProps as HTMLAttributes<unknown>}
-                        className={classNameValue || 'text-row__value'}
-                    >
-                        {value}
-                    </span>
-                )
-                : (
-                    <>
-                        <input
-                            {...restProps as InputHTMLAttributes<unknown>}
-                            className={classNameValue
-                            || `field__input ${error ? 'invalid' : ''}`}
-                        />
-                        {
-                            error
-                            && (
-                                <span className='error-message'>
-                                    {error as string}
-                                </span>
-                            )
-                        }
-                    </>
-                )
+            error
+            && (
+                <span className='error-message'>
+                    {error as string}
+                </span>
+            )
         }
-
     </div>
 ));

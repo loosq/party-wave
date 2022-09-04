@@ -18,27 +18,31 @@ import {
 } from 'react-router-dom';
 import './App.scss';
 import { Navigation } from 'components/complex';
-
-function PrivateRoute() {
-    const auth = true;
-
-    return auth ? <Outlet /> : <Navigate to='/login' />;
-}
+import { useSelector } from 'react-redux';
 
 export default function App() {
+    const { user: currentUser, isLoggedIn } = useSelector((state: any) => state.base);
+
+    const PrivateRoute = () => isLoggedIn ? <Outlet /> : <Navigate to='/login' />;
+
     return (
-        <div className='container'>
             <Router>
-                <Navigation />
+                <Navigation {...{
+                    ...currentUser, isLoggedIn: isLoggedIn
+                }} />
                 <Routes>
+                    <Route
+                        path='/'
+                        element={<Main />}
+                    />
                     <Route path='/' element={<PrivateRoute />}>
-                        <Route
-                            path='/'
-                            element={<Main />}
-                        />
                         <Route
                             path='/game'
                             element={<Game />}
+                        />
+                        <Route
+                            path='/settings'
+                            element={<Settings />}
                         />
                     </Route>
                     <Route
@@ -58,15 +62,10 @@ export default function App() {
                         element={<Registration />}
                     />
                     <Route
-                        path='/settings'
-                        element={<Settings />}
-                    />
-                    <Route
                         path='*'
                         element={<NotFoundPage />}
                     />
                 </Routes>
             </Router>
-        </div>
     );
 }

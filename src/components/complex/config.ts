@@ -9,27 +9,11 @@ export const pages: Array<PageType> = [
         name: 'Главная',
     },
     {
-        to: '/registration',
-        name: 'Регистрация',
-    },
-    {
-        to: '/login',
-        name: 'Вход',
-    },
-    {
         to: '/statistics',
-        name: 'Статистика',
-    },
-    {
-        to: '/settings',
-        name: 'Настройки',
+        name: 'Лидерборд',
     },
     {
         to: '/forum',
         name: 'Форум',
     },
-    // {
-    //     to: '/search',
-    //     name: 'Поиск',
-    // },
 ];

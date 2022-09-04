@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/index.tsx',
@@ -10,11 +11,15 @@ module.exports = {
     resolve: {
         extensions: ['', '.tsx', '.ts', '.js', '.jsx'],
         alias: {
+            store: path.resolve(__dirname, 'src/store.ts'),
             components: path.resolve(__dirname, 'src/components/'),
             utils: path.resolve(__dirname, 'src/utils/'),
             styles: path.resolve(__dirname, 'src/styles/'),
             libs: path.resolve(__dirname, 'src/libs/'),
             hooks: path.resolve(__dirname, 'src/hooks/'),
+            api: path.resolve(__dirname, 'src/api/'),
+            slices: path.resolve(__dirname, 'src/slices/'),
+            images: path.resolve(__dirname, 'src/images/'),
         },
     },
     devServer: {
@@ -57,7 +62,18 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(png|jpg|gif)$/i,
+                test: /\.svg$/,
+                use: [{loader: '@svgr/webpack', options: { 
+                    icon: true,
+                    svgProps: {
+                        preserveAspectRatio: 'xMidYMid meet',
+                        width: `{props.width || props.height ? props.width : undefined}`,
+                        height: `{props.width || props.height ? props.height : undefined}`,
+                    },
+                }}],
+            },
+            {
+                test: /\.(png|jpg|gif|svg)$/i,
                 use: [
                     {
                         loader: 'url-loader',
@@ -76,5 +92,10 @@ module.exports = {
                 useShortDoctype: true,
             },
         }),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'static' }
+            ]
+        })
     ],
 };

@@ -13,19 +13,11 @@
 
         .field {
             @include make-flex-box-container(column);
-
             position: relative;
 
-            .field__title {
-                margin-top: 10px;
-                font-weight: 500;
-            }
-
             .field__input {
-                height: 30px;
                 font-size: 18px;
-                border-bottom: 2px solid var(--accent-color);
-                margin-bottom: 30px;
+                border-bottom: 1px solid var(--accent-color);
             }
 
             .invalid {
@@ -39,6 +31,19 @@
 
                 @include make-label(var(--error-color), 12px, 500);
             }
+        }
+    }
+
+    .form-message {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        &-position{
+            position: absolute;
+            top: 0;
+            width: 100%;
+            transform: translateY(-200%);
         }
     }
 

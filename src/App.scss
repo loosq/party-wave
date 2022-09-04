@@ -1,11 +1,12 @@
 @use 'styles/variables';
-@use 'styles/fonts';
 @use 'styles/reset';
 @use 'styles/custom';
 
 body {
-    font-family: 'Inter medium', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     color: var(--main-color);
+    overflow-x: hidden;
+    background-color: #fefefe;
 }
 
 #root {
