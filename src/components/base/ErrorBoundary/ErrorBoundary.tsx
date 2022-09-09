@@ -11,7 +11,8 @@ type State = {
 
 const bemBlock = bemCn('error-boundary');
 
-const HEADER = 'Ой, что-то пошло не так. Попробуйте обновить страницу';
+const HEADER = 'Oops, something went wrong';
+const HEADER_SECONDARY = ' Try to refreshing the page';
 
 export class ErrorBoundary extends Component<PropsWithChildren, State> {
     constructor(props: PropsWithChildren) {
@@ -26,15 +27,17 @@ export class ErrorBoundary extends Component<PropsWithChildren, State> {
         });
     }
 
-    // TODO привести компонент к дизайну
     render() {
         if (this.state.errorInfo && this.state.error) {
             return (
                 <div className={bemBlock()}>
-                    <h2 className={bemBlock('title')}>{HEADER}</h2>
-                    <details>
+                    <h2 className={bemBlock('title')}>
+                        <span>{HEADER}</span>
+                        <span className={bemBlock('secondary-title')}>{HEADER_SECONDARY}</span>
+                    </h2>
+                    <details className={bemBlock('details')}>
                         <summary className={bemBlock('subtitle')}>
-                            Подробнее
+                            Details
                         </summary>
                         <div className={bemBlock('error-description')}>
                             {String(this.state.error)}
