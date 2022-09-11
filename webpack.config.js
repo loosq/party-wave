@@ -3,7 +3,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.tsx',
+    entry: {
+        client: './src/index.tsx',
+        sw: {
+            import: './src/service-worker/sw.js',
+            filename: 'sw.js',
+        },
+    },
     output: {
         path: path.join(__dirname, '/dist'),
         filename: 'bundle.js',
