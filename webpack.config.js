@@ -63,14 +63,17 @@ module.exports = {
             },
             {
                 test: /\.svg$/,
-                use: [{loader: '@svgr/webpack', options: { 
-                    icon: true,
-                    svgProps: {
-                        preserveAspectRatio: 'xMidYMid meet',
-                        width: `{props.width || props.height ? props.width : undefined}`,
-                        height: `{props.width || props.height ? props.height : undefined}`,
+                use: [{
+                    loader: '@svgr/webpack',
+                    options: {
+                        icon: true,
+                        svgProps: {
+                            preserveAspectRatio: 'xMidYMid meet',
+                            width: '{props.width || props.height ? props.width : undefined}',
+                            height: '{props.width || props.height ? props.height : undefined}',
+                        },
                     },
-                }}],
+                }],
             },
             {
                 test: /\.(png|jpg|gif|svg)$/i,
@@ -94,8 +97,8 @@ module.exports = {
         }),
         new CopyWebpackPlugin({
             patterns: [
-                { from: 'static' }
-            ]
-        })
+                { from: 'static' },
+            ],
+        }),
     ],
 };

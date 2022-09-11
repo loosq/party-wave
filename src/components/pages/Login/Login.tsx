@@ -12,7 +12,7 @@ import { login } from "slices/base";
 import { clearMessage } from "slices/message";
 import { ReactComponent as Loading } from 'images/loading.svg';
 import { ReactComponent as Oauth } from 'images/yoauth.svg';
-import { RootState, useAppDispach } from 'store'
+import { RootState, useAppDispatch } from 'store'
 
 const {login: loginSchema, password: passwordSchema} = commonSchema;
 const validationSchema = object().shape({
@@ -23,8 +23,8 @@ const validationSchema = object().shape({
 export const Login: FC = () => {
     const [loading, setLoading] = useState(false);
     const { message } = useSelector((state: RootState) => state.message);
-    const dispatch = useAppDispach();
-    
+    const dispatch = useAppDispatch();
+
     const navigate = useNavigate();
 
     useEffect(() => {

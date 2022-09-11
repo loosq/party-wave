@@ -3,7 +3,7 @@ import { changeAvatar } from "slices/base";
 import { ReactComponent as Loading } from 'images/loading.svg';
 import { ReactComponent as AvatarDefault } from 'images/avatar.svg';
 import { API_URL } from 'api/API';
-import { useAppDispach } from 'store';
+import { useAppDispatch } from 'store';
 
 type Props = ImgHTMLAttributes<unknown> & {
     isEditable?: boolean
@@ -17,13 +17,13 @@ export const Avatar: React.FC<Props> = (
 ) => {
     const inputAvatar = useRef<HTMLInputElement>(null);
     const [loading, setLoading] = useState(false);
-    const dispatch = useAppDispach();
-    
+    const dispatch = useAppDispatch();
+
     const onChangeAvatar = (e: React.ChangeEvent<HTMLInputElement>) => {
         if(e.target.files !== null) {
             const formData = new FormData();
-            formData.append('avatar', e.target.files[0]); 
-    
+            formData.append('avatar', e.target.files[0]);
+
             setLoading(true);
                 dispatch(changeAvatar(formData))
                     .unwrap()

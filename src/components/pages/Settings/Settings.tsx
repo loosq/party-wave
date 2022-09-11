@@ -14,7 +14,7 @@ import { UserProfileData, UserPasswordData } from 'api/UsersAPI'
 import { changeProfile, changePassword } from "slices/base";
 import { clearMessage } from "slices/message";
 import { ReactComponent as Loading } from 'images/loading.svg';
-import { RootState, useAppDispach } from 'store';
+import { RootState, useAppDispatch } from 'store';
 
 
 export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
@@ -22,11 +22,11 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
     const [stateForm, setStateForm] = useState(true);
     const [fields, setFields] = useState(settingsInfoFields);
     const [loading, setLoading] = useState(false);
-    
+
     const { user: currentUser } = useSelector((state: RootState) => state.base);
 
     const { message } = useSelector((state: RootState) => state.message);
-    const dispatch = useAppDispach();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
       dispatch(clearMessage());
@@ -62,7 +62,7 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
     ];
 
     const {
-        name, phone, email, login, 
+        name, phone, email, login,
         password,
     } = commonSchema;
 
