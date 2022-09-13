@@ -13,6 +13,7 @@ const URLS = [
     '/images/favicon.png',
     '/images/forum-logo.png',
     '/bundle.js',
+    '/fonts/*',
 ];
 
 self.addEventListener('install', (evt) => {
@@ -46,7 +47,7 @@ self.addEventListener('fetch', (evt) => {
         request.url.startsWith('chrome-extension')
         || request.url.includes('extension')
         || !(request.url.indexOf('http') === 0)
-        // || !(request.url.indexOf('localhost') < 0)
+        || !(request.url.indexOf('localhost') < 0)
     ) {
         return;
     }
