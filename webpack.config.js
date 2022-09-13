@@ -2,39 +2,60 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = {
+const getServiceWorkerConfig = (isDev) => (isDev ? {} : {
+    sw: {
+        import:
+            './src/service-worker/sw.js',
+        filename:
+            'sw.js',
+    },
+});
+
+module.exports = (env) => ({
     entry: {
         client: './src/index.tsx',
-        sw: {
-            import: './src/service-worker/sw.js',
-            filename: 'sw.js',
-        },
+        ...getServiceWorkerConfig(env === 'development'),
     },
     output: {
         path: path.join(__dirname, '/dist'),
-        filename: 'bundle.js',
+        filename:
+            'bundle.js',
     },
     resolve: {
         extensions: ['', '.tsx', '.ts', '.js', '.jsx'],
-        alias: {
-            store: path.resolve(__dirname, 'src/store.ts'),
-            components: path.resolve(__dirname, 'src/components/'),
-            utils: path.resolve(__dirname, 'src/utils/'),
-            styles: path.resolve(__dirname, 'src/styles/'),
-            libs: path.resolve(__dirname, 'src/libs/'),
-            hooks: path.resolve(__dirname, 'src/hooks/'),
-            api: path.resolve(__dirname, 'src/api/'),
-            slices: path.resolve(__dirname, 'src/slices/'),
-            images: path.resolve(__dirname, 'src/images/'),
-        },
+        alias:
+            {
+                store: path.resolve(__dirname, 'src/store.ts'),
+                components:
+                path.resolve(__dirname, 'src/components/'),
+                utils:
+                path.resolve(__dirname, 'src/utils/'),
+                styles:
+                path.resolve(__dirname, 'src/styles/'),
+                libs:
+                path.resolve(__dirname, 'src/libs/'),
+                hooks:
+                path.resolve(__dirname, 'src/hooks/'),
+                api:
+                path.resolve(__dirname, 'src/api/'),
+                slices:
+                path.resolve(__dirname, 'src/slices/'),
+                images:
+                path.resolve(__dirname, 'src/images/'),
+            },
     },
     devServer: {
         static: path.join(__dirname, 'dist'),
-        compress: true,
-        port: 3000,
-        hot: true,
-        open: true,
-        historyApiFallback: true,
+        compress:
+            true,
+        port:
+            3000,
+        hot:
+            true,
+        open:
+            true,
+        historyApiFallback:
+            true,
     },
     module: {
         rules: [
@@ -103,8 +124,8 @@ module.exports = {
         }),
         new CopyWebpackPlugin({
             patterns: [
-                { from: 'static' },
+                {from: 'static'},
             ],
         }),
     ],
-};
+});

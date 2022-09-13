@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import {startServiceWorker} from './service-worker/serviceWorker';
+import {startServiceWorker} from './service-worker/service-worker';
 import store from './store';
 import App from './App';
 import './App.scss';

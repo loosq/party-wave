@@ -29,7 +29,7 @@ export const Main: React.FC<unknown> = React.memo(() => {
                     <div className='main__video'>
                         <div className='main__video-inner'>
                             <video loop muted autoPlay playsInline preload='metadata' poster='/video/poster.png'>
-                                <source src='/video/main.MP4' type='video/mp4' />
+                                <source src='/video/main.mp4' type='video/mp4' />
                             </video>
                         </div>
                     </div>
