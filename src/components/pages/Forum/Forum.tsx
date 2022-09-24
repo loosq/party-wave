@@ -2,7 +2,7 @@ import React from 'react';
 import './Forum.scss';
 
 export const Forum: React.FC<unknown> = () => (
-    <div className="container">
+    <div className='container'>
         <div className='forum'>
             <h1 className='leaderboard__title'>Форум</h1>
             <div className='forum__head head'>
