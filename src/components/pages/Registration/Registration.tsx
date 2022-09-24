@@ -11,12 +11,12 @@ import { RegisterFormData } from 'api/AuthAPI'
 import { register } from "slices/base";
 import { clearMessage } from "slices/message";
 import { ReactComponent as Loading } from 'images/loading.svg';
-import { RootState, useAppDispach } from 'store';
+import { RootState, useAppDispatch } from 'store';
 
 export const Registration: FC = () => {
     const [loading, setLoading] = useState(false);
     const { message } = useSelector((state: RootState) => state.message);
-    const dispatch = useAppDispach();
+    const dispatch = useAppDispatch();
 
     const navigate = useNavigate();
 

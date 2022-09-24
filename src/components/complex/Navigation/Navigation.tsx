@@ -6,10 +6,10 @@ import { logout } from "slices/base";
 import { ReactComponent as AvatarDefault } from 'images/avatar.svg';
 import { ReactComponent as Logo } from 'images/logo.svg';
 import { API_URL } from "api/API";
-import { useAppDispach } from 'store';
+import { useAppDispatch } from 'store';
 
 export const Navigation: React.FC = React.memo(({ isLoggedIn, avatar, login, score }: any) => {
-    const dispatch = useAppDispach();
+    const dispatch = useAppDispatch();
 
     const logOut = useCallback(() => {
         dispatch(logout());
