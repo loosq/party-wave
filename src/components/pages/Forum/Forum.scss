@@ -20,8 +20,13 @@
         }
     }
 
-    &__topic {
-        background-color: var(--secondary-bg-color);
+    &__topics-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
     }
 }
 
@@ -38,36 +43,6 @@
     }
 
     &__last-message {
-        text-align: center;
-        width: 30%;
-    }
-}
-
-.topic {
-    display: flex;
-    padding: 20px;
-    align-items: center;
-    border-radius: 20px;
-    margin-bottom: 10px;
-
-    &__wrapper {
-        display: flex;
-        flex-direction: column;
-        width: 60%;
-    }
-
-    &__message-preview {
-        color: var(--secondary-color);
-    }
-
-    &__messages-count {
-        text-align: center;
-        width: 10%;
-    }
-
-    &__last-message {
-        display: flex;
-        flex-direction: column;
         text-align: center;
         width: 30%;
     }
