@@ -35,7 +35,6 @@ export const Form: React.FC<Props> = React.memo((
 ) => (
     <form {...restFormProps} onSubmit={formik?.handleSubmit}>
         <div className='fields__container'>
-            <>
             {
                 fields.map((field) => (
                     <Field
@@ -47,10 +46,9 @@ export const Form: React.FC<Props> = React.memo((
                             formik?.touched[field.name as string]
                             && formik?.errors[field.name as string]
                         }
-                    />),
-                )
+                    />
+                ))
             }
-            </>
         </div>
         {CustomEl && <CustomEl />}
         <div className='form-buttons__container'>
