@@ -1,6 +1,9 @@
 import {Response, Request, NextFunction} from 'express';
 import {Post, Topic, User} from '../../db/models';
 
+const attributes = ['firstName', 'displayName', 'secondName', 'avatar'];
+const exclude = ['userId'];
+
 export const getTopics = async (_: Request, res: Response, next: NextFunction) => {
     try {
         const topics = await Topic.findAll({
@@ -10,20 +13,20 @@ export const getTopics = async (_: Request, res: Response, next: NextFunction) =
                     include: [{
                         model: User,
                         required: false,
-                        attributes: ['firstName', 'displayName', 'secondName', 'avatar'],
+                        attributes,
                     }],
                     attributes: {
-                        exclude: ['userId'],
+                        exclude,
                     },
                 },
                 {
                     model: User,
                     required: false,
-                    attributes: ['firstName', 'displayName', 'secondName', 'avatar'],
+                    attributes,
                 },
             ],
             attributes: {
-                exclude: ['userId'],
+                exclude,
             },
         });
 
