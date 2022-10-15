@@ -19,8 +19,6 @@ node_modules/
 .cache/
 .parcel-cache/
 
-.env
-
 .eslintcache
 
 .npm
