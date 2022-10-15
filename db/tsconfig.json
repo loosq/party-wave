@@ -1,0 +1,11 @@
+{
+    "extends": "../tsconfig.json",
+    "include": ["**/*"],
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "outDir": "../dist",
+        "emitDecoratorMetadata": true,
+        "skipDefaultLibCheck": true,
+  }
+}
