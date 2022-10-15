@@ -22,6 +22,9 @@ export const getTopics = async (_: Request, res: Response, next: NextFunction) =
                     attributes: ['firstName', 'displayName', 'secondName', 'avatar'],
                 },
             ],
+            attributes: {
+                exclude: ['userId'],
+            },
         });
 
         res.status(200).send(topics);
