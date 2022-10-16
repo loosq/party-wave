@@ -45,7 +45,7 @@ export const getAuthCookie = (
     return null;
 };
 
-export const getCookieString = (cookie?: Record<string, string | boolean>): string => {
+export const getCookieString = (cookie: Record<string, string | boolean>): string => {
     const keys = ['authCookie', 'uuid'];
     const result: string[] = [];
 

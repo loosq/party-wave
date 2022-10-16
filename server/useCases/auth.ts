@@ -1,6 +1,6 @@
 import {NextFunction, Request, Response} from 'express';
 import axios from 'axios';
-import {getAuthCookie, getCookieString} from '../utils';
+import {ErrorInstance, getAuthCookie, getCookieString} from '../utils';
 
 interface Auth {
     login: string;
@@ -25,9 +25,11 @@ export const auth = async (
 
         if (cookie) {
             req.session.userCookie = getCookieString(cookie);
+
+            res.status(200).send(response.data);
         }
 
-        res.status(200).send(response.data);
+        return next(new ErrorInstance('User not authorized', 403));
     } catch (err) {
         next(err);
     }
