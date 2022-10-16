@@ -1,24 +1,26 @@
-@import 'src/styles/mixins';
+@import './src/styles/mixins';
 
 .login__window {
     width: 375px;
     margin: 0 auto;
     padding: 40px 0;
-    
+
     .login__container {
         background: var(--white-color);
         box-shadow: 0 0 6px rgba(0, 0, 0, 14%);
         border-radius: 12px;
         padding: 40px 30px;
+
         .login__title {
             @include make-label(var(--main-color), 24px, 500);
 
             text-align: center;
         }
 
-        .field{
+        .field {
             position: relative;
             padding: 15px 0;
+
             &__title {
                 position: absolute;
                 left: 0;
@@ -38,6 +40,7 @@
 
             &__input {
                 height: 32px;
+
                 &:focus + label,
                 &:valid + label {
                     top: 14%;
@@ -51,13 +54,14 @@
 .login__oauth {
     display: flex;
     justify-content: center;
+
     &-link {
         display: block;
         width: 165px;
-        transition: opacity .25s ease;
+        transition: opacity 0.25s ease;
 
         &:hover {
-            opacity: .5;
+            opacity: 0.5;
         }
     }
 }

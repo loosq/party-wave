@@ -25,13 +25,13 @@ export interface UserInfoData {
     avatar: string,
 }
 
-const signUp = async (data: RegisterFormData) => await API.post('/auth/signup', data).then((res) => res.data);
+const signUp = async (data: RegisterFormData) => API.post('/auth/signup', data).then((res) => res.data);
 
-const signIn = async (data: LoginFormData) => await API.post('/auth/signin', data).then((res) => res.data);
+const signIn = async (data: LoginFormData) => API.post('/auth/signin', data).then((res) => res.data);
 
-const getUserInfo = async () => await API.get('/auth/user');
+const getUserInfo = async () => API.get('/auth/user');
 
-const logout = async () => await API.post('/auth/logout').then((res) => res.data);
+const logout = async () => API.post('/auth/logout').then((res) => res.data);
 
 const AuthService = {
     signUp,
