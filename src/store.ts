@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import forumReducer from './slices/forum';
 import baseReducer from './slices/base';
 import messageReducer from './slices/message';
 
 const reducer = {
     base: baseReducer,
     message: messageReducer,
+    forum: forumReducer,
 };
 
 const store = configureStore({
