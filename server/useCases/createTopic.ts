@@ -49,6 +49,8 @@ export const createTopic = async (
     } catch (err) {
         await t.rollback();
 
-        next(err);
+        res.status(500).send({
+            message: 'Cannot create new topic',
+        });
     }
 };
