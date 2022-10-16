@@ -27,9 +27,9 @@ export const auth = async (
             req.session.userCookie = getCookieString(cookie);
 
             res.status(200).send(response.data);
+        } else {
+            next(new ErrorInstance('User not authorized', 403));
         }
-
-        return next(new ErrorInstance('User not authorized', 403));
     } catch (err) {
         next(err);
     }
