@@ -20,6 +20,10 @@ export const getTopics = createAsyncThunk<Topic[], void, {rejectValue: string | 
 
 export const selectTopics = (state: RootState): Nullable<Topic[]> => state.forum.data;
 
+export const selectIsTopicsLoading = (
+    state: RootState,
+): boolean => state.forum.status === REQUEST_STATUS.LOADING;
+
 export const selectTopicById = createSelector([
     selectTopics,
     (_, id: number) => id,
