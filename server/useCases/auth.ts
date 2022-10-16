@@ -13,7 +13,7 @@ export const auth = async (
     next: NextFunction,
 ) => {
     try {
-        const response = await axios.post('https://ya-praktikum.tech/api/v2/auth/signin', req.body, {
+        const signInResponse = await axios.post('https://ya-praktikum.tech/api/v2/auth/signin', req.body, {
             headers: {
                 accept: 'application/json',
                 'Content-Type': 'application/json',
@@ -21,10 +21,19 @@ export const auth = async (
             withCredentials: true,
         });
 
-        const cookie = getAuthCookie(response);
+        const cookie = getAuthCookie(signInResponse);
 
         if (cookie) {
             req.session.userCookie = getCookieString(cookie);
+            const response = await axios.get('https://ya-praktikum.tech/api/v2/auth/user', {
+                headers: {
+                    accept: 'application/json',
+                    cookie: req.session.userCookie as string,
+                },
+                withCredentials: true,
+            });
+
+            req.session.user = response.data;
 
             res.status(200).send(response.data);
         } else {
