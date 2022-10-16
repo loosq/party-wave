@@ -21,11 +21,11 @@ export type Topic = {
     author: UserShortInfo,
     date: string;
     id: number;
-    posts: Post[];
+    posts: PostType[];
     title: string;
 }
 
-export type Post = {
+export type PostType = {
     author: UserShortInfo,
     date: string;
     id: number;
