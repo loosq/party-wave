@@ -25,12 +25,17 @@
 }
 
 .topic-page__new-message-button {
-    padding: 10px 25px;
+    padding: 8px 25px;
     font-size: 16px;
     border-radius: 15px;
     color: var(--accent-color);
     background-color: var(--white-color);
-    border: none;
+    border: 1px solid var(--white-color);
+
+    &:hover {
+        color: var(--white-color);
+        background-color: var(--accent-color);
+    }
 }
 
 .topic-page__page-title {

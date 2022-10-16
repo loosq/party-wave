@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSelector, createSlice} from '@reduxjs/toolkit';
 import {
+    CreateNewPostParams,
     CreateNewTopicParams, Nullable, RequestStatus, Topic,
 } from 'types';
 import {AxiosError} from 'axios';
@@ -29,6 +30,23 @@ export const createTopic = createAsyncThunk<
         async (params, {rejectWithValue}) => {
             try {
                 const response = await forumApi.createTopic(params);
+
+                return response.data;
+            } catch (error) {
+                return rejectWithValue((error as AxiosError).response?.statusText);
+            }
+        },
+    );
+
+export const createPost = createAsyncThunk<
+    void,
+    CreateNewPostParams,
+    {rejectValue: string | undefined}
+    >(
+        'forum/createPost',
+        async (params, {rejectWithValue}) => {
+            try {
+                const response = await forumApi.createPost(params);
 
                 return response.data;
             } catch (error) {

@@ -42,7 +42,7 @@ export const Forum = () => {
                 )}
                 <button
                     onClick={() => setIsOpen(true)}
-                    className='forum__add-theme-button'
+                    className='forum__add-topic-button'
                 >
                     Создать тему
                 </button>
