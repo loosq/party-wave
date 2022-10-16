@@ -7,12 +7,12 @@ export type FormikType = ReturnType<typeof useFormik<FormikValues>>;
 
 export type RequestStatus = keyof typeof REQUEST_STATUS;
 
-export type createNewTopicParams = {
+export type CreateNewTopicParams = {
     title: string;
     text: string;
 }
 
-export type createNewPostParams = {
+export type CreateNewPostParams = {
     topicId: number;
     text: string;
 }

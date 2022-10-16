@@ -1,19 +1,24 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Loader} from 'components/base/Loader';
 import {useAppDispatch, useAppSelector} from 'store';
 import {getTopics, selectIsTopicsLoading, selectTopics} from 'slices/forum';
+import {ForumModal} from 'components/pages/Forum/ForumModal/ForumModal';
 import {ForumTopicItem} from './ForumTopicItem';
 import './Forum.scss';
 
 export const Forum = () => {
     const dispatch = useAppDispatch();
 
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
     const topics = useAppSelector(selectTopics);
     const isLoading = useAppSelector(selectIsTopicsLoading);
 
     useEffect(() => {
-        dispatch(getTopics());
-    }, []);
+        if (!topics) {
+            dispatch(getTopics());
+        }
+    }, [topics]);
 
     return (
         <div className='container'>
@@ -35,7 +40,14 @@ export const Forum = () => {
                         ))}
                     </ul>
                 )}
+                <button
+                    onClick={() => setIsOpen(true)}
+                    className='forum__add-theme-button'
+                >
+                    Создать тему
+                </button>
             </div>
+            <ForumModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
         </div>
     );
 };

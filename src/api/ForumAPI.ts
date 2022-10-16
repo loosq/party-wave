@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {createNewPostParams, createNewTopicParams} from 'types';
+import {CreateNewPostParams, CreateNewTopicParams} from 'types';
 import {API} from 'api/API';
 
 const SERVER_API = 'https://localhost:3000/api/v1'; // TODO убрать localhost
@@ -11,7 +11,7 @@ const getTopics = () => API.get(`${SERVER_API}/forum/topics`, {
     withCredentials: true,
 });
 
-const createTopic = (params: createNewTopicParams) => axios.post(
+const createTopic = (params: CreateNewTopicParams) => axios.post(
     `${SERVER_API}/forum/topics`,
     params,
     {
@@ -23,7 +23,7 @@ const createTopic = (params: createNewTopicParams) => axios.post(
     },
 );
 
-const createPost = (params: createNewPostParams) => axios.post(
+const createPost = (params: CreateNewPostParams) => axios.post(
     `${SERVER_API}/forum/topics/${params.topicId}/posts`,
     params,
     {

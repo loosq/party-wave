@@ -1,5 +1,7 @@
 import {createAsyncThunk, createSelector, createSlice} from '@reduxjs/toolkit';
-import {Nullable, RequestStatus, Topic} from 'types';
+import {
+    CreateNewTopicParams, Nullable, RequestStatus, Topic,
+} from 'types';
 import {AxiosError} from 'axios';
 import {RootState} from 'store';
 import {forumApi} from 'api/ForumAPI';
@@ -17,6 +19,23 @@ export const getTopics = createAsyncThunk<Topic[], void, {rejectValue: string | 
         }
     },
 );
+
+export const createTopic = createAsyncThunk<
+    void,
+    CreateNewTopicParams,
+    {rejectValue: string | undefined}
+    >(
+        'forum/createTopic',
+        async (params, {rejectWithValue}) => {
+            try {
+                const response = await forumApi.createTopic(params);
+
+                return response.data;
+            } catch (error) {
+                return rejectWithValue((error as AxiosError).response?.statusText);
+            }
+        },
+    );
 
 export const selectTopics = (state: RootState): Nullable<Topic[]> => state.forum.data;
 
