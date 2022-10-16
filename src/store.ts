@@ -10,7 +10,7 @@ const reducer = {
     forum: forumReducer,
 };
 
-const store = configureStore({
+export const store = configureStore({
     reducer,
     devTools: true,
 });
