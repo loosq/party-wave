@@ -3,7 +3,7 @@ import { setMessage } from "./message";
 import AuthService, { RegisterFormData, LoginFormData } from "api/AuthAPI";
 import UsersService, { UserProfileData, UserPasswordData } from "api/UsersAPI";
 
-const user = localStorage.getItem("user") != undefined ? JSON.parse(localStorage.getItem("user") as string) : {};
+const user = typeof localStorage.getItem === 'function' && localStorage.getItem("user") !== undefined ? JSON.parse(localStorage.getItem("user") as string) : {};
 
 const STATUS_TEXT = {
   'REG_SUCCESS': 'Вы зарегистрировались',
@@ -99,13 +99,13 @@ export const changeAvatar = createAsyncThunk(
 );
 
 export const changePassword = createAsyncThunk(
-    "base/changePassword", 
+    "base/changePassword",
     async (data: UserPasswordData) => {
 
   await UsersService.changePassword(data);
 });
 
-const initialState = Object.keys(user).length ? { isLoggedIn: true, user } : { isLoggedIn: false, user: null };
+const initialState = user && Object.keys(user).length ? { isLoggedIn: true, user } : { isLoggedIn: false, user: null };
 
 export type StateType<T> = {
   [key in string] : T

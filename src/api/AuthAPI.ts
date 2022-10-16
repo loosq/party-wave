@@ -1,4 +1,4 @@
-import { API } from "./API";
+import { API } from './API';
 
 export interface RegisterFormData {
     first_name: string,
@@ -7,12 +7,12 @@ export interface RegisterFormData {
     email: string,
     password: string,
     phone: string,
-};
+}
 
 export interface LoginFormData {
     login: string,
     password: string,
-};
+}
 
 export interface UserInfoData {
     id: number,
@@ -23,25 +23,17 @@ export interface UserInfoData {
     email: string,
     phone: string,
     avatar: string,
-};
+}
 
-const signUp = async (data: RegisterFormData) => {
-    return await API.post('/auth/signup', data).then(res => res.data);
-};
+const signUp = async (data: RegisterFormData) => await API.post('/auth/signup', data).then((res) => res.data);
 
-const signIn = async (data: LoginFormData) => {
-    return await API.post('/auth/signin', data).then(res => res.data);
-};
+const signIn = async (data: LoginFormData) => await API.post('/auth/signin', data).then((res) => res.data);
 
-const getUserInfo = async () => {
-    return await API.get('/auth/user');
-};
+const getUserInfo = async () => await API.get('/auth/user');
 
-const logout = async () => {
-    return await API.post('/auth/logout').then(res => res.data);
-};
+const logout = async () => await API.post('/auth/logout').then((res) => res.data);
 
-const AuthService =  {
+const AuthService = {
     signUp,
     signIn,
     getUserInfo,
