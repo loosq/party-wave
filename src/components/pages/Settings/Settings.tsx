@@ -10,12 +10,11 @@ import {
     settingsPasswordFields,
 } from 'components/pages/config';
 import { useSelector } from 'react-redux';
-import { UserProfileData, UserPasswordData } from 'api/UsersAPI'
-import { changeProfile, changePassword } from "slices/base";
-import { clearMessage } from "slices/message";
-import { ReactComponent as Loading } from 'images/loading.svg';
+import { UserProfileData, UserPasswordData } from 'api/UsersAPI';
+import { changeProfile, changePassword } from 'slices/base';
+import { clearMessage } from 'slices/message';
+import Loading from 'images/loading.svg';
 import { RootState, useAppDispatch } from 'store';
-
 
 export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
     const [readMode, setReadMode] = useState(true);
@@ -29,7 +28,7 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-      dispatch(clearMessage());
+        dispatch(clearMessage());
     }, [dispatch]);
 
     const cb = () => {
@@ -39,14 +38,14 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
             setLoading(false);
             dispatch(clearMessage());
         }, 2000);
-    }
+    };
 
     const links = [
         {
             id: '1',
             children: 'Изменить данные',
             onClick: () => {
-                setStateForm(true)
+                setStateForm(true);
                 setReadMode(false);
             },
         },
@@ -55,10 +54,10 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
             children: 'Изменить пароль',
             onClick: () => {
                 setFields(settingsPasswordFields);
-                setStateForm(false)
+                setStateForm(false);
                 setReadMode(false);
             },
-        }
+        },
     ];
 
     const {
@@ -72,10 +71,10 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
         first_name: name,
         second_name: name,
         display_name: name,
-        phone
+        phone,
     } : {
         oldPassword: password,
-        newPassword: password
+        newPassword: password,
     });
 
     const formik = useFormik<FormikValues>({
@@ -91,7 +90,7 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
         onSubmit: (data) => {
             setLoading(true);
 
-            if(stateForm){
+            if (stateForm) {
                 dispatch(changeProfile(data as UserProfileData))
                     .unwrap()
                     .then(cb)
@@ -134,13 +133,13 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
                     links={links}
                     formik={formik}
                     buttonProps={{
-                        children: message ? message : loading ? (
+                        children: message || (loading ? (
                             <span className='button-loading'>
-                                <Loading />
+                                <img src={Loading} alt='Loading' />
                             </span>
-                        ) : 'Сохранить',
+                        ) : 'Сохранить'),
                         type: 'submit',
-                        disabled: loading ? true : false,
+                        disabled: !!loading,
                     }}
                     altUrlProps={{
                         children: 'Назад',

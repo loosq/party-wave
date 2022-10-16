@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 import { Form } from 'components/complex';
 import './Registration.scss';
 import { FormikValues, useFormik } from 'formik';
@@ -7,10 +7,10 @@ import { object } from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { commonSchema } from 'utils/validation';
 import { registrationFields } from 'components/pages/config';
-import { RegisterFormData } from 'api/AuthAPI'
-import { register } from "slices/base";
-import { clearMessage } from "slices/message";
-import { ReactComponent as Loading } from 'images/loading.svg';
+import { RegisterFormData } from 'api/AuthAPI';
+import { register } from 'slices/base';
+import { clearMessage } from 'slices/message';
+import Loading from 'images/loading.svg';
 import { RootState, useAppDispatch } from 'store';
 
 export const Registration: FC = () => {
@@ -21,7 +21,7 @@ export const Registration: FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-      dispatch(clearMessage());
+        dispatch(clearMessage());
     }, [dispatch]);
 
     const {
@@ -47,7 +47,7 @@ export const Registration: FC = () => {
             password: '',
         },
         validationSchema,
-        onSubmit: data => {
+        onSubmit: (data) => {
             setLoading(true);
             dispatch(register(data as RegisterFormData))
                 .unwrap()
@@ -71,13 +71,13 @@ export const Registration: FC = () => {
                     fields={registrationFields}
                     formik={formik}
                     buttonProps={{
-                        children: message ? message : loading ? (
+                        children: message || (loading ? (
                             <span className='button-loading'>
-                                <Loading />
+                                <img src={Loading} alt='Loading' />
                             </span>
-                        ) : 'Зарегистрироваться',
+                        ) : 'Зарегистрироваться'),
                         type: 'submit',
-                        disabled: loading ? true : false
+                        disabled: !!loading,
                     }}
                     altUrlProps={{
                         children: 'Войти',

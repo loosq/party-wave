@@ -1,7 +1,7 @@
 import React, { ImgHTMLAttributes, useRef, useState } from 'react';
-import { changeAvatar } from "slices/base";
-import { ReactComponent as Loading } from 'images/loading.svg';
-import { ReactComponent as AvatarDefault } from 'images/avatar.svg';
+import { changeAvatar } from 'slices/base';
+import Loading from 'images/loading.svg';
+import AvatarDefault from 'images/avatar.svg';
 import { API_URL } from 'api/API';
 import { useAppDispatch } from 'store';
 
@@ -20,38 +20,40 @@ export const Avatar: React.FC<Props> = (
     const dispatch = useAppDispatch();
 
     const onChangeAvatar = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if(e.target.files !== null) {
+        if (e.target.files !== null) {
             const formData = new FormData();
             formData.append('avatar', e.target.files[0]);
 
             setLoading(true);
-                dispatch(changeAvatar(formData))
-                    .unwrap()
-                    .then(() => {
-                        setTimeout(() => {
-                            setLoading(false);
-                        }, 2000);
-                    })
-                    .catch((e: Error) => {
-                        console.error(e.message);
+            dispatch(changeAvatar(formData))
+                .unwrap()
+                .then(() => {
+                    setTimeout(() => {
                         setLoading(false);
-                    });
+                    }, 2000);
+                })
+                .catch((e: Error) => {
+                    console.error(e.message);
+                    setLoading(false);
+                });
         }
     };
 
     const triggerFile = () => {
-        inputAvatar.current?.click()
+        inputAvatar.current?.click();
     };
 
     return (
-        <div className="settings__container-avatar" onClick={triggerFile}>
-            {loading && (<span className='button-loading'>
-                        <Loading />
-                    </span>)}
+        <div className='settings__container-avatar' onClick={triggerFile}>
+            {loading && (
+                <span className='button-loading'>
+                    <img src={Loading} alt='Loading' />
+                </span>
+            )}
             {
-                restProps.src ? (<img className="settings__photo" src={`${API_URL}/resources${restProps.src}`} />) : <AvatarDefault />
+                restProps.src ? (<img className='settings__photo' src={`${API_URL}/resources${restProps.src}`} />) : <img src={AvatarDefault} alt='AvatarDefault' />
             }
-            <input name='avatar' type='file' accept='image/*' id='my-avatar' style={{display: 'none'}} ref={inputAvatar} onInput={onChangeAvatar}/>
+            <input name='avatar' type='file' accept='image/*' id='my-avatar' style={{display: 'none'}} ref={inputAvatar} onInput={onChangeAvatar} />
         </div>
-    )
+    );
 };

@@ -17,9 +17,9 @@
     content: '';
     width: 60vw;
     height: 60vw;
-    background: radial-gradient(circle, rgba(0,130,121,1) 0%, rgba(0,168,189,1) 0%, rgba(0,168,189,0) 64%, rgba(0,168,189,0) 100%);
+    background: radial-gradient(circle, rgba(0, 130, 121, 100%) 0%, rgba(0, 168, 189, 100%) 0%, rgba(0, 168, 189, 0%) 64%, rgba(0, 168, 189, 0%) 100%);
     transform: translate(-50%, -50%);
-    opacity: .8;
+    opacity: 0.8;
     pointer-events: none;
 }
 
@@ -28,7 +28,7 @@
     flex-direction: column;
     gap: 30px;
     max-width: 800px;
-    font-family: "Silkscreen", sans-serif;
+    font-family: Silkscreen, sans-serif;
     font-weight: 500;
     font-size: 70px;
     line-height: 80px;
@@ -48,7 +48,7 @@
 }
 
 .error-boundary__subtitle {
-    font-family: "Silkscreen", sans-serif;
+    font-family: Silkscreen, sans-serif;
     font-weight: 400;
     font-size: 20px;
     line-height: 30px;

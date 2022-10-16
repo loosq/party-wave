@@ -4,21 +4,23 @@
     width: 375px;
     margin: 0 auto;
     padding: 40px 0;
-    
+
     .registration__container {
         background: var(--white-color);
         box-shadow: 0 0 6px rgba(0, 0, 0, 14%);
         border-radius: 12px;
         padding: 40px 30px;
+
         .registration__title {
             @include make-label(var(--main-color), 24px, 500);
 
             text-align: center;
         }
 
-        .field{
+        .field {
             position: relative;
             padding: 15px 0;
+
             &__title {
                 position: absolute;
                 left: 0;
@@ -38,6 +40,7 @@
 
             &__input {
                 height: 32px;
+
                 &:focus + label,
                 &:valid + label {
                     top: 14%;
@@ -47,7 +50,6 @@
         }
     }
 }
-
 
 .form-buttons__container {
     margin-top: 20px;
