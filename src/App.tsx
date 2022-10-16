@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Forum, Game, Leaderboard, Login, Main, NotFoundPage, Registration, Settings,
+    Forum, Game, Leaderboard, Login, Main, NotFoundPage, Registration, Settings, Topic,
 } from 'components/pages';
 import {
     BrowserRouter as Router, Navigate, Outlet, Route, Routes,
@@ -42,6 +42,10 @@ export default function App() {
                     <Route
                         path='/statistics'
                         element={<Leaderboard />}
+                    />
+                    <Route
+                        path='/forum/topic/:id'
+                        element={<Topic />}
                     />
                     <Route
                         path='/forum'

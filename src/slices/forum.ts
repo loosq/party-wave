@@ -26,10 +26,10 @@ export const selectIsTopicsLoading = (
 
 export const selectTopicById = createSelector([
     selectTopics,
-    (_, id: number) => id,
+    (_, id?: string) => id,
 ], (data, id): Nullable<Topic> => {
     if (data) {
-        return data.find((item) => item.id === id) ?? null;
+        return data.find((item) => item.id === parseInt(id ?? '', 10)) ?? null;
     }
 
     return null;
