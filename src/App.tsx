@@ -18,6 +18,7 @@ export default function App() {
     return (
         <ErrorBoundary>
             <Router>
+                {/* @ts-ignore TODO разобраться с логикой и типами */}
                 <Navigation
                     {...{
                         ...currentUser, isLoggedIn,
