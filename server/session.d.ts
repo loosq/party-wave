@@ -1,18 +1,19 @@
+import {Nullable} from 'types';
+
 export type User = {
-    id: number;
-    first_name: string;
-    second_name: string;
-    display_name: string;
-    login: string;
-    avatar: string;
+    avatar: Nullable<string>;
+    display_name: Nullable<string>;
     email: string;
+    first_name: string;
+    id: number;
+    login: string;
     phone: string;
+    second_name: string;
 };
 
 declare module 'express-session' {
 
     interface SessionData {
         user: User;
-        userCookie: string;
     }
 }

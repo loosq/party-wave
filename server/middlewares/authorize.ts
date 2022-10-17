@@ -13,15 +13,15 @@ export const authorizeMiddleware = async (
         return next();
     }
 
-    if (!req.session.userCookie || !req.headers.cookie) {
+    if (!req.headers.cookie) {
         return next(new ErrorInstance('User not authorized', 403));
     }
 
     try {
-        const response = await axios.get<User>('https://ya-praktikum.tech/api/v2/auth/user', {
+        const response = await axios.get<User>('https://ya-praktikum.tech/api/v2/auth/user', { // TODO удалить, если будет не нужен
             headers: {
                 accept: 'application/json',
-                cookie: req.session.userCookie ?? '',
+                cookie: req.headers.cookie,
             },
             withCredentials: true,
         });

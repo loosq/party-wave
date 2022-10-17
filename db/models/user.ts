@@ -1,16 +1,17 @@
 import {
     AllowNull, Column, DataType, HasMany, Model, PrimaryKey, Table,
 } from 'sequelize-typescript';
+import {Nullable} from 'types';
 import {Topic} from './topic';
 import {Post} from './post';
 
 interface CreationAttributes {
+    avatar: Nullable<string>;
+    displayName: Nullable<string>;
     id: number;
     firstName: string;
     secondName: string;
-    displayName: string;
     login: string;
-    avatar: string;
     email: string;
     phone: string;
 }
