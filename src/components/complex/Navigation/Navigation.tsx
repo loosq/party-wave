@@ -27,7 +27,7 @@ export const Navigation: React.FC = () => {
                     <li>
                         <NavLink to='/' className='navigation__logo'>
                             <div className='navigation__logo-inner'>
-                                <Logo />
+                                <img src={Logo} alt='Logo' />
                             </div>
                             <span>
                                 cosmobot
@@ -42,17 +42,17 @@ export const Navigation: React.FC = () => {
                                     name,
                                 }) => (
                                     <li key={to}>
-                                        <NavLink
-                                            className={({isActive}) => `navigation__link ${isActive
+                                        <a
+                                            className={`navigation__link ${isActive
                                                 ? 'navigation__link--active'
                                                 : ''}`}
-                                            to={to}
+                                            href={to}
                                         >
                                             <span>
                                                 {name}
                                                 <i />
                                             </span>
-                                        </NavLink>
+                                        </a>
                                     </li>
                                 )), [])
                             }

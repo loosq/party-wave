@@ -132,7 +132,7 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
                     buttonProps={{
                         children: message || (loading ? (
                             <span className='button-loading'>
-                                <Loading />
+                                <img src={Loading} alt='Loading' />
                             </span>
                         ) : 'Сохранить'),
                         type: 'submit',
