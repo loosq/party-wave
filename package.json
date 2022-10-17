@@ -32,7 +32,7 @@
         "build:prod": "npm run build:client:prod && npm run build:server:prod",
         "clean": "rimraf dist/",
         "start:dev": "npm run build:dev && nodemon index.js --watch dist/server.js",
-        "start:prod": "npm i && npm run build:prod && node index.js",
+        "start": "npm i && npm run build:prod && node index.js",
         "eslint": "eslint . --ext .ts --fix",
         "stylelint": "stylelint . --fix"
     },
