@@ -115,18 +115,12 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
                     <>
                         <Avatar
                             className='settings__photo'
-                            // @ts-ignore TODO разобраться с логикой и типами
-                            src={currentUser.avatar}
+                            src={currentUser?.avatar ?? ''}
                             alt='avatar'
                         />
                         <h3 className='settings__title'>
-                            {/* @ts-ignore TODO разобраться с логикой и типами */}
-                            {`${currentUser.first_name} ${currentUser.second_name}`}
+                            {`${currentUser?.first_name} ${currentUser?.second_name}`}
                         </h3>
-                        <h2 className='settings__score'>
-                            {/* @ts-ignore TODO разобраться с логикой и типами */}
-                            {`Счет: ${currentUser.score ? currentUser.score : 0}`}
-                        </h2>
                     </>
                 )}
                 <Form

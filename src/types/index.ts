@@ -1,5 +1,5 @@
 import { FormikValues, useFormik } from 'formik';
-import {REQUEST_STATUS} from '../constants';
+import {REQUEST_STATUS} from '../slices/constants';
 
 export type Nullable<T> = T | null;
 export type Constructable<T = any> = new (...args: Array<any>) => T;
@@ -38,4 +38,15 @@ export type UserShortInfo = {
     displayName: Nullable<string>;
     firstName: string;
     secondName: string;
+}
+
+export type UserFullData = {
+    avatar: Nullable<string>;
+    display_name: Nullable<string>;
+    email: string;
+    first_name: string;
+    id: number;
+    login: string;
+    phone: string;
+    second_name: string;
 }

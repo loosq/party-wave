@@ -5,13 +5,16 @@ import { logout } from 'slices/base';
 import { ReactComponent as AvatarDefault } from 'images/avatar.svg';
 import { ReactComponent as Logo } from 'images/logo.svg';
 import { API_URL } from 'api/API';
-import { useAppDispatch } from 'store';
+import {useAppDispatch, useAppSelector} from 'store';
 import { pages } from '../config';
 
-export const Navigation: React.FC = React.memo(({
-    isLoggedIn, avatar, login, score,
-}: any) => {
+export const Navigation: React.FC = () => {
     const dispatch = useAppDispatch();
+
+    const {
+        user,
+        isLoggedIn,
+    } = useAppSelector((state) => state.base);
 
     const logOut = useCallback(() => {
         dispatch(logout());
@@ -34,7 +37,10 @@ export const Navigation: React.FC = React.memo(({
                     <li className='navigation__menu'>
                         <ul>
                             {
-                                useMemo(() => pages.map(({to, name}) => (
+                                useMemo(() => pages.map(({
+                                    to,
+                                    name,
+                                }) => (
                                     <li key={to}>
                                         <NavLink
                                             className={({isActive}) => `navigation__link ${isActive
@@ -56,25 +62,29 @@ export const Navigation: React.FC = React.memo(({
                     {isLoggedIn ? (
                         <li>
                             <div className='profile'>
-                                <div className='profile__name'>{login}</div>
+                                <div className='profile__name'>{user?.login}</div>
                                 <div className='profile__thumb'>
-                                    {avatar
-                                        ? <img src={`${API_URL}/resources${avatar}`} alt='' />
+                                    {user?.avatar
+                                        ? <img src={`${API_URL}/resources${user.avatar}`} alt='' />
                                         : <AvatarDefault />}
                                 </div>
                                 <div className='dropdown'>
                                     <div className='dropdown__list'>
                                         <div className='dropdown__item'>
-                                            <div className='dropdown__score'>
-                                                Счет:
-                                                {score || 0}
-                                            </div>
+                                            <NavLink
+                                                to='/settings'
+                                                className='dropdown__link'
+                                            >
+                                                Профиль
+                                            </NavLink>
                                         </div>
                                         <div className='dropdown__item'>
-                                            <NavLink to='/settings' className='dropdown__link'>Профиль</NavLink>
-                                        </div>
-                                        <div className='dropdown__item'>
-                                            <button className='dropdown__link' onClick={logOut}>Выход</button>
+                                            <button
+                                                className='dropdown__link'
+                                                onClick={logOut}
+                                            >
+                                                Выход
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -82,7 +92,10 @@ export const Navigation: React.FC = React.memo(({
                         </li>
                     ) : (
                         <li>
-                            <NavLink className={({isActive}) => `navigation__link navigation__link-signin ${isActive ? 'navigation__link--active' : ''}`} to='/login'>
+                            <NavLink
+                                className={({isActive}) => `navigation__link navigation__link-signin ${isActive ? 'navigation__link--active' : ''}`}
+                                to='/login'
+                            >
                                 Вход
                             </NavLink>
                         </li>
@@ -91,4 +104,4 @@ export const Navigation: React.FC = React.memo(({
             </nav>
         </div>
     );
-});
+};

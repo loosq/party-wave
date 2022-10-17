@@ -1,9 +1,8 @@
 import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import {forumApi} from 'api/ForumAPI';
 import './Main.scss';
 
-export const Main: React.FC<unknown> = React.memo(() => {
+export const Main: React.FC<unknown> = () => {
     useEffect(() => {
         document.body.classList.add('app-main');
         return () => {
@@ -32,29 +31,10 @@ export const Main: React.FC<unknown> = React.memo(() => {
                             <video loop muted autoPlay playsInline preload='metadata' poster='/video/poster.png'>
                                 <source src='/video/main.mp4' type='video/mp4' />
                             </video>
-                            <div style={{display: 'flex', gap: 8}}>
-                                <button
-                                    onClick={() => {
-                                        forumApi.auth({
-                                            login: 'B1234',
-                                            password: 'A123456!',
-                                        });
-                                    }}
-                                >
-                                    Auth
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        forumApi.getUser();
-                                    }}
-                                >
-                                    GetUser
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     );
-});
+};
