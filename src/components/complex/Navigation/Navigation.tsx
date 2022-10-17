@@ -42,17 +42,17 @@ export const Navigation: React.FC = () => {
                                     name,
                                 }) => (
                                     <li key={to}>
-                                        <a
-                                            className={`navigation__link ${isActive
+                                        <NavLink
+                                            className={({isActive}) => `navigation__link ${isActive
                                                 ? 'navigation__link--active'
                                                 : ''}`}
-                                            href={to}
+                                            to={to}
                                         >
                                             <span>
                                                 {name}
                                                 <i />
                                             </span>
-                                        </a>
+                                        </NavLink>
                                     </li>
                                 )), [])
                             }
