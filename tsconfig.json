@@ -21,7 +21,7 @@
         "baseUrl": ".",
         "outDir": "./dist",
         "paths": {
-            "*": ["./src/*"],
+            "*": ["./src/*"]
         },
         "typeRoots": [
             "typings/**/*.d.ts",
@@ -38,6 +38,7 @@
         "dist",
         "**/*.spec.ts",
         "**/*.test.ts"
-    ]
+    ],
+    "files": ["src/types/files.d.ts"]
 }
 

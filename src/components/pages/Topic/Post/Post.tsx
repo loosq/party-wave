@@ -2,7 +2,7 @@ import React from 'react';
 import bemCn from 'libs/bemCn';
 import dayjs from 'dayjs';
 import {PostType} from 'types';
-import {ReactComponent as AvatarDefault} from 'images/avatar.svg';
+import AvatarDefault from '../../../../images/avatar.svg';
 
 import './Post.scss';
 

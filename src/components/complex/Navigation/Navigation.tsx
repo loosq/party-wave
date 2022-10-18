@@ -2,10 +2,10 @@ import React, { useCallback, useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navigation.scss';
 import { logout } from 'slices/base';
-import { ReactComponent as AvatarDefault } from 'images/avatar.svg';
-import { ReactComponent as Logo } from 'images/logo.svg';
 import { API_URL } from 'api/API';
 import {useAppDispatch, useAppSelector} from 'store';
+import AvatarDefault from '../../../images/avatar.svg';
+import Logo from '../../../images/logo.svg';
 import { pages } from '../config';
 
 export const Navigation: React.FC = () => {

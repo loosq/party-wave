@@ -1,9 +1,9 @@
 import React, { ImgHTMLAttributes, useRef, useState } from 'react';
 import { changeAvatar } from 'slices/base';
-import { ReactComponent as Loading } from 'images/loading.svg';
-import { ReactComponent as AvatarDefault } from 'images/avatar.svg';
 import { API_URL } from 'api/API';
 import { useAppDispatch } from 'store';
+import AvatarDefault from '../../../images/avatar.svg';
+import Loading from '../../../images/loading.svg';
 
 type Props = ImgHTMLAttributes<unknown> & {
     isEditable?: boolean

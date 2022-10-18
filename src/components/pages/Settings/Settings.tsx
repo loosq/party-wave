@@ -13,8 +13,8 @@ import { useSelector } from 'react-redux';
 import { UserProfileData, UserPasswordData } from 'api/UsersAPI';
 import { changeProfile, changePassword } from 'slices/base';
 import { clearMessage } from 'slices/message';
-import { ReactComponent as Loading } from 'images/loading.svg';
 import { RootState, useAppDispatch } from 'store';
+import Loading from '../../../images/loading.svg';
 
 export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
     const [readMode, setReadMode] = useState(true);
