@@ -66,7 +66,7 @@ export const Navigation: React.FC = () => {
                                 <div className='profile__thumb'>
                                     {user?.avatar
                                         ? <img src={`${API_URL}/resources${user.avatar}`} alt='' />
-                                        : <AvatarDefault />}
+                                        : <img src={AvatarDefault} alt='' />}
                                 </div>
                                 <div className='dropdown'>
                                     <div className='dropdown__list'>

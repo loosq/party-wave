@@ -98,6 +98,7 @@ const config: Configuration = {
             patterns: [
                 {from: 'static'},
                 {from: 'src/service-worker/sw.js'},
+                {from: 'ssl', to: 'ssl'},
             ],
         }),
     ],

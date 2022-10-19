@@ -47,11 +47,11 @@ export const Avatar: React.FC<Props> = (
         <button className='settings__container-avatar' onClick={triggerFile}>
             {loading && (
                 <span className='button-loading'>
-                    <Loading />
+                    <img src={Loading} alt='' />
                 </span>
             )}
             {
-                restProps.src ? (<img className='settings__photo' src={`${API_URL}/resources${restProps.src}`} alt='' />) : <AvatarDefault />
+                restProps.src ? (<img className='settings__photo' src={`${API_URL}/resources${restProps.src}`} alt='' />) : <img src={AvatarDefault} alt='' />
             }
             <input name='avatar' type='file' accept='image/*' id='my-avatar' style={{display: 'none'}} ref={inputAvatar} onInput={onChangeAvatar} />
         </button>

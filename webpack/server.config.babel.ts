@@ -5,7 +5,7 @@ import nodeExternals from 'webpack-node-externals';
 const config: Configuration = {
     target: 'node',
     node: {__dirname: false},
-    entry: join(__dirname, '../src/server'),
+    entry: join(__dirname, '../server/server.ts'),
     module: {
         rules: [
             {

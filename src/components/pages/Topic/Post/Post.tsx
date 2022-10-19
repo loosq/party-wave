@@ -15,7 +15,7 @@ const bemBlock = bemCn('post');
 export const Post = ({post}: Props) => (
     <div className={bemBlock()}>
         <div className={bemBlock('user-info')}>
-            <AvatarDefault />
+            <img src={AvatarDefault} alt='' />
             <p className={bemBlock('author-name')}>
                 {post.author.displayName ?? post.author.firstName}
             </p>
