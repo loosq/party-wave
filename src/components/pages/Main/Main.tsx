@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import './Main.scss';
 
-export const Main: React.FC<unknown> = React.memo(() => {
+export const Main: React.FC<unknown> = () => {
     useEffect(() => {
         document.body.classList.add('app-main');
         return () => {
@@ -37,4 +37,4 @@ export const Main: React.FC<unknown> = React.memo(() => {
             </div>
         </div>
     );
-});
+};

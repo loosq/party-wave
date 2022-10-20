@@ -1,9 +1,9 @@
 import React, { ImgHTMLAttributes, useRef, useState } from 'react';
 import { changeAvatar } from 'slices/base';
-import Loading from 'images/loading.svg';
-import AvatarDefault from 'images/avatar.svg';
 import { API_URL } from 'api/API';
 import { useAppDispatch } from 'store';
+import AvatarDefault from '../../../images/avatar.svg';
+import Loading from '../../../images/loading.svg';
 
 type Props = ImgHTMLAttributes<unknown> & {
     isEditable?: boolean
@@ -32,8 +32,8 @@ export const Avatar: React.FC<Props> = (
                         setLoading(false);
                     }, 2000);
                 })
-                .catch((e: Error) => {
-                    console.error(e.message);
+                .catch((err: Error) => {
+                    console.error(err.message);
                     setLoading(false);
                 });
         }
@@ -44,16 +44,16 @@ export const Avatar: React.FC<Props> = (
     };
 
     return (
-        <div className='settings__container-avatar' onClick={triggerFile}>
+        <button className='settings__container-avatar' onClick={triggerFile}>
             {loading && (
                 <span className='button-loading'>
-                    <img src={Loading} alt='Loading' />
+                    <img src={Loading} alt='' />
                 </span>
             )}
             {
-                restProps.src ? (<img className='settings__photo' src={`${API_URL}/resources${restProps.src}`} />) : <img src={AvatarDefault} alt='AvatarDefault' />
+                restProps.src ? (<img className='settings__photo' src={`${API_URL}/resources${restProps.src}`} alt='' />) : <img src={AvatarDefault} alt='' />
             }
             <input name='avatar' type='file' accept='image/*' id='my-avatar' style={{display: 'none'}} ref={inputAvatar} onInput={onChangeAvatar} />
-        </div>
+        </button>
     );
 };

@@ -1,3 +1,5 @@
+import {AxiosPromise} from 'axios';
+import {UserFullData} from 'types';
 import { API } from './API';
 
 export interface UserProfileData {
@@ -14,11 +16,11 @@ export interface UserPasswordData {
     newPassword: string,
 }
 
-const changeProfile = async (data: UserProfileData) => API.put('/user/profile', data).then((res) => res.data);
+const changeProfile = (data: UserProfileData): AxiosPromise<UserFullData> => API.put('/user/profile', data);
 
-const changeAvatar = async (data: FormData) => API.put('/user/profile/avatar', data).then((res) => res.data);
+const changeAvatar = (data: FormData): AxiosPromise<UserFullData> => API.put('/user/profile/avatar', data);
 
-const changePassword = async (data: UserPasswordData) => API.put('/user/password', data).then((res) => res.data);
+const changePassword = (data: UserPasswordData): AxiosPromise<void> => API.put('/user/password', data);
 
 const UsersService = {
     changeProfile,

@@ -1,0 +1,38 @@
+.forum-topic-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: var(--secondary-bg-color);
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+    }
+
+    &__last-message-preview {
+        color: var(--secondary-color);
+    }
+
+    &__messages-count {
+        text-align: center;
+        width: 10%;
+    }
+
+    &__last-message {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        width: 30%;
+    }
+
+    &__title {
+        color: var(--main-color);
+        text-decoration: none;
+
+        &:hover {
+            color: var(--accent-color);
+        }
+    }
+}

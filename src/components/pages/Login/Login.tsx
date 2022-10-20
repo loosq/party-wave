@@ -20,6 +20,18 @@ const validationSchema = object().shape({
     password: passwordSchema,
 });
 
+const OAuthEl = () => {
+    const CLIENT_ID = '953cad724caf4fc28c183ff9ab6adb8a';
+    const REDIRECT_URI = 'http://localhost:3000/';
+    return (
+        <div className='login__oauth'>
+            <a className='login__oauth-link' href={`https://oauth.yandex.ru/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`}>
+                <img src={Oauth} alt='Oauth' />
+            </a>
+        </div>
+    );
+};
+
 export const Login: FC = () => {
     const [loading, setLoading] = useState(false);
     const { message } = useSelector((state: RootState) => state.message);
@@ -50,18 +62,6 @@ export const Login: FC = () => {
                 });
         },
     });
-
-    const OAuthEl = () => {
-        const CLIENT_ID = '953cad724caf4fc28c183ff9ab6adb8a';
-        const REDIRECT_URI = 'http://localhost:3000/';
-        return (
-            <div className='login__oauth'>
-                <a className='login__oauth-link' href={`https://oauth.yandex.ru/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`}>
-                    <img src={Oauth} alt='Oauth' />
-                </a>
-            </div>
-        );
-    };
 
     return (
         <div className='login__window'>

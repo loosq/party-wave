@@ -1,33 +1,30 @@
 import React from 'react';
 import {
-    Forum, Game, Leaderboard, Login, Main, NotFoundPage, Registration, Settings,
+    Forum,
+    Game,
+    Leaderboard,
+    Login,
+    Main,
+    NotFoundPage,
+    Registration,
+    Settings,
+    Topic,
 } from 'components/pages';
-import {
-    Navigate, Outlet, Route, Routes,
-} from 'react-router-dom';
-import {useAppSelector} from 'store';
-import {ErrorBoundary} from 'components/base';
+import {Route, Routes} from 'react-router-dom';
 import {Navigation} from 'components/complex';
+import {ErrorBoundary, PrivateRoutes, PublicRoutes} from 'components/base';
 import './App.scss';
 
-const PrivateRoute = ({isLoggedIn}: {isLoggedIn: boolean }) => (isLoggedIn ? <Outlet /> : <Navigate to='/login' />);
-
 export default function App() {
-    const { user: currentUser, isLoggedIn } = useAppSelector((state) => state.base);
-
     return (
         <ErrorBoundary>
-            <Navigation
-                {...{
-                    ...currentUser, isLoggedIn,
-                }}
-            />
+            <Navigation />
             <Routes>
-                <Route
-                    path='/'
-                    element={<Main />}
-                />
-                <Route path='/' element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
+                <Route path='/' element={<PrivateRoutes />}>
+                    <Route
+                        path='/'
+                        element={<Main />}
+                    />
                     <Route
                         path='/game'
                         element={<Game />}
@@ -36,27 +33,33 @@ export default function App() {
                         path='/settings'
                         element={<Settings />}
                     />
+                    <Route
+                        path='/statistics'
+                        element={<Leaderboard />}
+                    />
+                    <Route
+                        path='/forum/topic/:id'
+                        element={<Topic />}
+                    />
+                    <Route
+                        path='/forum'
+                        element={<Forum />}
+                    />
                 </Route>
-                <Route
-                    path='/statistics'
-                    element={<Leaderboard />}
-                />
-                <Route
-                    path='/forum'
-                    element={<Forum />}
-                />
-                <Route
-                    path='/login'
-                    element={<Login />}
-                />
-                <Route
-                    path='/registration'
-                    element={<Registration />}
-                />
-                <Route
-                    path='*'
-                    element={<NotFoundPage />}
-                />
+                <Route path='/' element={<PublicRoutes />}>
+                    <Route
+                        path='/login'
+                        element={<Login />}
+                    />
+                    <Route
+                        path='/registration'
+                        element={<Registration />}
+                    />
+                    <Route
+                        path='*'
+                        element={<NotFoundPage />}
+                    />
+                </Route>
             </Routes>
         </ErrorBoundary>
     );

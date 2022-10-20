@@ -13,8 +13,8 @@ import { useSelector } from 'react-redux';
 import { UserProfileData, UserPasswordData } from 'api/UsersAPI';
 import { changeProfile, changePassword } from 'slices/base';
 import { clearMessage } from 'slices/message';
-import Loading from 'images/loading.svg';
 import { RootState, useAppDispatch } from 'store';
+import Loading from '../../../images/loading.svg';
 
 export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
     const [readMode, setReadMode] = useState(true);
@@ -79,12 +79,12 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
 
     const formik = useFormik<FormikValues>({
         initialValues: {
-            first_name: currentUser.first_name ? currentUser.first_name : '',
-            second_name: currentUser.second_name ? currentUser.second_name : '',
-            login: currentUser.login ? currentUser.login : '',
-            email: currentUser.email ? currentUser.email : '',
-            phone: currentUser.phone ? currentUser.phone : '',
-            display_name: currentUser.display_name ? currentUser.display_name : '',
+            first_name: currentUser?.first_name ? currentUser.first_name : '',
+            second_name: currentUser?.second_name ? currentUser.second_name : '',
+            login: currentUser?.login ? currentUser.login : '',
+            email: currentUser?.email ? currentUser.email : '',
+            phone: currentUser?.phone ? currentUser.phone : '',
+            display_name: currentUser?.display_name ? currentUser.display_name : '',
         },
         validationSchema,
         onSubmit: (data) => {
@@ -115,15 +115,12 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
                     <>
                         <Avatar
                             className='settings__photo'
-                            src={currentUser.avatar}
+                            src={currentUser?.avatar ?? ''}
                             alt='avatar'
                         />
                         <h3 className='settings__title'>
-                            {`${currentUser.first_name} ${currentUser.second_name}`}
+                            {`${currentUser?.first_name} ${currentUser?.second_name}`}
                         </h3>
-                        <h2 className='settings__score'>
-                            {`Счет: ${currentUser.score ? currentUser.score : 0}`}
-                        </h2>
                     </>
                 )}
                 <Form
@@ -139,7 +136,7 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
                             </span>
                         ) : 'Сохранить'),
                         type: 'submit',
-                        disabled: !!loading,
+                        disabled: loading,
                     }}
                     altUrlProps={{
                         children: 'Назад',

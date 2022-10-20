@@ -1,4 +1,6 @@
-import { API } from './API';
+import axios, {AxiosPromise} from 'axios';
+import {UserFullData} from 'types';
+import {API} from './API';
 
 export interface RegisterFormData {
     first_name: string,
@@ -14,30 +16,46 @@ export interface LoginFormData {
     password: string,
 }
 
-export interface UserInfoData {
-    id: number,
-    first_name: string,
-    second_name: string,
-    display_name: string,
-    login: string,
-    email: string,
-    phone: string,
-    avatar: string,
-}
+const signUp = (data: RegisterFormData): AxiosPromise<{id: number}> => API.post('/auth/signup', data);
 
-const signUp = async (data: RegisterFormData) => API.post('/auth/signup', data).then((res) => res.data);
+const signIn = (data: LoginFormData): AxiosPromise<void> => API.post('/auth/signin', data);
 
-const signIn = async (data: LoginFormData) => API.post('/auth/signin', data).then((res) => res.data);
+const getUserInfo = (): AxiosPromise<UserFullData> => API.get('/auth/user');
 
-const getUserInfo = async () => API.get('/auth/user');
+const logout = (): AxiosPromise<void> => API.post('/auth/logout');
 
-const logout = async () => API.post('/auth/logout').then((res) => res.data);
+const SERVER_API = 'https://localhost:3000/api/v1'; // TODO убрать при отладке на конечной платформе
+
+const setForumAuth = (params: UserFullData): AxiosPromise<void> => axios.post(
+    `${SERVER_API}/auth`,
+    params,
+    {
+        headers: {
+            accept: 'application/json',
+            'Content-type': 'application/json',
+        },
+        withCredentials: true,
+    },
+);
+
+const logoutOnForum = (): AxiosPromise<void> => axios.get(
+    `${SERVER_API}/logout`,
+    {
+        headers: {
+            accept: 'application/json',
+            'Content-type': 'application/json',
+        },
+        withCredentials: true,
+    },
+);
 
 const AuthService = {
     signUp,
     signIn,
     getUserInfo,
     logout,
+    setForumAuth,
+    logoutOnForum,
 };
 
 export default AuthService;

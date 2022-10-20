@@ -6,3 +6,4 @@ export * from './Main/Main';
 export * from './Leaderboard/Leaderboard';
 export * from './Game/Game';
 export * from './NotFound/NotFound';
+export {Topic} from './Topic/Topic';
