@@ -33,6 +33,22 @@ const signIn = async (data: LoginFormData) => {
     return await API.post('/auth/signin', data).then(res => res.data);
 };
 
+// const authYandex = async (data: Object) => {
+//     return await API.post('/oauth/yandex', data).then(res => res.data);
+// };
+
+const authYandex = async (data: Object) => {
+    return await API.postCustom('https://oauth.yandex.ru/token', data).then(res => res.data);
+};
+
+const yandexGetInfo = async (data: Object) => {
+    return await API.postCustom('https://login.yandex.ru/info', data).then(res => res.data);
+};
+
+const authYandexServiceId = async (redirect_uri: string) => {
+    return await API.get(`/oauth/yandex/service-id?redirect_uri=${redirect_uri}`).then(res => res.data);
+};
+
 const getUserInfo = async () => {
     return await API.get('/auth/user');
 };
@@ -46,6 +62,9 @@ const AuthService =  {
     signIn,
     getUserInfo,
     logout,
+    authYandex,
+    yandexGetInfo,
+    authYandexServiceId
 };
 
 export default AuthService;

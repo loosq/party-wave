@@ -73,7 +73,7 @@ module.exports = {
                 }}],
             },
             {
-                test: /\.(png|jpg|gif|svg)$/i,
+                test: /\.(png|jpg|gif|svg|mp3|mp4)$/i,
                 use: [
                     {
                         loader: 'url-loader',

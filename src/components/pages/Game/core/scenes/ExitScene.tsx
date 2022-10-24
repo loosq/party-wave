@@ -27,6 +27,10 @@ export class ExitScene {
             menu: 1,
         };
 
+        if(this.game.music){
+            this.game.music.pause()
+        }
+
         this.scoreText = new Text('center', '#000', '60');
         this.UI = new UI(true);
     }

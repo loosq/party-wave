@@ -1,20 +1,27 @@
 import React, {
-    FC, memo, useEffect, useState,
+    FC, memo, useEffect,
 } from 'react';
 import { useCanvas } from './core/utils';
 import Runner from './core';
 
 import './Game.scss';
+import LeaderBoardService from 'api/Leaderboard';
 
-export const Game: FC = memo(() => {
+export const Game: FC<any> = memo(({ username }) => {
     const [canvasRef] = useCanvas();
-    const [score, setScore] = useState<number>(0);
 
     useEffect(() => {
         if (canvasRef.current !== null) {
             // eslint-disable-next-line no-new
             new Runner(canvasRef.current, (value: number) => {
-                setScore(value);
+                LeaderBoardService.addScore({
+                    data: {
+                        username: username.display_name ? username.display_name : username.login,
+                        score: value
+                    },
+                    ratingFieldName: "score",
+                    teamName: "teamfive"
+                })
             });
         }
     }, []);
@@ -36,9 +43,6 @@ export const Game: FC = memo(() => {
             <div className='game'>
                 <canvas ref={canvasRef} />
             </div>
-            {
-                console.log(score)
-            }
         </>
     );
 });

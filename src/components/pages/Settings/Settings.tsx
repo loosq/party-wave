@@ -131,7 +131,7 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
                     className='form-info'
                     readMode={readMode}
                     fields={fields}
-                    links={links}
+                    links={currentUser.auth ? [] : links}
                     formik={formik}
                     buttonProps={{
                         children: message ? message : loading ? (

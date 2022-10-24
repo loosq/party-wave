@@ -56,7 +56,7 @@ export const Navigation: React.FC = React.memo(({ isLoggedIn, avatar, login, sco
                             <div className="profile">
                                 <div className="profile__name">{login}</div>
                                 <div className="profile__thumb">
-                                    {avatar ? (<img src={`${API_URL}/resources${avatar}`} />) : <AvatarDefault />}
+                                    {avatar ? avatar.includes('ya-praktikum.tech') ? (<img src={`${API_URL}/resources${avatar}`} />) : (<img src={avatar} />) : <AvatarDefault />}
                                 </div>
                                 <div className="dropdown">
                                     <div className="dropdown__list">

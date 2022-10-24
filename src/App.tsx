@@ -38,7 +38,7 @@ export default function App() {
                     <Route path='/' element={<PrivateRoute />}>
                         <Route
                             path='/game'
-                            element={<Game />}
+                            element={<Game username={currentUser} />}
                         />
                         <Route
                             path='/settings'

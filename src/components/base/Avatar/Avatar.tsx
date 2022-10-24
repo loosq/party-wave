@@ -49,7 +49,8 @@ export const Avatar: React.FC<Props> = (
                         <Loading />
                     </span>)}
             {
-                restProps.src ? (<img className="settings__photo" src={`${API_URL}/resources${restProps.src}`} />) : <AvatarDefault />
+                restProps.src ? restProps.src.includes('ya-praktikum.tech') ? (<img src={`${API_URL}/resources${restProps.src}`} />) : (<img src={restProps.src} />) : <AvatarDefault />
+
             }
             <input name='avatar' type='file' accept='image/*' id='my-avatar' style={{display: 'none'}} ref={inputAvatar} onInput={onChangeAvatar}/>
         </div>

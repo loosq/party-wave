@@ -48,6 +48,10 @@ export class Hero {
         }
 
         if (this.game.keys.KeyS) {
+            if(this.h !== this.originalHeight / 2) {
+                this.game.down.play();
+            }
+
             this.h = this.originalHeight / 2;
         } else {
             this.h = this.originalHeight;
@@ -67,6 +71,7 @@ export class Hero {
 
     protected jump(): void {
         if (this.grounded && this.jumpTimer === 0) {
+            this.game.soundJump.play()
             this.jumpTimer = 1;
             this.dy = -this.jumpForce;
         } else if (this.jumpTimer > 0 && this.jumpTimer < 15) {

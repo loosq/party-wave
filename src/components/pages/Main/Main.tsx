@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
+import { RootState } from 'store';
 import './Main.scss';
 
 export const Main: React.FC<unknown> = React.memo(() => {
+    const { user: currentUser } = useSelector((state: RootState) => state.base);
 
     useEffect(() => {
         document.body.classList.add('app-main');
@@ -20,7 +23,7 @@ export const Main: React.FC<unknown> = React.memo(() => {
                     Пройди множество препятствий, чтобы помочь космоботу вернуться домой.<br />
                     Его корабль потерпел крушение и теперь придётся выбираться. Ты - его главный помощник. Но будь осторожен! На неизвестной планете вас ждут опасные существа. Уклоняйся, перепрыгивай и ускоряйся, чтобы выжить.
                     </p>
-                    <Link to='/game' className='main__call'>НАЧАТЬ ИГРУ</Link>
+                    <Link to='/game' className='main__call'>{currentUser ? 'НАЧАТЬ ИГРУ' : 'АВТОРИЗОВАТЬСЯ'}</Link>
                 </div>
                 <div className="main__grid-2">
                     <div className="main__video">

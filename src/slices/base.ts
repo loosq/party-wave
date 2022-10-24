@@ -98,6 +98,40 @@ export const changeAvatar = createAsyncThunk(
   }
 );
 
+export const authYandex = createAsyncThunk(
+  "base/yandexAuth",
+  async (data: FormData, thunkAPI) => {
+    try {
+      const response = await AuthService.authYandex(data);
+      if(response.access_token) {
+        const data = new FormData();
+        data.append('oauth_token', response.access_token)
+        const userInfo = await AuthService.yandexGetInfo(data);
+        if(userInfo.client_id) {
+          const user = {
+            'id': userInfo.client_id,
+            'first_name': userInfo.first_name,
+            'second_name': userInfo.last_name,
+            'display_name': userInfo.display_name,
+            'login': userInfo.login,
+            'email': userInfo.default_email,
+            'phone': '',
+            'avatar': `https://avatars.yandex.net/get-yapic/${userInfo.default_avatar_id}/islands-retina-50`,
+            'auth': true
+          } as Object
+
+          localStorage.setItem("user", JSON.stringify(user));
+          thunkAPI.dispatch(setMessage(STATUS_TEXT.LOGIN_SUCCESS));
+          return { user: user };
+        }
+      }
+    } catch (error) {
+      thunkAPI.dispatch(setMessage(STATUS_TEXT.ERROR));
+      return thunkAPI.rejectWithValue(STATUS_TEXT.ERROR);
+    }
+  }
+);
+
 export const changePassword = createAsyncThunk(
     "base/changePassword", 
     async (data: UserPasswordData) => {
@@ -130,6 +164,14 @@ const baseSlice = createSlice({
       state.user = action.payload.user;
     });
     builder.addCase(login.rejected, (state: StateType<boolean | null>) => {
+      state.isLoggedIn = false;
+      state.user = null;
+    });
+    builder.addCase(authYandex.fulfilled, (state: StateType<boolean | null | number | Object | undefined>, action) => {
+      state.isLoggedIn = true;
+      state.user = action.payload?.user;
+    });
+    builder.addCase(authYandex.rejected, (state: StateType<boolean | null>) => {
       state.isLoggedIn = false;
       state.user = null;
     });

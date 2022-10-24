@@ -1,6 +1,9 @@
 import { MenuScene } from '.';
 import { CoreType } from '../utils/types';
 
+// @ts-ignore
+import audio from '../../audio/intro.mp3'
+
 export class IntroScene {
     readonly logoRevealTime: number;
 
@@ -23,6 +26,13 @@ export class IntroScene {
         this.elapsedTime = 0;
         this.bigText = 'FiveTeam presents';
         this.dt = 0.04;
+
+        this.game.music = new Audio();
+
+        this.game.music.src = audio
+        this.game.music.volume = 0.8
+ 
+        this.game.music.play()
     }
 
     public update(): void {
