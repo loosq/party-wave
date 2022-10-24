@@ -1,9 +1,9 @@
 import React, { ImgHTMLAttributes, useRef, useState } from 'react';
-import { changeAvatar } from "slices/base";
-import { ReactComponent as Loading } from 'images/loading.svg';
-import { ReactComponent as AvatarDefault } from 'images/avatar.svg';
+import { changeAvatar } from 'slices/base';
 import { API_URL } from 'api/API';
-import { useAppDispach } from 'store';
+import { useAppDispatch } from 'store';
+import AvatarDefault from '../../../images/avatar.svg';
+import Loading from '../../../images/loading.svg';
 
 type Props = ImgHTMLAttributes<unknown> & {
     isEditable?: boolean
@@ -17,42 +17,43 @@ export const Avatar: React.FC<Props> = (
 ) => {
     const inputAvatar = useRef<HTMLInputElement>(null);
     const [loading, setLoading] = useState(false);
-    const dispatch = useAppDispach();
-    
+    const dispatch = useAppDispatch();
+
     const onChangeAvatar = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if(e.target.files !== null) {
+        if (e.target.files !== null) {
             const formData = new FormData();
-            formData.append('avatar', e.target.files[0]); 
-    
+            formData.append('avatar', e.target.files[0]);
+
             setLoading(true);
-                dispatch(changeAvatar(formData))
-                    .unwrap()
-                    .then(() => {
-                        setTimeout(() => {
-                            setLoading(false);
-                        }, 2000);
-                    })
-                    .catch((e: Error) => {
-                        console.error(e.message);
+            dispatch(changeAvatar(formData))
+                .unwrap()
+                .then(() => {
+                    setTimeout(() => {
                         setLoading(false);
-                    });
+                    }, 2000);
+                })
+                .catch((err: Error) => {
+                    console.error(err.message);
+                    setLoading(false);
+                });
         }
     };
 
     const triggerFile = () => {
-        inputAvatar.current?.click()
+        inputAvatar.current?.click();
     };
 
     return (
-        <div className="settings__container-avatar" onClick={triggerFile}>
-            {loading && (<span className='button-loading'>
-                        <Loading />
-                    </span>)}
+        <button className='settings__container-avatar' onClick={triggerFile}>
+            {loading && (
+                <span className='button-loading'>
+                    <img src={Loading} alt='' />
+                </span>
+            )}
             {
-                restProps.src ? restProps.src.includes('ya-praktikum.tech') ? (<img src={`${API_URL}/resources${restProps.src}`} />) : (<img src={restProps.src} />) : <AvatarDefault />
-
+                restProps.src ? restProps.src.includes('ya-praktikum.tech') ? (<img src={`${API_URL}/resources${restProps.src}`} />) : (<img src={restProps.src} />) : (<img src={AvatarDefault} alt='' />)
             }
-            <input name='avatar' type='file' accept='image/*' id='my-avatar' style={{display: 'none'}} ref={inputAvatar} onInput={onChangeAvatar}/>
-        </div>
-    )
+            <input name='avatar' type='file' accept='image/*' id='my-avatar' style={{display: 'none'}} ref={inputAvatar} onInput={onChangeAvatar} />
+        </button>
+    );
 };

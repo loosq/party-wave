@@ -36,6 +36,7 @@
                 "tsx": "never"
             }
         ],
+        "no-restricted-globals": "off",
         "no-console": "warn",
         "import/no-unresolved": "off",
         "import/no-extraneous-dependencies": "off",

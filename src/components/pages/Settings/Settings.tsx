@@ -10,26 +10,25 @@ import {
     settingsPasswordFields,
 } from 'components/pages/config';
 import { useSelector } from 'react-redux';
-import { UserProfileData, UserPasswordData } from 'api/UsersAPI'
-import { changeProfile, changePassword } from "slices/base";
-import { clearMessage } from "slices/message";
-import { ReactComponent as Loading } from 'images/loading.svg';
-import { RootState, useAppDispach } from 'store';
-
+import { UserProfileData, UserPasswordData } from 'api/UsersAPI';
+import { changeProfile, changePassword } from 'slices/base';
+import { clearMessage } from 'slices/message';
+import { RootState, useAppDispatch } from 'store';
+import Loading from '../../../images/loading.svg';
 
 export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
     const [readMode, setReadMode] = useState(true);
     const [stateForm, setStateForm] = useState(true);
     const [fields, setFields] = useState(settingsInfoFields);
     const [loading, setLoading] = useState(false);
-    
+
     const { user: currentUser } = useSelector((state: RootState) => state.base);
 
     const { message } = useSelector((state: RootState) => state.message);
-    const dispatch = useAppDispach();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-      dispatch(clearMessage());
+        dispatch(clearMessage());
     }, [dispatch]);
 
     const cb = () => {
@@ -39,14 +38,14 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
             setLoading(false);
             dispatch(clearMessage());
         }, 2000);
-    }
+    };
 
     const links = [
         {
             id: '1',
             children: 'Изменить данные',
             onClick: () => {
-                setStateForm(true)
+                setStateForm(true);
                 setReadMode(false);
             },
         },
@@ -55,14 +54,14 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
             children: 'Изменить пароль',
             onClick: () => {
                 setFields(settingsPasswordFields);
-                setStateForm(false)
+                setStateForm(false);
                 setReadMode(false);
             },
-        }
+        },
     ];
 
     const {
-        name, phone, email, login, 
+        name, phone, email, login,
         password,
     } = commonSchema;
 
@@ -72,26 +71,26 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
         first_name: name,
         second_name: name,
         display_name: name,
-        phone
+        phone,
     } : {
         oldPassword: password,
-        newPassword: password
+        newPassword: password,
     });
 
     const formik = useFormik<FormikValues>({
         initialValues: {
-            first_name: currentUser.first_name ? currentUser.first_name : '',
-            second_name: currentUser.second_name ? currentUser.second_name : '',
-            login: currentUser.login ? currentUser.login : '',
-            email: currentUser.email ? currentUser.email : '',
-            phone: currentUser.phone ? currentUser.phone : '',
-            display_name: currentUser.display_name ? currentUser.display_name : '',
+            first_name: currentUser?.first_name ? currentUser.first_name : '',
+            second_name: currentUser?.second_name ? currentUser.second_name : '',
+            login: currentUser?.login ? currentUser.login : '',
+            email: currentUser?.email ? currentUser.email : '',
+            phone: currentUser?.phone ? currentUser.phone : '',
+            display_name: currentUser?.display_name ? currentUser.display_name : '',
         },
         validationSchema,
         onSubmit: (data) => {
             setLoading(true);
 
-            if(stateForm){
+            if (stateForm) {
                 dispatch(changeProfile(data as UserProfileData))
                     .unwrap()
                     .then(cb)
@@ -116,15 +115,12 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
                     <>
                         <Avatar
                             className='settings__photo'
-                            src={currentUser.avatar}
+                            src={currentUser?.avatar ?? ''}
                             alt='avatar'
                         />
                         <h3 className='settings__title'>
-                            {`${currentUser.first_name} ${currentUser.second_name}`}
+                            {`${currentUser?.first_name} ${currentUser?.second_name}`}
                         </h3>
-                        <h2 className='settings__score'>
-                            {`Счет: ${currentUser.score ? currentUser.score : 0}`}
-                        </h2>
                     </>
                 )}
                 <Form
@@ -134,13 +130,13 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
                     links={currentUser.auth ? [] : links}
                     formik={formik}
                     buttonProps={{
-                        children: message ? message : loading ? (
+                        children: message || (loading ? (
                             <span className='button-loading'>
-                                <Loading />
+                                <img src={Loading} alt='Loading' />
                             </span>
-                        ) : 'Сохранить',
+                        ) : 'Сохранить'),
                         type: 'submit',
-                        disabled: loading ? true : false,
+                        disabled: loading,
                     }}
                     altUrlProps={{
                         children: 'Назад',

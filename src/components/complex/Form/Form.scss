@@ -13,6 +13,7 @@
 
         .field {
             @include make-flex-box-container(column);
+
             position: relative;
 
             .field__input {
@@ -39,7 +40,8 @@
         width: 100%;
         text-align: center;
         font-size: 14px;
-        &-position{
+
+        &-position {
             position: absolute;
             top: 0;
             width: 100%;

@@ -2,16 +2,17 @@
     "compilerOptions": {
         "lib": [
             "dom",
-            "es2017"
+            "es2019"
         ],
         "module": "esnext",
         "moduleResolution": "node",
-        "target": "es5",
+        "target": "es6",
         "jsx": "react",
         "importHelpers": true,
         "noUnusedLocals": true,
         "esModuleInterop": true,
         "strict": true,
+        "allowJs": true,
         "strictPropertyInitialization": false,
         "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
@@ -21,23 +22,27 @@
         "baseUrl": ".",
         "outDir": "./dist",
         "paths": {
-            "*": ["./src/*"],
+            "components/*": ["src/components/*"],
+            "types": ["src/types/index.ts"],
+            "utils/*": ["src/utils/*"],
+            "hooks/*": ["src/hooks/*"],
+            "libs/*": ["src/libs/*"],
+            "slices/*": ["src/slices/*"],
+            "images/*": ["src/images/*"],
+            "api/*": ["src/api/*"],
+            "store": ["src/store.ts"],
+            "*": ["src/*"]
         },
-        "typeRoots": [
-            "typings/**/*.d.ts",
-            "node_modules/@types"
-        ]
     },
     "include": [
-        "src",
-        "typings/**/*.d.ts",
-        "./node_modules/@types"
+        "**/*"
     ],
     "exclude": [
         "node_modules",
         "dist",
         "**/*.spec.ts",
         "**/*.test.ts"
-    ]
+    ],
+    "files": ["src/types/files.d.ts"],
 }
 

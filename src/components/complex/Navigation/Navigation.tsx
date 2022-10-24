@@ -1,28 +1,33 @@
 import React, { useCallback, useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navigation.scss';
+import { logout } from 'slices/base';
+import { API_URL } from 'api/API';
+import {useAppDispatch, useAppSelector} from 'store';
+import AvatarDefault from '../../../images/avatar.svg';
+import Logo from '../../../images/logo.svg';
 import { pages } from '../config';
-import { logout } from "slices/base";
-import { ReactComponent as AvatarDefault } from 'images/avatar.svg';
-import { ReactComponent as Logo } from 'images/logo.svg';
-import { API_URL } from "api/API";
-import { useAppDispach } from 'store';
 
-export const Navigation: React.FC = React.memo(({ isLoggedIn, avatar, login, score }: any) => {
-    const dispatch = useAppDispach();
+export const Navigation: React.FC = () => {
+    const dispatch = useAppDispatch();
+
+    const {
+        user,
+        isLoggedIn,
+    } = useAppSelector((state) => state.base);
 
     const logOut = useCallback(() => {
         dispatch(logout());
-      }, [dispatch]);
+    }, [dispatch]);
 
     return (
         <div className='container'>
             <nav>
                 <ul className='navigation'>
                     <li>
-                        <NavLink to={'/'} className='navigation__logo'>
+                        <NavLink to='/' className='navigation__logo'>
                             <div className='navigation__logo-inner'>
-                                <Logo />
+                                <img src={Logo} alt='Logo' />
                             </div>
                             <span>
                                 cosmobot
@@ -32,7 +37,10 @@ export const Navigation: React.FC = React.memo(({ isLoggedIn, avatar, login, sco
                     <li className='navigation__menu'>
                         <ul>
                             {
-                                useMemo(() => pages.map(({to, name}) => (
+                                useMemo(() => pages.map(({
+                                    to,
+                                    name,
+                                }) => (
                                     <li key={to}>
                                         <NavLink
                                             className={({isActive}) => `navigation__link ${isActive
@@ -42,7 +50,7 @@ export const Navigation: React.FC = React.memo(({ isLoggedIn, avatar, login, sco
                                         >
                                             <span>
                                                 {name}
-                                                <i></i>
+                                                <i />
                                             </span>
                                         </NavLink>
                                     </li>
@@ -54,20 +62,27 @@ export const Navigation: React.FC = React.memo(({ isLoggedIn, avatar, login, sco
                     {isLoggedIn ? (
                         <li>
                             <div className="profile">
-                                <div className="profile__name">{login}</div>
+                                <div className="profile__name">{user?.login}</div>
                                 <div className="profile__thumb">
-                                    {avatar ? avatar.includes('ya-praktikum.tech') ? (<img src={`${API_URL}/resources${avatar}`} />) : (<img src={avatar} />) : <AvatarDefault />}
+                                    {user?.avatar ? user?.avatar.includes('ya-praktikum.tech') ? (<img src={`${API_URL}/resources${user.avatar}`} />) : (<img src={user.avatar} />) : <img src={AvatarDefault} alt='' />}
                                 </div>
-                                <div className="dropdown">
-                                    <div className="dropdown__list">
-                                        <div className="dropdown__item">
-                                            <div className="dropdown__score">Счет: {score ? score : 0}</div>
+                                <div className='dropdown'>
+                                    <div className='dropdown__list'>
+                                        <div className='dropdown__item'>
+                                            <NavLink
+                                                to='/settings'
+                                                className='dropdown__link'
+                                            >
+                                                Профиль
+                                            </NavLink>
                                         </div>
-                                        <div className="dropdown__item">
-                                            <NavLink to="/settings" className="dropdown__link">Профиль</NavLink>
-                                        </div>
-                                        <div className="dropdown__item">
-                                            <a className="dropdown__link" onClick={logOut}>Выход</a>
+                                        <div className='dropdown__item'>
+                                            <button
+                                                className='dropdown__link'
+                                                onClick={logOut}
+                                            >
+                                                Выход
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -75,7 +90,10 @@ export const Navigation: React.FC = React.memo(({ isLoggedIn, avatar, login, sco
                         </li>
                     ) : (
                         <li>
-                            <NavLink className={({isActive}) => `navigation__link navigation__link-signin ${isActive ? 'navigation__link--active': ''}`} to={'/login'}>
+                            <NavLink
+                                className={({isActive}) => `navigation__link navigation__link-signin ${isActive ? 'navigation__link--active' : ''}`}
+                                to='/login'
+                            >
                                 Вход
                             </NavLink>
                         </li>
@@ -83,5 +101,5 @@ export const Navigation: React.FC = React.memo(({ isLoggedIn, avatar, login, sco
                 </ul>
             </nav>
         </div>
-    )
-});
+    );
+};

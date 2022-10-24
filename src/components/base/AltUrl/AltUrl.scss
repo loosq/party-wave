@@ -2,8 +2,10 @@
 
 .alt-url {
     @include make-link;
-    transition: opacity .25s ease;
+
+    transition: opacity 0.25s ease;
+
     &:hover {
-        opacity: .5;
+        opacity: 0.5;
     }
 }

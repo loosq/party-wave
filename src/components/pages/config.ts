@@ -20,14 +20,14 @@ const loginFields: Array<FieldType> = [
         name: 'login',
         label: 'Логин',
         type: 'text',
-        required: true
+        required: true,
     },
     {
         id: 'login-password',
         name: 'password',
         label: 'Пароль',
         type: 'password',
-        required: true
+        required: true,
     },
 ];
 const registrationFields = [
@@ -36,42 +36,42 @@ const registrationFields = [
         name: 'first_name',
         label: 'Имя',
         type: 'text',
-        required: true
+        required: true,
     },
     {
         id: 'registration-second_name',
         name: 'second_name',
         label: 'Фамилия',
         type: 'text',
-        required: true
+        required: true,
     },
     {
         id: 'registration-login',
         name: 'login',
         label: 'Логин',
         type: 'text',
-        required: true
+        required: true,
     },
     {
         id: 'registration-email',
         name: 'email',
         label: 'Почта',
         type: 'email',
-        required: true
+        required: true,
     },
     {
         id: 'registration-phone',
         name: 'phone',
         label: 'Телефон',
         type: 'tel',
-        required: true
+        required: true,
     },
     {
         id: 'registration-password',
         name: 'password',
         label: 'Пароль',
         type: 'password',
-        required: true
+        required: true,
     },
 ];
 const settingsInfoFields: Array<FieldType> = [

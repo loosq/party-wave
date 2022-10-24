@@ -1,12 +1,13 @@
-@use 'styles/variables';
-@use 'styles/reset';
-@use 'styles/custom';
+@import 'styles/variables';
+@import 'styles/reset';
+@import 'styles/custom';
+@import 'styles/fonts';
 
 body {
     font-family: 'Open Sans', sans-serif;
     color: var(--main-color);
     overflow-x: hidden;
-    background-color: #fefefe;
+    background-color: #FEFEFE;
 }
 
 #root {

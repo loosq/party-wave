@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 import { Form } from 'components/complex';
 import './Login.scss';
 import { FormikValues, useFormik } from 'formik';
@@ -7,12 +7,12 @@ import { object } from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { commonSchema } from 'utils/validation';
 import { loginFields } from 'components/pages/config';
-import AuthService, { LoginFormData } from 'api/AuthAPI'
+import { LoginFormData } from 'api/AuthAPI'
 import { login, authYandex } from "slices/base";
 import { clearMessage } from "slices/message";
-import { ReactComponent as Loading } from 'images/loading.svg';
-import { ReactComponent as Oauth } from 'images/yoauth.svg';
-import { RootState, useAppDispach } from 'store'
+import Loading from 'images/loading.svg';
+import Oauth from 'images/yoauth.svg';
+import { RootState, useAppDispatch } from 'store'
 
 const {login: loginSchema, password: passwordSchema} = commonSchema;
 const validationSchema = object().shape({
@@ -20,11 +20,23 @@ const validationSchema = object().shape({
     password: passwordSchema,
 });
 
+const OAuthEl = () => {
+    const CLIENT_ID = '953cad724caf4fc28c183ff9ab6adb8a';
+    const REDIRECT_URI = 'http://localhost:3000/';
+    return (
+        <div className='login__oauth'>
+            <a className='login__oauth-link' href={`https://oauth.yandex.ru/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`}>
+                <img src={Oauth} alt='Oauth' />
+            </a>
+        </div>
+    );
+};
+
 export const Login: FC = () => {
     const [loading, setLoading] = useState(false);
     const { message } = useSelector((state: RootState) => state.message);
-    const dispatch = useAppDispach();
-    
+    const dispatch = useAppDispatch();
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -57,7 +69,7 @@ export const Login: FC = () => {
             password: '',
         },
         validationSchema,
-        onSubmit: data => {
+        onSubmit: (data) => {
             setLoading(true);
             dispatch(login(data as LoginFormData))
                 .unwrap()
@@ -71,25 +83,6 @@ export const Login: FC = () => {
         },
     });
 
-    const OAuthEl = () => {
-        const [serviceId] = useState('953cad724caf4fc28c183ff9ab6adb8a');
-        const REDIRECT_URI = 'http://localhost:3000/login';
-
-        useEffect(() => {
-            AuthService.authYandexServiceId(REDIRECT_URI).then(res => 
-                // setServiceId(res.service_id)
-                {}
-            );
-        }, [])
-
-        return (
-            <div className="login__oauth">
-                <a className="login__oauth-link" href={`https://oauth.yandex.ru/authorize?response_type=code&client_id=${serviceId}&redirect_uri=${REDIRECT_URI}`}>
-                    <Oauth />
-                </a>
-            </div>
-        );
-    }
 
     return (
         <div className='login__window'>
@@ -102,13 +95,13 @@ export const Login: FC = () => {
                     fields={loginFields}
                     formik={formik}
                     buttonProps={{
-                        children: message ? message : loading ? (
+                        children: message || (loading ? (
                             <span className='button-loading'>
-                                <Loading />
+                                <img src={Loading} alt='Loading' />
                             </span>
-                        ) : 'Вход',
+                        ) : 'Вход'),
                         type: 'submit',
-                        disabled: loading ? true : false
+                        disabled: !!loading,
                     }}
                     custom={OAuthEl}
                     altUrlProps={{

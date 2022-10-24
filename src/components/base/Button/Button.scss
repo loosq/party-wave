@@ -2,13 +2,17 @@
 
 .main-button {
     position: relative;
+
     @include make-main-form-button;
-    transition: all .25s ease;
+
+    transition: all 0.25s ease;
     border: 2px solid transparent;
+
     &:disabled {
-        opacity: .5;
+        opacity: 0.5;
     }
-    &:hover{
+
+    &:hover {
         color: var(--accent-color);
         border-color: var(--accent-color);
         background-color: transparent;
@@ -22,6 +26,7 @@
     display: flex;
     width: 10%;
     transform: translate(-50%, -50%);
+
     & svg {
         width: 100%;
     }
