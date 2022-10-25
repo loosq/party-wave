@@ -16,7 +16,7 @@ export interface LoginFormData {
     password: string,
 }
 
-const SERVER_API = 'https://localhost:3000/api/v1';
+const SERVER_API = `${process.env.HOST}/api/v1`;
 
 const signUp = (data: RegisterFormData): AxiosPromise<{id: number}> => API.post('/auth/signup', data);
 

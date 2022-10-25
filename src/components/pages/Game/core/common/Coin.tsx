@@ -30,23 +30,22 @@ export class Coin {
         this.w = w;
         this.h = h;
 
-        this.gameSpeed = 3;
         this.coins = [];
         // eslint-disable-next-line no-multi-assign
-        this.spawnTimer = this.initialSpawnTimer = 180;
+        this.spawnTimer = this.initialSpawnTimer = 230;
 
-        this.spawn();
+        // this.spawn();
     }
 
     protected spawn(): void {
         const size = 50;
         const sprite = getImage(coinSprite);
         const coin = new GameElement(
-            this.game.width + size - 300,
+            this.game.width + size,
             this.game.height - size - groundHeight - 100,
             size,
             size,
-            this.gameSpeed,
+            this.game.gameSpeed,
             sprite,
         );
         this.coins.push(coin);
@@ -57,10 +56,10 @@ export class Coin {
         this.spawnTimer--;
         if (this.spawnTimer <= 0) {
             this.spawn();
-            this.spawnTimer = this.initialSpawnTimer - this.gameSpeed * 8;
+            this.spawnTimer = this.initialSpawnTimer - this.game.gameSpeed * 4;
 
-            if (this.spawnTimer < 50) {
-                this.spawnTimer = 50;
+            if (this.spawnTimer < 100) {
+                this.spawnTimer = 100;
             }
         }
 
@@ -78,13 +77,14 @@ export class Coin {
 
             if (haveCollision) {
                 this.coins.splice(i, 1);
+                this.game.score = this.game.score * 1.05;
                 cb();
             }
 
             c.update();
         }
 
-        this.gameSpeed += 0.003;
+        // this.gameSpeed += 0.003;
     }
 
     public draw(): void {

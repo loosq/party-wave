@@ -1,4 +1,4 @@
-import {Configuration} from 'webpack';
+import webpack, {Configuration} from 'webpack';
 import {join, resolve} from 'path';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
@@ -47,7 +47,7 @@ const config: Configuration = {
                 }],
             },
             {
-                test: /\.(png|jpg|gif)$/i,
+                test: /\.(png|jpg|gif|mp3|mp4)$/i,
                 use: [
                     {
                         loader: 'url-loader',
@@ -101,6 +101,11 @@ const config: Configuration = {
                 {from: 'ssl', to: 'ssl'},
             ],
         }),
+        new webpack.DefinePlugin({
+            'process.env': {
+              'HOST': JSON.stringify(process.env.HOST),
+            }
+          })
     ],
     devtool: 'source-map',
 };

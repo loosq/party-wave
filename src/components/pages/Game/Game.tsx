@@ -3,12 +3,16 @@ import React, {
 } from 'react';
 import { useCanvas } from './core/utils';
 import Runner from './core';
-
+import { useAppSelector } from 'store';
 import './Game.scss';
 import LeaderBoardService from 'api/Leaderboard';
 
 export const Game: FC<any> = memo(({ username }) => {
     const [canvasRef] = useCanvas();
+
+    const {
+        user,
+    } = useAppSelector((state) => state.base);
 
     useEffect(() => {
         if (canvasRef.current !== null) {
@@ -16,7 +20,7 @@ export const Game: FC<any> = memo(({ username }) => {
             new Runner(canvasRef.current, (value: number) => {
                 LeaderBoardService.addScore({
                     data: {
-                        username: username.display_name ? username.display_name : username.login,
+                        username: user?.display_name ? user.display_name : user?.login,
                         score: value
                     },
                     ratingFieldName: "score",

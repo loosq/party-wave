@@ -7,14 +7,6 @@ import {connectToDb} from '../db/init';
 import {onApiError} from './utils';
 import serverRenderMiddleware from './middlewares/server-render-middleware';
 
-const https = require('https');
-const fs = require('fs');
-
-const httpsOptions = {
-    key: fs.readFileSync(path.resolve(__dirname, './ssl/key.pem')),
-    cert: fs.readFileSync(path.resolve(__dirname, './ssl/cert.pem')),
-};
-
 const API = '/api/v1';
 
 const options = {
@@ -44,13 +36,7 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 app.use(API, configureApi(), [onApiError]);
 app.use(serverRenderMiddleware);
 
-// app.listen(
-//     app.get('port'),
-//     () => console.log(`App listening on port ${app.get('port')}!`),
-// );
-
-https.createServer(httpsOptions, app)
-    .listen(
-        app.get('port'),
-        () => console.log(`App listening on port ${app.get('port')}!`),
-    );
+app.listen(
+    app.get('port'),
+    () => console.log(`App listening on port ${app.get('port')}!`),
+);

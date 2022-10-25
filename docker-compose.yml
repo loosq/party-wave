@@ -1,25 +1,55 @@
 # docker-compose.yml
-version: "3"
+version: '3.8'
 services:
   app:
-    build: .
+    image: cr.yandex/crphi8j27tk29ukginqn/cosmobot
+    build: 
+      context: ./
+      dockerfile: Dockerfile
     depends_on:
-      - postgres
-      - nginx
+      - db
     ports:
-      - "3000:3000"
-      - "9229:9229"
-    env_file: .env
-    volumes:
-      - .:/home/app/
-      - /home/app/node_modules
-  postgres:
-    image: postgres:13-alpine
+      - '3000:3000'
     environment:
-      - POSTGRES_PASSWORD=postgrespw
+      DB_HOSTNAME: db
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: postgres
+    links:
+      - db
+    networks:
+      - awesome
+  nginx:
+    image: cr.yandex/crphi8j27tk29ukginqn/nginx
+    restart: always
+    build:
+      context: ./nginx
     ports:
-      - 5432:5432
-    volumes:
-      - data:/var/lib/postgresql
+      - '80:80'
+      - '443:443'
+    links:
+      - app
+    networks:
+      - awesome
+  db:
+    image: cr.yandex/crphi8j27tk29ukginqn/postgres
+    restart: always
+    build:
+      context: ./db
+    environment:
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_NAME: postgres
+    ports:
+      - '5432:5432'
+    volumes: 
+      - ./dbdata:/var/lib/postgresql/data
+    networks:
+      - awesome
+networks:
+  awesome:
+    driver: bridge
 volumes:
-  data:
+  app:
+    driver: local

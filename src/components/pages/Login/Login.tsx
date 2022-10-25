@@ -22,7 +22,7 @@ const validationSchema = object().shape({
 
 const OAuthEl = () => {
     const CLIENT_ID = '953cad724caf4fc28c183ff9ab6adb8a';
-    const REDIRECT_URI = 'http://localhost:3000/';
+    const REDIRECT_URI = `${process.env.HOST}`;
     return (
         <div className='login__oauth'>
             <a className='login__oauth-link' href={`https://oauth.yandex.ru/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`}>

@@ -41,4 +41,4 @@ export const Main: React.FC<unknown> = React.memo(() => {
             </div>
         </div>
     );
-};
+});

@@ -15,6 +15,8 @@ export declare class CoreType {
 
     public score: number;
 
+    public gameSpeed: number;
+
     public music: HTMLAudioElement;
     public soundJump: HTMLAudioElement;
     public down: HTMLAudioElement;
