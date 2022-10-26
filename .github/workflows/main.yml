@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: 'Авторизация'
-        run: echo ${{ secrets.TOKEN }} |
+        run: echo "${{ secrets.TOKEN }}" |
              docker login -u oauth --password-stdin cr.yandex
       - name: 'Билд докера'
         run: docker-compose build --no-cache && docker-compose up --no-start
