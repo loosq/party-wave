@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import AuthService, { RegisterFormData, LoginFormData } from 'api/AuthAPI';
+import AuthService, { RegisterFormData, LoginFormData, AuthData } from 'api/AuthAPI';
 import UsersService, { UserProfileData, UserPasswordData } from 'api/UsersAPI';
 import {Nullable, RequestStatus, UserFullData} from 'types';
 import {AxiosError} from 'axios';
@@ -156,37 +156,25 @@ export const changePassword = createAsyncThunk<void, UserPasswordData>(
     },
 );
 
-export const authYandex = createAsyncThunk(
-  "base/yandexAuth",
-  async (data: FormData, thunkAPI) => {
+export const authYandex = createAsyncThunk<UserFullData, AuthData, {state: RootState}>(
+  "base/authYandex",
+  async (data, { dispatch, getState, rejectWithValue }) => {
     try {
-    //   const response = await AuthService.authYandex(data);
-    //   if(response.access_token) {
-    //     const data = new FormData();
-    //     data.append('oauth_token', response.access_token)
-    //     const userInfo = await AuthService.yandexGetInfo(data);
-    //     if(userInfo.client_id) {
-    //       const user = {
-    //         'id': userInfo.client_id,
-    //         'first_name': userInfo.first_name,
-    //         'second_name': userInfo.last_name,
-    //         'display_name': userInfo.display_name,
-    //         'login': userInfo.login,
-    //         'email': userInfo.default_email,
-    //         'phone': '',
-    //         'avatar': `https://avatars.yandex.net/get-yapic/${userInfo.default_avatar_id}/islands-retina-50`,
-    //         'auth': true
-    //       } as Object
+        await AuthService.authYandex(data);
 
-    //       localStorage.setItem("user", JSON.stringify(user));
-    //       thunkAPI.dispatch(setMessage(STATUS_TEXT.LOGIN_SUCCESS));
-    //       return { user: user };
-    //     }
-    return  1; 
-    //   }
+        const response = await AuthService.getUserInfo();
+
+        if (!getState().base.isLoggedIn) {
+            await dispatch(setForumAuth(response.data))
+                .unwrap();
+        }
+
+        dispatch(setMessage(STATUS_TEXT.LOGIN_SUCCESS));
+
+        return response.data;
     } catch (error) {
-      thunkAPI.dispatch(setMessage(STATUS_TEXT.ERROR));
-      return thunkAPI.rejectWithValue(STATUS_TEXT.ERROR);
+      dispatch(setMessage(STATUS_TEXT.ERROR));
+      return rejectWithValue(STATUS_TEXT.ERROR);
     }
   }
 );
@@ -224,13 +212,12 @@ const baseSlice = createSlice({
 
         builder.addCase(authYandex.fulfilled, (state, action) => {
                 state.isLoggedIn = true;
-                // @ts-ignore
-                state.user = action.payload?.user;
-              });
-              builder.addCase(authYandex.rejected, (state) => {
+                state.user = action.payload;
+              })
+              .addCase(authYandex.rejected, (state) => {
                 state.isLoggedIn = false;
                 state.user = null;
-              });
+        });
 
         builder
             .addCase(login.pending, (state) => {

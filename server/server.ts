@@ -6,7 +6,7 @@ import {configureApi} from './api/api';
 import {connectToDb} from '../db/init';
 import {onApiError} from './utils';
 import serverRenderMiddleware from './middlewares/server-render-middleware';
-import { authYandex } from './useCases/authYandex'
+// import { authYandex } from './useCases/authYandex'
 
 const API = '/api/v1';
 
@@ -36,7 +36,24 @@ app.use(express.static(path.resolve(__dirname, '../dist')));
 
 
 app.use(API, configureApi(), [onApiError]);
-app.use('*', authYandex)
+app.use('*', function(req, res, next){
+    // @ts-ignore
+    if(req.query.code && req.params['0'] !== '/login'){
+        res.status(301).redirect(`/login?code=${req.query.code}`)
+    }else{
+        next()
+    }
+})
+// app.get('/?code=', function(req, res, next){
+//     // @ts-ignore
+//     console.log(req.query.code, req.params.login !== 'login')
+//     // @ts-ignore
+//     if(req.query.code && req.params.login !== 'login'){
+//         res.status(301).redirect(`/login?code=${req.query.code}`)
+//     }else{
+//         next()
+//     }
+// })
 app.use(serverRenderMiddleware);
 
 app.listen(

@@ -22,7 +22,7 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
     const [fields, setFields] = useState(settingsInfoFields);
     const [loading, setLoading] = useState(false);
 
-    const { user: currentUser, isLoggedIn } = useSelector((state: RootState) => state.base);
+    const { user: currentUser } = useSelector((state: RootState) => state.base);
 
     const { message } = useSelector((state: RootState) => state.message);
     const dispatch = useAppDispatch();
@@ -127,7 +127,7 @@ export const Settings: React.FC<UserProfileData | {}> = React.memo(() => {
                     className='form-info'
                     readMode={readMode}
                     fields={fields}
-                    links={isLoggedIn ? [] : links}
+                    links={links}
                     formik={formik}
                     buttonProps={{
                         children: message || (loading ? (

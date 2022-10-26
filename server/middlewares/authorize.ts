@@ -5,13 +5,10 @@ import {ErrorInstance} from '../utils';
 import {User} from '../session';
 
 export const authorizeMiddleware = async (
-    req: Request<unknown, unknown, unknown, {code?: string}>,
+    req: Request<unknown, unknown, unknown>,
     res: Response,
     next: NextFunction,
 ) => {
-    if(req.query.code) {
-        console.log('Code: ', req.query.code)
-    }
 
     if (req.session.user) {
         return next();

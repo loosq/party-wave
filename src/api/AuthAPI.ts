@@ -15,6 +15,10 @@ export interface LoginFormData {
     login: string,
     password: string,
 }
+export interface AuthData {
+    code: string,
+    redirect_uri: string,
+}
 
 const SERVER_API = `${process.env.HOST}/api/v1`;
 
@@ -27,6 +31,8 @@ const getUserInfo = (): AxiosPromise<UserFullData> => API.get('/auth/user');
 const authYandexServiceId = async (redirect_uri: string) => {
     return await API.get(`/oauth/yandex/service-id?redirect_uri=${redirect_uri}`).then(res => res.data);
 };
+
+const authYandex = (data: AuthData): AxiosPromise<void> => API.post('/oauth/yandex', data)
 
 const logout = (): AxiosPromise<void> => API.post('/auth/logout');
 
@@ -62,7 +68,8 @@ const AuthService = {
     logout,
     setForumAuth,
     logoutOnForum,
-    authYandexServiceId
+    authYandexServiceId,
+    authYandex
 };
 
 export default AuthService;

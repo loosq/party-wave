@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { commonSchema } from 'utils/validation';
 import { loginFields } from 'components/pages/config';
 import AuthService, { LoginFormData } from 'api/AuthAPI'
-import { login } from "slices/base";
+import { authYandex, login } from "slices/base";
 import { clearMessage } from "slices/message";
 import Loading from 'images/loading.svg';
 import Oauth from 'images/yoauth.svg';
@@ -44,6 +44,27 @@ export const Login: FC = () => {
     const dispatch = useAppDispatch();
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const code = window.location.search.replace('?code=', '');
+        if(code) {
+            // const data = new FormData();
+            // data.append('code', code)
+            // data.append('redirect_uri', `${process.env.HOST}`)
+
+            dispatch(authYandex({
+                code,
+                redirect_uri: `${process.env.HOST}`
+            }))
+                .unwrap()
+                .then(() => {
+                    setTimeout(() => navigate('/'), 0);
+                })
+                .catch((e: Error) => {
+                    console.error(e.message);
+                });
+        }
+    }, []);
 
     useEffect(() => {
         dispatch(clearMessage());

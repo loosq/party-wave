@@ -12,16 +12,16 @@ export const authYandex = async (
     try {
         if(req.query.code){
             const response = await axios.post<void>('https://ya-praktikum.tech/api/v2/oauth/yandex', {
-                "code": req.query.code,
-                "redirect_uri": "https://teamfive-cosmobot-15.ya-praktikum.tech"
-            },
-    { // TODO удалить, если будет не нужен
-            headers: {
-                accept: 'application/json',
-            },
-            withCredentials: true,
-        });
+                    "code": req.query.code,
+                    "redirect_uri": "https://teamfive-cosmobot-15.ya-praktikum.tech"
+                },{ // TODO удалить, если будет не нужен
+                headers: {
+                    accept: 'application/json',
+                },
+                withCredentials: true,
+            });
             console.log(response)
+            
         }
         // req.session.user = req.body;
 
