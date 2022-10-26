@@ -31,7 +31,7 @@ export const Field: React.FC<Props> = React.memo((
             {...restProps as InputHTMLAttributes<unknown>}
             className={classNameValue
             || `field__input ${error ? 'invalid' : ''}`}
-            disabled={readMode ? true : false}
+            disabled={readMode}
         />
         <label
             {...restProps as LabelHTMLAttributes<unknown>}
