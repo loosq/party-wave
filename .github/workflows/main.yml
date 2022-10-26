@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: 'Авторизация'
-        run: echo ${{ secrets.TOKEN }} | docker login -u oauth --password-stdin cr.yandex
+        run: echo "${{ secrets.TOKEN }}" | docker login -u oauth --password-stdin cr.yandex
       - name: 'Билд докера'
         run: docker-compose build --no-cache && docker-compose up --no-start
       - name: 'Пуш докера'
@@ -30,4 +30,6 @@ jobs:
           script: |
             rm docker-compose.yml
             echo "${{ secrets.DOCKER_COMPOSE }}" > docker-compose.yml
+            sudo docker-compose down
+            docker rmi -f $(docker images -aq)
             sudo docker-compose up -d
