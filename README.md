@@ -1,4 +1,4 @@
-### Messenger web app using 
+### Cosmobot game app 
 * React
 * Redux
 * Express
@@ -23,6 +23,12 @@ npm install
 npm start
 ```
 Your app should now be running on http://localhost:3000/
+
+🌳 Running docker
+```
+docker-compose build
+docker-compose up -d
+```
 
 📕 Eslint
 ```
