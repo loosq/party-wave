@@ -31,5 +31,5 @@ jobs:
             rm docker-compose.yml
             echo "${{ secrets.DOCKER_COMPOSE }}" > docker-compose.yml
             sudo docker-compose down
-            docker rmi -f $(docker images -aq)
+            sudo docker rmi -f $(docker images -aq)
             sudo docker-compose up -d
