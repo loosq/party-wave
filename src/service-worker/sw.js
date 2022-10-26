@@ -7,13 +7,26 @@ const RESPONSE_SAFE_TYPE = 'basic';
 
 const URLS = [
     '/index.html',
+    '/client.js',
+    '/background.png',
+    '/btn_exit.png',
+    '/btn_menu.png',
+    '/btn_pause.png',
+    '/btn_play.png',
+    '/btn_restart.png',
+    '/btn_start.png',
+    '/coin.png',
+    '/down.mp3',
+    '/enemy.png',
+    '/ground.png',
+    '/hero.png',
+    '/intro.mp3',
+    '/jump.mp3',
+    '/music.mp3',
+    '/obstacle.png',
+    '/scoreFrame.png',
     '/video/main.mp4',
     '/video/poster.png',
-    '/images/empty-avatar.png',
-    '/images/favicon.png',
-    '/images/forum-logo.png',
-    '/bundle.js',
-    '/fonts/*',
 ];
 
 self.addEventListener('install', (evt) => {
