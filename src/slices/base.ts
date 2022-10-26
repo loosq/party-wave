@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import AuthService, { RegisterFormData, LoginFormData, AuthData } from 'api/AuthAPI';
-import UsersService, { UserProfileData, UserPasswordData } from 'api/UsersAPI';
 import {Nullable, RequestStatus, UserFullData} from 'types';
 import {AxiosError} from 'axios';
 import {RootState} from 'store';
+import UsersService, { UserProfileData, UserPasswordData } from '../api/UsersAPI';
+import AuthService, { RegisterFormData, LoginFormData, AuthData } from '../api/AuthAPI';
 import {REQUEST_STATUS} from './constants';
 import { setMessage } from './message';
 
