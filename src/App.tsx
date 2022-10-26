@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
     Forum,
     Game,
@@ -14,8 +14,14 @@ import {Route, Routes} from 'react-router-dom';
 import {Navigation} from 'components/complex';
 import {ErrorBoundary, PrivateRoutes, PublicRoutes} from 'components/base';
 import './App.scss';
+import {useAppSelector} from 'store';
 
 export default function App() {
+    const {current} = useAppSelector((state) => state.theme);
+    useEffect(() => {
+        document.body.setAttribute('class', '');
+        document.body.classList.add(`theme--${current}`);
+    });
     return (
         <ErrorBoundary>
             <Navigation />
