@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import {Navigate, Outlet} from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from 'store';
-import {getUserInfo} from 'slices/base';
-import {REQUEST_STATUS} from 'slices/constants';
-import {Loader} from 'components/base/Loader';
+import {useAppDispatch, useAppSelector} from '../../../store';
+import {getUserInfo} from '../../../slices/base';
+import {REQUEST_STATUS} from '../../../slices/constants';
+import {Loader} from '../Loader';
 
 export const PrivateRoutes = () => {
     const dispatch = useAppDispatch();

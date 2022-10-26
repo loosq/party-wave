@@ -1,7 +1,7 @@
 import React, { ImgHTMLAttributes, useRef, useState } from 'react';
-import { changeAvatar } from 'slices/base';
-import { API_URL } from 'api/API';
-import { useAppDispatch } from 'store';
+import { useAppDispatch } from '../../../store';
+import { API_URL } from '../../../api/API';
+import { changeAvatar } from '../../../slices/base';
 import AvatarDefault from '../../../images/avatar.svg';
 import Loading from '../../../images/loading.svg';
 

@@ -121,7 +121,8 @@
     "jest": {
         "testEnvironment": "jsdom",
         "moduleNameMapper": {
-            ".+\\.(css|styl|less|sass|scss)$": "jest-transform-css"
+            ".+\\.(css|styl|less|sass|scss)$": "jest-transform-css",
+            "\\.svg": "<rootDir>/src/mock/svgMock.js"
         }
     }
 }
