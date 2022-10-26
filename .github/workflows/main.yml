@@ -1,7 +1,11 @@
 name: Push To Yandex Cloud CR
-on: push
+on:
+  pull_request:
+    types:
+      - closed
 jobs:
-  build:
+  if_merged:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     env:
       CR_REGISTRY: crphi8j27tk29ukginqn
@@ -10,8 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: 'Авторизация'
-        run: echo "${{ secrets.TOKEN }}" |
-             docker login -u oauth --password-stdin cr.yandex
+        run: echo "${{ secrets.TOKEN }}" | docker login -u oauth --password-stdin cr.yandex
       - name: 'Билд докера'
         run: docker-compose build --no-cache && docker-compose up --no-start
       - name: 'Пуш докера'
