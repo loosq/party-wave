@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {CreateNewPostParams, CreateNewTopicParams} from 'types';
-import {API} from 'api/API';
+import {API} from './API';
 
 const SERVER_API = `${process.env.HOST}/api/v1`; // TODO убрать при конечной отладке
 

@@ -1,9 +1,10 @@
-import React, { useCallback, useMemo } from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navigation.scss';
 import { logout } from 'slices/base';
 import { API_URL } from 'api/API';
 import {useAppDispatch, useAppSelector} from 'store';
+import {setTheme, ThemeType} from 'slices/theme';
 import AvatarDefault from '../../../images/avatar.svg';
 import Logo from '../../../images/logo.svg';
 import { pages } from '../config';
@@ -12,14 +13,41 @@ export const Navigation: React.FC = () => {
     const dispatch = useAppDispatch();
 
     const {
-        user,
-        isLoggedIn,
-    } = useAppSelector((state) => state.base);
+        base: {
+            user,
+            isLoggedIn,
+        },
+        theme,
+    } = useAppSelector((state) => state);
 
     const logOut = useCallback(() => {
         dispatch(logout());
     }, [dispatch]);
 
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('theme') as ThemeType;
+        if (savedTheme) {
+            dispatch(setTheme(savedTheme));
+        }
+    }, [dispatch]);
+
+    const handleChange = () => {
+        let themeToSave: ThemeType;
+
+        switch (theme.current) {
+            case 'dark':
+                themeToSave = 'light';
+                break;
+            case 'light':
+                themeToSave = 'dark';
+                break;
+            default:
+                themeToSave = 'light';
+                break;
+        }
+        dispatch(setTheme(themeToSave));
+        localStorage.setItem('theme', themeToSave);
+    };
     return (
         <div className='container'>
             <nav>
@@ -56,14 +84,19 @@ export const Navigation: React.FC = () => {
                                     </li>
                                 )), [])
                             }
-
                         </ul>
+                    </li>
+                    <li>
+                        <label className='navigation__theme-switch switch'>
+                            <input type='checkbox' onChange={handleChange} checked={theme.current === 'dark'} />
+                            <span className='slider round' />
+                        </label>
                     </li>
                     {isLoggedIn ? (
                         <li>
-                            <div className="profile">
-                                <div className="profile__name">{user?.login}</div>
-                                <div className="profile__thumb">
+                            <div className='profile'>
+                                <div className='profile__name'>{user?.login}</div>
+                                <div className='profile__thumb'>
                                     {user?.avatar ? (<img src={`${API_URL}/resources${user.avatar}`} alt='' />) : <img src={AvatarDefault} alt='' />}
                                 </div>
                                 <div className='dropdown'>
