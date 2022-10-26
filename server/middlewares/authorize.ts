@@ -9,6 +9,7 @@ export const authorizeMiddleware = async (
     res: Response,
     next: NextFunction,
 ) => {
+
     if (req.session.user) {
         return next();
     }

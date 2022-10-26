@@ -21,7 +21,7 @@ const config: Configuration = {
                 exclude: /(node_modules)/,
             },
             {
-                test: /\.(png|jpg|gif|scss)$/i,
+                test: /\.(png|jpg|gif|scss|mp3|mp4)$/i,
                 use: [
                     {
                         loader: 'null-loader',

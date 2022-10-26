@@ -13,6 +13,10 @@ import {ExitScene, MenuScene} from '.';
 import {checkOnBtn} from '../utils';
 import {CoreType} from '../utils/types';
 
+import audio from '../../audio/music.mp3'
+import jump from '../../audio/jump.mp3'
+import down from '../../audio/down.mp3'
+
 export class GameScene {
     protected imageOpacity: number;
 
@@ -56,6 +60,17 @@ export class GameScene {
             coinWidth,
             coinHeight,
         );
+
+        this.game.music = new Audio();
+        this.game.soundJump = new Audio();
+        this.game.down = new Audio();
+
+        this.game.music.src = audio
+        this.game.soundJump.src = jump
+        this.game.down.src = down
+
+        this.game.music.volume = 0.5
+        this.game.down.volume = 0.7
     }
 
     protected checkPause(): void {
@@ -116,6 +131,7 @@ export class GameScene {
 
     public render(): void {
         if (!this.pause) {
+            this.game.music.play()
             this.game.ctx.clearRect(0, 0, this.game.width, this.game.height);
 
             this.UI.draw(
@@ -127,6 +143,8 @@ export class GameScene {
             this.HERO.draw();
             this.OBSTACLE.draw();
             this.COIN.draw();
+        } else { 
+            this.game.music.pause()
         }
     }
 }

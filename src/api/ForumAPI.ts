@@ -2,7 +2,7 @@ import axios from 'axios';
 import {CreateNewPostParams, CreateNewTopicParams} from 'types';
 import {API} from 'api/API';
 
-const SERVER_API = 'https://localhost:3000/api/v1'; // TODO убрать при конечной отладке
+const SERVER_API = `${process.env.HOST}/api/v1`; // TODO убрать при конечной отладке
 
 const getTopics = () => API.get(`${SERVER_API}/forum/topics`, {
     headers: {

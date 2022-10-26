@@ -15,6 +15,12 @@ export interface LoginFormData {
     login: string,
     password: string,
 }
+export interface AuthData {
+    code: string,
+    redirect_uri: string,
+}
+
+const SERVER_API = `${process.env.HOST}/api/v1`;
 
 const signUp = (data: RegisterFormData): AxiosPromise<{id: number}> => API.post('/auth/signup', data);
 
@@ -22,9 +28,16 @@ const signIn = (data: LoginFormData): AxiosPromise<void> => API.post('/auth/sign
 
 const getUserInfo = (): AxiosPromise<UserFullData> => API.get('/auth/user');
 
+const authYandexServiceId = async (redirect_uri: string) => {
+    return await API.get(`/oauth/yandex/service-id?redirect_uri=${redirect_uri}`).then(res => res.data);
+};
+
+const authYandex = (data: AuthData): AxiosPromise<void> => API.post('/oauth/yandex', data)
+
 const logout = (): AxiosPromise<void> => API.post('/auth/logout');
 
-const SERVER_API = 'https://localhost:3000/api/v1'; // TODO убрать при отладке на конечной платформе
+
+
 
 const setForumAuth = (params: UserFullData): AxiosPromise<void> => axios.post(
     `${SERVER_API}/auth`,
@@ -37,7 +50,6 @@ const setForumAuth = (params: UserFullData): AxiosPromise<void> => axios.post(
         withCredentials: true,
     },
 );
-
 const logoutOnForum = (): AxiosPromise<void> => axios.get(
     `${SERVER_API}/logout`,
     {
@@ -56,6 +68,8 @@ const AuthService = {
     logout,
     setForumAuth,
     logoutOnForum,
+    authYandexServiceId,
+    authYandex
 };
 
 export default AuthService;
