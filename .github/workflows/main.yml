@@ -1,11 +1,7 @@
 name: Push To Yandex Cloud CR
-on:
-  pull_request:
-    types:
-      - closed
+on: push
 jobs:
-  if_merged:
-    if: github.event.pull_request.merged == true
+  build:
     runs-on: ubuntu-latest
     env:
       CR_REGISTRY: crphi8j27tk29ukginqn
