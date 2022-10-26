@@ -1,5 +1,5 @@
 .loader {
-    position: relative;
+    position: absolute;
     display: inline-block;
     width: 48px;
     height: 48px;
@@ -8,8 +8,12 @@
     border-radius: 50%;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
 }
-.loader::after {
+
+.loader:after {
     content: '';
     position: absolute;
     left: 20px;
@@ -24,6 +28,7 @@
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }

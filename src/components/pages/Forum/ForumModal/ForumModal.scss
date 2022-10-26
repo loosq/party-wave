@@ -47,12 +47,12 @@
     border-radius: 15px;
     box-sizing: border-box;
     border: 1px solid var(--accent-color);
-    color: var(--white-color);
+    color: var(--white-font);
     background-color: var(--accent-color);
 
     &:hover {
-        color: var(--accent-color);
-        background-color: var(--white-color);
+        opacity: 0.7;
+        transition: opacity ease-out 0.5s;
     }
 }
 
@@ -74,4 +74,3 @@
 .forum-modal__text-area-container {
     min-height: 145px;
 }
-
