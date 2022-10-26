@@ -91,12 +91,10 @@ export const Navigation: React.FC = () => {
                     </li>
                     {isLoggedIn ? (
                         <li>
-                            <div className='profile'>
-                                <div className='profile__name'>{user?.login}</div>
-                                <div className='profile__thumb'>
-                                    {user?.avatar
-                                        ? <img src={`${API_URL}/resources${user.avatar}`} alt='' />
-                                        : <img src={AvatarDefault} alt='' />}
+                            <div className="profile">
+                                <div className="profile__name">{user?.login}</div>
+                                <div className="profile__thumb">
+                                    {user?.avatar ? (<img src={`${API_URL}/resources${user.avatar}`} alt='' />) : <img src={AvatarDefault} alt='' />}
                                 </div>
                                 <div className='dropdown'>
                                     <div className='dropdown__list'>

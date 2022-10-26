@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import AuthService, { RegisterFormData, LoginFormData } from 'api/AuthAPI';
+import AuthService, { RegisterFormData, LoginFormData, AuthData } from 'api/AuthAPI';
 import UsersService, { UserProfileData, UserPasswordData } from 'api/UsersAPI';
 import {Nullable, RequestStatus, UserFullData} from 'types';
 import {AxiosError} from 'axios';
@@ -41,6 +41,21 @@ export const register = createAsyncThunk<UserFullData, RegisterFormData>(
         }
     },
 );
+
+export const setForumAuth = createAsyncThunk<
+    void,
+    UserFullData
+    >('base/auth', async (data, {rejectWithValue}) => {
+        try {
+            const response = await AuthService.setForumAuth(data);
+
+            return response.data;
+        } catch (error) {
+            console.log('Ошибка');
+
+            return rejectWithValue((error as AxiosError).response?.data);
+        }
+    });
 
 export const login = createAsyncThunk<
     UserFullData,
@@ -141,20 +156,29 @@ export const changePassword = createAsyncThunk<void, UserPasswordData>(
     },
 );
 
-export const setForumAuth = createAsyncThunk<
-    void,
-    UserFullData
-    >('base/auth', async (data, {rejectWithValue}) => {
-        try {
-            const response = await AuthService.setForumAuth(data);
+export const authYandex = createAsyncThunk<UserFullData, AuthData, {state: RootState}>(
+  "base/authYandex",
+  async (data, { dispatch, getState, rejectWithValue }) => {
+    try {
+        await AuthService.authYandex(data);
 
-            return response.data;
-        } catch (error) {
-            console.log('Ошибка');
+        const response = await AuthService.getUserInfo();
 
-            return rejectWithValue((error as AxiosError).response?.data);
+        if (!getState().base.isLoggedIn) {
+            await dispatch(setForumAuth(response.data))
+                .unwrap();
         }
-    });
+
+        dispatch(setMessage(STATUS_TEXT.LOGIN_SUCCESS));
+
+        return response.data;
+    } catch (error) {
+      dispatch(setMessage(STATUS_TEXT.ERROR));
+      return rejectWithValue(STATUS_TEXT.ERROR);
+    }
+  }
+);
+
 
 const initialState: UserSlice = {
     isLoggedIn: false,
@@ -185,6 +209,15 @@ const baseSlice = createSlice({
                 state.user = null;
                 state.status = REQUEST_STATUS.ERROR;
             });
+
+        builder.addCase(authYandex.fulfilled, (state, action) => {
+                state.isLoggedIn = true;
+                state.user = action.payload;
+              })
+              .addCase(authYandex.rejected, (state) => {
+                state.isLoggedIn = false;
+                state.user = null;
+        });
 
         builder
             .addCase(login.pending, (state) => {

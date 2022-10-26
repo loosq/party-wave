@@ -1,19 +1,12 @@
 import session from 'express-session';
 import express from 'express';
-import morgan from 'morgan';
+// import morgan from 'morgan';
 import path from 'path';
 import {configureApi} from './api/api';
 import {connectToDb} from '../db/init';
 import {onApiError} from './utils';
 import serverRenderMiddleware from './middlewares/server-render-middleware';
-
-const https = require('https');
-const fs = require('fs');
-
-const httpsOptions = {
-    key: fs.readFileSync(path.resolve(__dirname, './ssl/key.pem')),
-    cert: fs.readFileSync(path.resolve(__dirname, './ssl/cert.pem')),
-};
+// import { authYandex } from './useCases/authYandex'
 
 const API = '/api/v1';
 
@@ -38,19 +31,32 @@ app.set('port', (process.env.PORT || 3000));
 
 app.use(session(options));
 app.use(express.json());
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 app.use(express.static(path.resolve(__dirname, '../dist')));
 
+
 app.use(API, configureApi(), [onApiError]);
+app.use('*', function(req, res, next){
+    // @ts-ignore
+    if(req.query.code && req.params['0'] !== '/login'){
+        res.status(301).redirect(`/login?code=${req.query.code}`)
+    }else{
+        next()
+    }
+})
+// app.get('/?code=', function(req, res, next){
+//     // @ts-ignore
+//     console.log(req.query.code, req.params.login !== 'login')
+//     // @ts-ignore
+//     if(req.query.code && req.params.login !== 'login'){
+//         res.status(301).redirect(`/login?code=${req.query.code}`)
+//     }else{
+//         next()
+//     }
+// })
 app.use(serverRenderMiddleware);
 
-// app.listen(
-//     app.get('port'),
-//     () => console.log(`App listening on port ${app.get('port')}!`),
-// );
-
-https.createServer(httpsOptions, app)
-    .listen(
-        app.get('port'),
-        () => console.log(`App listening on port http://localhost:${app.get('port')}!`),
-    );
+app.listen(
+    app.get('port'),
+    () => console.log(`App listening on port ${app.get('port')}!`),
+);

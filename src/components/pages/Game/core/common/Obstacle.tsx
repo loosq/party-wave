@@ -31,7 +31,7 @@ export class Obstacle {
         this.w = w;
         this.h = h;
 
-        this.gameSpeed = 3;
+        this.game.gameSpeed = 3;
         this.obstacles = [];
         // eslint-disable-next-line no-multi-assign
         this.spawnTimer = this.initialSpawnTimer = 180;
@@ -48,7 +48,7 @@ export class Obstacle {
             this.game.height - size - groundHeight,
             size,
             size,
-            this.gameSpeed,
+            this.game.gameSpeed,
             sprite,
         );
         if (type === 1) {
@@ -61,7 +61,7 @@ export class Obstacle {
         this.spawnTimer--;
         if (this.spawnTimer <= 0) {
             this.spawn();
-            this.spawnTimer = this.initialSpawnTimer - this.gameSpeed * 8;
+            this.spawnTimer = this.initialSpawnTimer - this.game.gameSpeed * 8;
 
             if (this.spawnTimer < 50) {
                 this.spawnTimer = 50;
@@ -83,15 +83,15 @@ export class Obstacle {
             if (haveCollision) {
                 this.obstacles = [];
                 this.spawnTimer = this.initialSpawnTimer;
-                this.gameSpeed = 3;
+                this.game.gameSpeed = 3;
                 end();
             }
 
             o.update();
         }
 
-        this.gameSpeed += 0.003;
-        this.game.score = Math.floor(this.game.score + 0.25 * this.gameSpeed);
+        this.game.gameSpeed += 0.003;
+        this.game.score = Math.floor(this.game.score + 0.25 * this.game.gameSpeed);
     }
 
     public draw(): void {

@@ -15,6 +15,10 @@ export const API = {
 
     post: (url: string, options?: Object) => instance.post(url, options),
 
+    postCustom: (url: string, data: Object, options?: Object) => axios.post(url, data, options),
+
+    postMethod: (url: string, data: any, options?: Object) => instance.post(url, data, options),
+
     put: (url: string, options?: Object) => instance.put(url, options),
 
     delete: (url: string, options?: Object) => instance.delete(url, options),

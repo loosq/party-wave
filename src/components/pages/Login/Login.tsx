@@ -7,22 +7,28 @@ import { object } from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { commonSchema } from 'utils/validation';
 import { loginFields } from 'components/pages/config';
-import { LoginFormData } from 'api/AuthAPI';
-import { login } from 'slices/base';
-import { clearMessage } from 'slices/message';
+import AuthService, { LoginFormData } from 'api/AuthAPI'
+import { authYandex, login } from "slices/base";
+import { clearMessage } from "slices/message";
 import Loading from 'images/loading.svg';
 import Oauth from 'images/yoauth.svg';
-import { RootState, useAppDispatch } from 'store';
+import { RootState, useAppDispatch } from 'store'
 
 const {login: loginSchema, password: passwordSchema} = commonSchema;
 const validationSchema = object().shape({
     login: loginSchema,
     password: passwordSchema,
 });
+// console.log(process.env)
 
 const OAuthEl = () => {
-    const CLIENT_ID = '953cad724caf4fc28c183ff9ab6adb8a';
-    const REDIRECT_URI = 'http://localhost:3000/';
+    const [CLIENT_ID, setCLIENT_ID] = useState();
+    const REDIRECT_URI = `${process.env.HOST}`;
+
+    if(REDIRECT_URI !== undefined) {
+        AuthService.authYandexServiceId(REDIRECT_URI).then(e => setCLIENT_ID(e.service_id));
+    }
+
     return (
         <div className='login__oauth'>
             <a className='login__oauth-link' href={`https://oauth.yandex.ru/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`}>
@@ -38,6 +44,27 @@ export const Login: FC = () => {
     const dispatch = useAppDispatch();
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const code = window.location.search.replace('?code=', '');
+        if(code) {
+            // const data = new FormData();
+            // data.append('code', code)
+            // data.append('redirect_uri', `${process.env.HOST}`)
+
+            dispatch(authYandex({
+                code,
+                redirect_uri: `${process.env.HOST}`
+            }))
+                .unwrap()
+                .then(() => {
+                    setTimeout(() => navigate('/'), 0);
+                })
+                .catch((e: Error) => {
+                    console.error(e.message);
+                });
+        }
+    }, []);
 
     useEffect(() => {
         dispatch(clearMessage());
@@ -62,6 +89,7 @@ export const Login: FC = () => {
                 });
         },
     });
+
 
     return (
         <div className='login__window'>

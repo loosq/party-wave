@@ -1,6 +1,8 @@
-import {Configuration} from 'webpack';
+import webpack, {Configuration} from 'webpack';
 import {join, resolve} from 'path';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import * as dotenv from 'dotenv'
+dotenv.config();
 
 const config: Configuration = {
     entry: join(__dirname, '../src/client'),
@@ -47,7 +49,7 @@ const config: Configuration = {
                 }],
             },
             {
-                test: /\.(png|jpg|gif)$/i,
+                test: /\.(png|jpg|gif|mp3|mp4)$/i,
                 use: [
                     {
                         loader: 'url-loader',
@@ -97,10 +99,14 @@ const config: Configuration = {
         new CopyWebpackPlugin({
             patterns: [
                 {from: 'static'},
-                {from: 'src/service-worker/sw.js'},
-                {from: 'ssl', to: 'ssl'},
+                {from: 'src/service-worker/sw.js'}
             ],
         }),
+        new webpack.DefinePlugin({
+            'process.env': {
+              'HOST': JSON.stringify(process.env.HOST),
+            }
+          })
     ],
     devtool: 'source-map',
 };
