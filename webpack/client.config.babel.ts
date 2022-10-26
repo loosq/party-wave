@@ -1,6 +1,7 @@
 import webpack, {Configuration} from 'webpack';
 import {join, resolve} from 'path';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+
 import * as dotenv from 'dotenv'
 dotenv.config();
 
@@ -52,7 +53,10 @@ const config: Configuration = {
                 test: /\.(png|jpg|gif|mp3|mp4)$/i,
                 use: [
                     {
-                        loader: 'url-loader',
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                        }
                     },
                 ],
             },
@@ -106,9 +110,8 @@ const config: Configuration = {
             'process.env': {
               'HOST': JSON.stringify(process.env.HOST),
             }
-          })
+          }),
     ],
-    devtool: 'source-map',
 };
 
 export default config;
