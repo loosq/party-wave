@@ -84,6 +84,7 @@
         "react/no-children-prop": "off",
         "react/jsx-indent": "off",
         "react/jsx-filename-extension": "off",
+        "react/react-in-jsx-scope": "off",
         "jsx-quotes": [
             "error",
             "prefer-single"

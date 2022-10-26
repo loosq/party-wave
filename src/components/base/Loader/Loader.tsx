@@ -1,5 +1,5 @@
 import React from 'react';
-import bemCn from 'libs/bemCn';
+import bemCn from '../../../libs/bemCn';
 
 import './Loader.scss';
 
@@ -10,5 +10,5 @@ type Props = {
 const bemBlock = bemCn('loader');
 
 export const Loader = ({className}: Props) => (
-    <div className={bemBlock(null, className)} />
+    <div data-testid='loader' className={bemBlock(null, className)} />
 );

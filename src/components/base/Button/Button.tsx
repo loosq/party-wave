@@ -12,5 +12,6 @@ export const Button: React.FC<Props> = React.memo((
     <button
         {...restProps}
         className={className || 'main-button'}
+        data-testid='button'
     />
 ));

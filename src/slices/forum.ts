@@ -5,7 +5,7 @@ import {
 } from 'types';
 import {AxiosError} from 'axios';
 import {RootState} from 'store';
-import {forumApi} from 'api/ForumAPI';
+import {forumApi} from '../api/ForumAPI';
 import {REQUEST_STATUS} from './constants';
 
 export const getTopics = createAsyncThunk<Topic[], void, {rejectValue: string | undefined}>(

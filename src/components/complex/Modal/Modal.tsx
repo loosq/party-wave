@@ -1,8 +1,8 @@
 import React, { PropsWithChildren, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import bemCn from 'libs/bemCn';
-import { useFocusTrap } from 'hooks/use-focus-trap/use-focus-trap';
-import { CrossIcon } from 'components/base';
+import { CrossIcon } from '../../base';
+import bemCn from '../../../libs/bemCn';
+import { useFocusTrap } from '../../../hooks/use-focus-trap/use-focus-trap';
 import './Modal.scss';
 
 type Props = PropsWithChildren<{
@@ -28,20 +28,21 @@ export const Modal: React.FC<Props> = React.memo((
     }, []);
 
     const renderModal = () => (
-        <div>
+        <div data-testid='modal'>
             {isOpen && (
-                <div className={bemBlock('overlay')}>
+                <div data-testid='modal-overlay' className={bemBlock('overlay')}>
                     <article
                         ref={trapRef}
                         className={bemBlock(null, className)}
                     >
                         <button
+                            data-testid='close-modal'
                             className={bemBlock('close-button')}
                             onClick={handleClick}
                         >
                             <CrossIcon />
                         </button>
-                        <div className={bemBlock('content')}>
+                        <div data-testid='modal-content' className={bemBlock('content')}>
                             {children}
                         </div>
                     </article>

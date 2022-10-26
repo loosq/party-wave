@@ -11,6 +11,7 @@ export const AltUrl: React.FC<Props> = React.memo((
 ) => (
     <a
         {...restProps}
+        data-testid='alt-url'
         className={className || 'alt-url'}
     />
 ));

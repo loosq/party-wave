@@ -1,6 +1,6 @@
 import React, {Component, ErrorInfo, PropsWithChildren} from 'react';
-import bemCn from 'libs/bemCn';
 import {Nullable} from 'types';
+import bemCn from '../../../libs/bemCn';
 
 import './ErrorBoundary.scss';
 
