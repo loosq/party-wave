@@ -7,8 +7,8 @@ import { object } from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { commonSchema } from 'utils/validation';
 import { loginFields } from 'components/pages/config';
-import { LoginFormData } from 'api/AuthAPI'
-import { login, authYandex } from "slices/base";
+import AuthService, { LoginFormData } from 'api/AuthAPI'
+import { login } from "slices/base";
 import { clearMessage } from "slices/message";
 import Loading from 'images/loading.svg';
 import Oauth from 'images/yoauth.svg';
@@ -19,10 +19,16 @@ const validationSchema = object().shape({
     login: loginSchema,
     password: passwordSchema,
 });
+// console.log(process.env)
 
 const OAuthEl = () => {
-    const CLIENT_ID = '953cad724caf4fc28c183ff9ab6adb8a';
+    const [CLIENT_ID, setCLIENT_ID] = useState();
     const REDIRECT_URI = `${process.env.HOST}`;
+
+    if(REDIRECT_URI !== undefined) {
+        AuthService.authYandexServiceId(REDIRECT_URI).then(e => setCLIENT_ID(e.service_id));
+    }
+
     return (
         <div className='login__oauth'>
             <a className='login__oauth-link' href={`https://oauth.yandex.ru/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`}>
@@ -42,26 +48,6 @@ export const Login: FC = () => {
     useEffect(() => {
         dispatch(clearMessage());
     }, [dispatch]);
-
-    useEffect(() => {
-        const code = window.location.search.replace('?code=', '');
-        if(code) {
-            const data = new FormData();
-            data.append('code', code)
-            data.append('grant_type', "authorization_code")
-            data.append('client_id', "953cad724caf4fc28c183ff9ab6adb8a")
-            data.append('client_secret', "b17c03074fb345cd98b19795ab509993")
-
-            dispatch(authYandex(data as FormData))
-                .unwrap()
-                .then(() => {
-                    setTimeout(() => navigate('/'), 0);
-                })
-                .catch((e: Error) => {
-                    console.error(e.message);
-                });
-        }
-    }, []);
 
     const formik = useFormik<FormikValues>({
         initialValues: {

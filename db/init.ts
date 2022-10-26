@@ -19,7 +19,7 @@ export const sequelize = new Sequelize({...envOptions, ...baseOptions});
 export const connectToDb = async () => {
     try {
         await sequelize.authenticate();
-        await sequelize.createSchema('runner', { logging: true });
+        await sequelize.createSchema('runner', {});
         await sequelize.sync({alter: true, schema: 'runner'});
 
         console.info('Connection to the data base successfully.');

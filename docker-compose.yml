@@ -8,8 +8,6 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - db
-    ports:
-      - '3000:3000'
     environment:
       DB_HOSTNAME: db
       DB_USERNAME: postgres
@@ -41,15 +39,12 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_NAME: postgres
-    ports:
-      - '5432:5432'
     volumes: 
-      - ./dbdata:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
     networks:
       - awesome
 networks:
   awesome:
     driver: bridge
 volumes:
-  app:
-    driver: local
+  db_data:

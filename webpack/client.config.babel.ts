@@ -1,6 +1,8 @@
 import webpack, {Configuration} from 'webpack';
 import {join, resolve} from 'path';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import * as dotenv from 'dotenv'
+dotenv.config();
 
 const config: Configuration = {
     entry: join(__dirname, '../src/client'),
@@ -97,8 +99,7 @@ const config: Configuration = {
         new CopyWebpackPlugin({
             patterns: [
                 {from: 'static'},
-                {from: 'src/service-worker/sw.js'},
-                {from: 'ssl', to: 'ssl'},
+                {from: 'src/service-worker/sw.js'}
             ],
         }),
         new webpack.DefinePlugin({
