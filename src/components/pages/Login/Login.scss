@@ -6,7 +6,7 @@
     padding: 40px 0;
 
     .login__container {
-        background: var(--white-color);
+        background: var(--white-bg);
         box-shadow: 0 0 6px rgba(0, 0, 0, 14%);
         border-radius: 12px;
         padding: 40px 30px;
@@ -61,7 +61,8 @@
         transition: opacity 0.25s ease;
 
         &:hover {
-            opacity: 0.5;
+            opacity: 0.7;
+            transition: opacity ease-out 0.5s;
         }
     }
 }
