@@ -60,6 +60,7 @@ self.addEventListener('fetch', (evt) => {
         request.url.startsWith('chrome-extension')
         || request.url.includes('extension')
         || !(request.url.indexOf('/api/v1') < 0)
+        || !(request.url.indexOf('/login') < 0)
         || !(request.url.indexOf('/api/v2') < 0)
         || !(request.url.indexOf('localhost') < 0)
     ) {
