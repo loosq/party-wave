@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const API_URL = 'https://ya-praktikum.tech/api/v2';
+export const API_URL = '';
 
 const instance = axios.create({
     headers: {

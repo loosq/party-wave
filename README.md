@@ -1,15 +1,12 @@
-### Cosmobot game app 
+### Party wave app 
 * React
 * Redux
 * Express
 * Typescript
 * Sass
-* Jest
 * ESLint / StyleLint
 * Webpack
-* Yandex Cloud
 * Git
-* Postgres
 * Nginx
 * Docker
 
@@ -23,12 +20,6 @@ npm install
 npm start
 ```
 Your app should now be running on http://localhost:3000/
-
-🌳 Running docker
-```
-docker-compose build
-docker-compose up -d
-```
 
 📕 Eslint
 ```
@@ -44,9 +35,3 @@ npm run stylelint
 ```
 npm run test
 ```
-
-## Figma template
-[link](https://www.figma.com/file/QTTtRv0pXsQGZp3eLOyoST/Untitled?node-id=0%3A1)
-
-## Yandex Cloud link
-https://teamfive-cosmobot-15.ya-praktikum.tech/

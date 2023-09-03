@@ -1,22 +1,10 @@
 {
-    "name": "runner",
+    "name": "party-wave",
     "version": "1.0.0",
     "contributors": [
         {
             "name": "Polonskii Sergei",
-            "email": "only-666@mail.ru"
-        },
-        {
-            "name": "Aleksey Morozov",
-            "email": "alex.morozov.webdev@gmail.com"
-        },
-        {
-            "name": "Veniamin Ryadnov",
-            "email": "veniamin.ryadnov@gmail.com"
-        },
-        {
-            "name": "Anton Borisenko",
-            "email": "borisenk-anton@yandex.ru"
+            "email": "ipsa87@gmail.com"
         }
     ],
     "description": "Runner game",
@@ -42,10 +30,6 @@
         "eslint": "eslint . --ext .ts --fix",
         "stylelint": "stylelint . --fix"
     },
-    "keywords": [
-        "Runner",
-        "Yandex Practicum"
-    ],
     "license": "ISC",
     "devDependencies": {
         "@babel/preset-env": "7.19.4",
@@ -97,13 +81,11 @@
     "dependencies": {
         "@reduxjs/toolkit": "1.8.4",
         "axios": "0.27.2",
-        "bem-cn-lite": "4.1.0",
         "body-parser": "1.20.0",
         "dayjs": "1.11.5",
         "dotenv": "^16.0.3",
         "express": "4.18.1",
         "express-session": "1.17.3",
-        "formik": "2.2.9",
         "https": "1.0.0",
         "morgan": "1.10.0",
         "node-sass": "7.0.1",

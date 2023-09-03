@@ -103,7 +103,6 @@ const config: Configuration = {
         new CopyWebpackPlugin({
             patterns: [
                 {from: 'static'},
-                {from: 'src/service-worker/sw.js'}
             ],
         }),
         new webpack.DefinePlugin({
