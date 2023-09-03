@@ -1,0 +1,15 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - echo "Build your project here"
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploy your project here"
+  only:
+    - test  # Деплой происходит только при коммите в ветку master
