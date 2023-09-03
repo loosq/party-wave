@@ -10,7 +10,7 @@ build:
 deploy:
   stage: deploy
   script:
-    - echo "Deploy your project here"
+    - echo "Deploy your project here!"
 webhook:
   stage: deploy
   script:
