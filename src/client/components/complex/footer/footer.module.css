@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 40px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  box-shadow: var(--box-shadow);
+  border-radius: 15px;
+  opacity: 0.9;
+  background-color: var(--bg-contras-color);
+  max-width: 270px;
+  width: 100%;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+}
+
+.card svg {
+  max-height: 30px;
+  max-width: 30px;
+}
+
+.card p {
+  margin-left: 10px;
+}
+
+.socialWrapper {
+  display: flex;
+  margin-right: auto;
+}
+
+.socialWrapper > div {
+  margin-right: 10px;
+}

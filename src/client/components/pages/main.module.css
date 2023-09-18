@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title {
+    font-size: 79px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 79px;
+    max-width: 810px;
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    max-width: 619px;
+    color: var(--tex-description);
+}
+
+.backGround {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

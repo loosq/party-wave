@@ -1,0 +1,49 @@
+
+.navigationWrapper {
+    padding-top: 40px;
+} 
+
+
+.navigation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 84px;
+    border-radius: 15px;
+    padding: 15px 30px;
+    background-color: var(--bg-contras-color);
+    box-shadow: var(--box-shadow)
+}
+
+.logo {
+    margin-right: auto;
+    max-width: 54px;
+    max-height: 54px;
+}
+
+.item {
+    color: var(--text-color);
+    margin-right: 35px;
+    white-space: nowrap;
+}
+
+.actionButton {
+    border-radius: 15px;
+    padding: 15px 30px;
+    margin-right: 30px;
+}
+
+.actionButton {
+    color: #E4E5E1;
+}
+
+.light .actionButton {
+    background: linear-gradient(90deg, #02B4FF 0%, #2049F1 109.43%);
+}
+
+.dark .actionButton {
+    background: linear-gradient(90deg, #0064FF 0%, #1227C0 109.43%);
+}
+
+
+
