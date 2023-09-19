@@ -16,9 +16,9 @@ jobs:
       - name: Install SSH key
         uses: webfactory/ssh-agent@v0.5.3
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.key }}
           
       - name: SSH to VPS and deploy
         run: |
-          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} root@154.56.51.204 "cd /party-wave && npm install && npm run start:prod"
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.key }} root@154.56.51.204 "cd /party-wave && npm install && npm run start:prod"
 
