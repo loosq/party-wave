@@ -23,7 +23,7 @@ const App: React.FC = () => {
       <Navigation />
       <Routes>
         <Route path='/' element={<>
-          <SvgIcon name={`main-bg-${theme}`} width='1440' height='334' className={styles.mainBg} />
+          <SvgIcon name={`main-bg-${theme}`} sizes={[1440, 334]} className={styles.mainBg} />
           <Main />
         </>} />
       </Routes>

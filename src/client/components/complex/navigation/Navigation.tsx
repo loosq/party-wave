@@ -47,7 +47,7 @@ export const Navigation: React.FC = () => {
   return (
     <nav className={`${styles.navigationWrapper} ${theme === 'light' ? styles.light : styles.dark}`}>
       <ul className={styles.navigation}>
-        <SvgIcon className={styles.logo} name={`logo-header-${theme}`} />
+        <SvgIcon className={styles.logo} name={`logo-header-${theme}`} sizes={[54]} />
         {pages.map((page) => (
           <li key={page.to}>
             <NavLink className={page.to === 'get-lesson' ? styles.actionButton : styles.item} to={page.to}>{page.name}</NavLink>
@@ -58,7 +58,7 @@ export const Navigation: React.FC = () => {
           localStorage.setItem('theme', themeToSave);
           dispatch(setTheme(themeToSave))
         }}>
-        <SvgIcon className={styles.themeIcon} name={ theme === 'light' ? 'moon' : 'sun'} height='45' width='45'/>
+        <SvgIcon className={styles.themeIcon} name={ theme === 'light' ? 'moon' : 'sun'} sizes={[45]}/>
       </button>
       </ul>
     </nav>

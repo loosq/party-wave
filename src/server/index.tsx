@@ -34,9 +34,12 @@ app.get('/', (req, res) => {
   );
 
   const html = `
-    <html>
+    <!DOCTYPE html>
+    <html lang="ru">
     <head>
       <title>Party wave</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="description" content="party wave russian surf community in Haifa">
     </head>
     <body>
       ${sprite}

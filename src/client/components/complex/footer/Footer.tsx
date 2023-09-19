@@ -7,7 +7,7 @@ const socialIcons = ['telegram', 'instagram'];
 const socialCard = (icon: string, index: number) => {
     return (
         <div className={styles.card} key={index}>
-            <SvgIcon name={icon} />
+            <SvgIcon name={icon} sizes={[30]}/>
             <p>{'Подписаться на телеграм и быть в курсе новостей'}</p>
         </div>
     )

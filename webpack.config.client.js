@@ -1,12 +1,17 @@
 const path = require('path');
 const webpack = require('webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const isDev = process.env.NODE_ENV === 'development';
+const entry = ['./src/client/index.tsx'];
+if (isDev) {
+  entry.push('webpack-hot-middleware/client?path=http://localhost:4000/__webpack_hmr');
+};
 
 module.exports = {
   devtool: 'source-map',
   mode: process.env.NODE_ENV,
   target: 'web',
-  entry: ['./src/client/index.tsx', 'webpack-hot-middleware/client?path=http://localhost:4000/__webpack_hmr'],
+  entry,
   output: {
     path: `${__dirname}/build`,
     publicPath: '/',
@@ -42,6 +47,6 @@ module.exports = {
     }),
   ],
   devServer: {
-    hot: true,
+    hot: isDev,
   },
 };

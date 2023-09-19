@@ -5,9 +5,12 @@
   "main": "index.js",
   "scripts": {
     "svg-sprite": "svg-symbol-sprite -i ./public/assets/svgs -o ./build/static/sprite.svg",
-    "build:client": "webpack --mode development --config webpack.config.client.js",
-    "build:server": "webpack --mode development --config webpack.config.server.js",
-    "start": "npm run build:server && npm run build:client && node build/server.js",
+    "build:client:prod": "webpack --mode production --config webpack.config.client.js",
+    "build:server:prod": "webpack --mode production --config webpack.config.server.js",
+    "build:client:dev": "webpack --mode development --config webpack.config.client.js",
+    "build:server:dev": "webpack --mode development --config webpack.config.server.js",
+    "start:dev": "npm run build:server:dev && npm run build:client:dev && node build/server.js",
+    "start:prod": "npm run build:server:prod && npm run build:client:prod && node build/server.js",
     "lint": "eslint . --ext .js, .jsx, .ts, .tsx --fix"
   },
   "keywords": [],

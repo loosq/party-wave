@@ -2,9 +2,11 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const isDev = process.env.NODE_ENV === 'development';
 module.exports = {
   target: 'node',
   entry: './src/server/index.tsx',
+  mode: process.env.NODE_ENV,
   output: {
     filename: 'server.js',
     path: path.resolve(__dirname, 'build'),

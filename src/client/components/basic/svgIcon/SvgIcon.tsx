@@ -1,7 +1,12 @@
 import React from "react";
 
-export const SvgIcon = ({ name, width, height, className }: { name: string; width?: string; height?: string; className?: string }) => (
-    <svg fill="none" width={width} height={height} className={className} viewBox={`0 0 ${width} ${height}`}>
-        <use href={`#icon-${name}`}></use>
-    </svg>
-)
+export const SvgIcon = ({ name, sizes, className }: { name: string; sizes: number[]; className?: string }) => {
+    const [width, height] = sizes;
+    const viewBox = `0 0 ${width} ${height ?? width}`;
+
+    return (
+        <svg fill="none" width={width} height={height} className={className} viewBox={viewBox}>
+            <use href={`#icon-${name}`}></use>
+        </svg>
+    )
+};
