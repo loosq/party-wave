@@ -9,6 +9,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest  # Выберите нужную ОС, например, ubuntu-20.04
 
+    strategy:
+      matrix:
+        node-version: [18.x]
+        
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
