@@ -1,9 +1,3 @@
-
-.navigationWrapper {
-    padding-top: 40px;
-} 
-
-
 .navigation {
     display: flex;
     justify-content: flex-end;
@@ -44,6 +38,3 @@
 .dark .actionButton {
     background: linear-gradient(90deg, #0064FF 0%, #1227C0 109.43%);
 }
-
-
-

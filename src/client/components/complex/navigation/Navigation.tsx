@@ -12,7 +12,7 @@ const pages = [
   },
   {
     name: 'Тренеры',
-    to: 'coaches',
+    to: 'instructors',
   },
   {
     name: 'Расписание',

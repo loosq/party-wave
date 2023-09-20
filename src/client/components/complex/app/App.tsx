@@ -4,10 +4,11 @@ import './styles/reset.module.css';
 import './styles/fonts.module.css';
 import styles from './styles/app.module.css';
 import { Navigation } from '../navigation/Navigation';
-import { Main } from '../../pages/Main';
+import { Main } from '../../pages/main/Main';
 import { Footer } from '../footer/Footer';
 import { SvgIcon } from '../../basic/svgIcon/SvgIcon';
 import {useAppSelector} from '../../../../store/store';
+import { Instructors } from '../../pages/instructors/Instructors';
 
 const App: React.FC = () => {
   const {theme} = useAppSelector((state) => state.theme);
@@ -26,6 +27,7 @@ const App: React.FC = () => {
           <SvgIcon name={`main-bg-${theme}`} sizes={[1440, 334]} className={styles.mainBg} />
           <Main />
         </>} />
+        <Route path='/instructors' element={<Instructors />} />
       </Routes>
       <Footer />
     </div>
