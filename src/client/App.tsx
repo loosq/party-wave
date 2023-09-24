@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {Route, Routes} from 'react-router-dom';
 import './styles/reset.module.css';
 import './styles/fonts.module.css';
 import styles from './styles/app.module.css';
-import { Navigation } from '../navigation/Navigation';
-import { Main } from '../../pages/main/Main';
-import { Footer } from '../footer/Footer';
-import { SvgIcon } from '../../basic/svgIcon/SvgIcon';
-import {useAppSelector} from '../../../../store/store';
-import { Instructors } from '../../pages/instructors/Instructors';
+import { Navigation } from './components/complex/navigation/Navigation';
+import { Main } from './components/pages/main/Main';
+import { Footer } from './components/complex/footer/Footer';
+import { SvgIcon } from './components/basic/svgIcon/SvgIcon';
+import {useAppSelector} from './../store/store';
+import { Instructors } from './components/pages/instructors/Instructors';
+import { Gallery } from './components/pages/gallery/Gallery';
 
 const App: React.FC = () => {
   const {theme} = useAppSelector((state) => state.theme);
@@ -28,6 +29,7 @@ const App: React.FC = () => {
           <Main />
         </>} />
         <Route path='/instructors' element={<Instructors />} />
+        <Route path='/gallery' element={<Gallery />} />
       </Routes>
       <Footer />
     </div>

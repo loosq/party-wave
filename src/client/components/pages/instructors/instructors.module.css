@@ -17,11 +17,6 @@
 }
 
 .title {
-    font-size: 58px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 62px;
-    letter-spacing: -1.16px;
     color: var(--text-color);
     margin-bottom: 20px;
 }
@@ -41,9 +36,5 @@
 }
 
 .button {
-    text-align: center;
-    padding: 15px 30px;
-    border-radius: 15px;
-    border: 1.5px solid #0064FF;
     margin-right: 10px;
 }

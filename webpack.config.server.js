@@ -28,7 +28,12 @@ module.exports = {
       },
       {
         test: /\.(jpg|png|gif|ttf)$/,
-        type: 'asset/resource',
+        use: {
+          loader: 'file-loader',
+          options: {
+            publicPath: '/',
+          },
+        },
       },
     ],
   },

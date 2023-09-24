@@ -1,7 +1,7 @@
 import express from 'express';
 import React from 'react';
 import {renderToString} from 'react-dom/server';
-import App from '../client/components/complex/app/App';
+import App from '../client/App';
 import { StaticRouter } from 'react-router-dom/server';
 import sprite from '../../build/static/sprite.svg';
 import { Provider } from 'react-redux';
@@ -21,9 +21,9 @@ app.use(webpackDevMiddleware(compiler, {
   serverSideRender: true,
 }));
 app.use(webpackHotMiddleware(compiler));
-app.use('/static', express.static(__dirname + '../../build/static'));
+// app.use('/static', express.static(__dirname + '../../build/static'));
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   const reduxState = store.getState();
   const appString = renderToString(
     <Provider store={store}>

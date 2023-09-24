@@ -30,7 +30,7 @@ module.exports = {
       },
       {
         test: /\.(jpg|png|gif|ttf)$/,
-        type: 'asset/resource',
+        use: 'file-loader',
       },
     ],
   },
