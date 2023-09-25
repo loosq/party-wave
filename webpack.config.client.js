@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const CompressionPlugin = require("compression-webpack-plugin");
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'development';
 const entry = ['./src/client/index.tsx'];
@@ -39,6 +40,7 @@ module.exports = {
       extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
   },
   plugins: [
+    new CompressionPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new ReactRefreshWebpackPlugin({
       overlay: {

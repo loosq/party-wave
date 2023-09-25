@@ -6,6 +6,7 @@ import { StaticRouter } from 'react-router-dom/server';
 import sprite from '../../build/static/sprite.svg';
 import { Provider } from 'react-redux';
 import { store } from '../store/store';
+import compression from 'compression';
 
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -22,7 +23,7 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 app.use(webpackHotMiddleware(compiler));
 // app.use('/static', express.static(__dirname + '../../build/static'));
-
+app.use(compression());
 app.get('*', (req, res) => {
   const reduxState = store.getState();
   const appString = renderToString(

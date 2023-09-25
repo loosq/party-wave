@@ -1,9 +1,11 @@
 @font-face {
     font-family: 'Inter Regular';
-    src: url('../../../public/assets/fonts/Inter-Regular.ttf');
+    src: local('../../../public/assets/fonts/Inter-Regular.ttf');
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'Inter Medium';
-    src: url('../../../public/assets/fonts/Inter-Medium.ttf');
+    src: local('../../../public/assets/fonts/Inter-Medium.ttf');
+    font-display: swap;
 }
