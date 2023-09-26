@@ -11,7 +11,7 @@
     --bg-color: #E4E5E1;
     --bg-contrast-color: #E7E8E4;
     --text-color: #262626;
-    --tex-description: #7D7E80;
+    --text-description: #7D7E80;
     --box-shadow: 0px 0px 15px 0px #0D1F231A;
     --bg-action: linear-gradient(90deg, #02B4FF 0%, #2049F1 109.43%);
 
@@ -21,7 +21,7 @@
     --bg-color: #262626;
     --bg-contrast-color: #3C3C3C;
     --text-color: #E4E5E1;
-    --tex-description: #7D7E80;
+    --text-description: #7D7E80;
     --box-shadow: 0px 0px 15px 0px #0D1F231A;
     --bg-action: linear-gradient(90deg, #0064FF 0%, #1227C0 109.43%);
 }
@@ -35,7 +35,7 @@ body {
     height: 100vh;
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: 'Inter Regular', sans-serif;
+    font-family: Inter, sans-serif;
 }
 
 .button {
@@ -55,14 +55,15 @@ body {
 }
 
 h1 {
-    font-family: 'Inter Medium', sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 79px;
     line-height: 79px;
     letter-spacing: -3.95px;
+    font-weight: 500;
 }
 
 h2 {
-    font-family: 'Inter Medium', sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 58px;
     font-weight: 500;
     line-height: 62px;

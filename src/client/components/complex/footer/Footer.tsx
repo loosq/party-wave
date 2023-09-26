@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
             <div className={styles.socialWrapper}>
                 {socialIcons.map((icon, index) => socialCard(icon, index))}
             </div>
-            <span>{`© ${new Date().getFullYear()} Party Wave`}</span>
+            <span className={styles.copyRight}>{`© ${new Date().getFullYear()} Party Wave`}</span>
         </footer>
     )
 }

@@ -6,8 +6,6 @@
 
 .title {
     font-size: 79px;
-    font-style: normal;
-    font-weight: 500;
     line-height: 79px;
     max-width: 810px;
     margin-bottom: 20px;
@@ -19,7 +17,7 @@
     font-weight: 500;
     line-height: 24px;
     max-width: 619px;
-    color: var(--tex-description);
+    color: var(--text-description);
 }
 
 .backGround {

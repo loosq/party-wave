@@ -22,7 +22,6 @@ app.use(webpackDevMiddleware(compiler, {
   serverSideRender: true,
 }));
 app.use(webpackHotMiddleware(compiler));
-// app.use('/static', express.static(__dirname + '../../build/static'));
 app.use(compression());
 app.get('*', (req, res) => {
   const reduxState = store.getState();

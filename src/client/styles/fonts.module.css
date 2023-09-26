@@ -1,11 +1,13 @@
 @font-face {
-    font-family: 'Inter Regular';
-    src: local('../../../public/assets/fonts/Inter-Regular.ttf');
+    font-family: 'Inter';
+    src: local('../../../public/assets/fonts/Inter-Regular.ttf'),
+            url('https://fonts.googleapis.com/css?family=Inter');
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Inter Medium';
-    src: local('../../../public/assets/fonts/Inter-Medium.ttf');
+    src: local('../../../public/assets/fonts/Inter-Medium.ttf'),
+            url('https://fonts.googleapis.com/css?family=Inter');
     font-display: swap;
 }
