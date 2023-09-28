@@ -1,17 +1,17 @@
 import express from 'express';
 import React from 'react';
-import {renderToString} from 'react-dom/server';
-import App from '../client/App';
+import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
-import sprite from '../../build/static/sprite.svg';
 import { Provider } from 'react-redux';
-import { store } from '../store/store';
 import compression from 'compression';
+import sprite from '../../build/sprite.svg';
+import { store } from '../store/store';
+import App from '../client/App';
 
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-const webpackConfig = require('../../webpack.config.client.js');
+const webpackConfig = require('../../webpack.config.client');
 
 const compiler = webpack(webpackConfig);
 const app = express();
@@ -30,29 +30,29 @@ app.get('*', (req, res) => {
       <StaticRouter location={req.url}>
         <App />
       </StaticRouter>
-    </Provider>
+    </Provider>,
   );
 
   const html = `
-    <!DOCTYPE html>
+    <!doctype html>
     <html lang="ru">
     <head>
-      <title>Party wave</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <meta name="description" content="party wave russian surf community in Haifa">
+      <title>Party wave</title>
     </head>
     <body>
       ${sprite}
       <div id="root">${appString}</div>
       <script src="/client.js"></script>
-       <script>
-                window.__INITIAL_STATE__ = ${JSON.stringify(reduxState)}
-        </script>
+      <script>window.__INITIAL_STATE__ = ${JSON.stringify(reduxState)}</script>
     </body>
     </html>
   `;
 
-  res.send(html);
+  res.status(200).send(html);
 });
 
 app.listen(port, () => {

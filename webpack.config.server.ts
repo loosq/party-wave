@@ -2,7 +2,6 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const isDev = process.env.NODE_ENV === 'development';
 module.exports = {
   target: 'node',
   entry: './src/server/index.tsx',
@@ -20,7 +19,7 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.svg$/i,
@@ -38,17 +37,17 @@ module.exports = {
     ],
   },
   resolve: {
-      modules: ['src', 'node_modules'],
-      extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
+    modules: ['src', 'node_modules'],
+    extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
   },
   externals: [nodeExternals()],
   optimization: {
     splitChunks: {
       cacheGroups: {
         styles: {
-          name: "styles",
-          type: "css/mini-extract",
-          chunks: "all",
+          name: 'styles',
+          type: 'css/mini-extract',
+          chunks: 'all',
           enforce: true,
         },
       },
@@ -56,7 +55,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-          filename: "[name].css",
+      filename: '[name].css',
     }),
   ],
 };

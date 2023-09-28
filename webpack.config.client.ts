@@ -1,12 +1,23 @@
-const path = require('path');
 const webpack = require('webpack');
-const CompressionPlugin = require("compression-webpack-plugin");
+const CompressionPlugin = require('compression-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const isDev = process.env.NODE_ENV === 'development';
+
+const isDev: boolean = process.env.NODE_ENV === 'development';
 const entry = ['./src/client/index.tsx'];
+const plugins = [
+  new CompressionPlugin(),
+];
 if (isDev) {
   entry.push('webpack-hot-middleware/client?path=http://localhost:4000/__webpack_hmr');
-};
+  plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new ReactRefreshWebpackPlugin({
+      overlay: {
+        sockIntegration: 'whm',
+      },
+    }),
+  );
+}
 
 module.exports = {
   devtool: 'source-map',
@@ -36,18 +47,10 @@ module.exports = {
     ],
   },
   resolve: {
-      modules: ['src', 'node_modules'],
-      extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
+    modules: ['src', 'node_modules'],
+    extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
   },
-  plugins: [
-    new CompressionPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new ReactRefreshWebpackPlugin({
-      overlay: {
-        sockIntegration: 'whm',
-      },
-    }),
-  ],
+  plugins,
   devServer: {
     hot: isDev,
   },
