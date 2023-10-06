@@ -1,14 +1,19 @@
+import { Configuration } from 'webpack';
+
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = {
+type IMode = 'development' | 'none' | 'production';
+
+export const server: Configuration = {
   target: 'node',
   entry: './src/server/index.tsx',
-  mode: process.env.NODE_ENV,
+  mode: process.env.NODE_ENV as IMode,
   output: {
     filename: 'server.js',
-    path: path.resolve(__dirname, 'build'),
+    publicPath: '/',
+    path: `${__dirname}/../build`,
   },
   module: {
     rules: [

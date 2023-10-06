@@ -2,3 +2,7 @@
 build/
 .env
 node_modules
+.xml
+.idea
+*.xml
+*.iml

@@ -2,10 +2,11 @@ declare module '*.css' {
     const classes: { [key: string]: string };
     export default classes;
 }
-  
-declare module "*.svg" {
+
+declare module '*.svg' {
   const content: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
   export default content;
 }
 
-declare module "*.png";
+declare module '*.png';
+declare module '*.gif';

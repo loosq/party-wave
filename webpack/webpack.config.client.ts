@@ -1,6 +1,11 @@
+import { Configuration } from 'webpack';
+import path from 'path';
+
 const webpack = require('webpack');
 const CompressionPlugin = require('compression-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+
+type IMode = 'development' | 'none' | 'production';
 
 const isDev: boolean = process.env.NODE_ENV === 'development';
 const entry = ['./src/client/index.tsx'];
@@ -19,13 +24,13 @@ if (isDev) {
   );
 }
 
-module.exports = {
+export const client: Configuration = {
   devtool: 'source-map',
-  mode: process.env.NODE_ENV,
+  mode: process.env.NODE_ENV as IMode,
   target: 'web',
   entry,
   output: {
-    path: `${__dirname}/build`,
+    path: `${__dirname}/../build`,
     publicPath: '/',
     filename: 'client.js',
   },
@@ -51,7 +56,4 @@ module.exports = {
     extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
   },
   plugins,
-  devServer: {
-    hot: isDev,
-  },
 };
